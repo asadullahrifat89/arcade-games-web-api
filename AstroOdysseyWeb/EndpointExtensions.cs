@@ -13,7 +13,7 @@ namespace AstroOdysseyWeb
     {
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app, WebApplicationBuilder builder)
         {
-            app.MapPost("/security/createToken",
+            app.MapPost("/security/authenticate",
             [AllowAnonymous] (User user) =>
             {
                 if (user.UserName == "rifat" && user.Password == "rifat123")
