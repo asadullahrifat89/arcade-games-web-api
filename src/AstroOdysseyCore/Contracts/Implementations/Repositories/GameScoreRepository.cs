@@ -1,4 +1,6 @@
-﻿namespace AstroOdysseyCore
+﻿using MongoDB.Driver;
+
+namespace AstroOdysseyCore
 {
     public class GameScoreRepository : IGameScoreRepository
     {
@@ -27,16 +29,22 @@
 
         #region Methods
 
-        //public async Task<QueryRecordResponse<GameScore>> GetGameScore(GetGameScoreQuery query)
-        //{
-        //    var filter = Builders<GameScore>.Filter.And(
-        //        Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId),
-        //        Builders<GameScore>.Filter.Eq(x => x.User.UserId, query.UserId));
+        public async Task<QueryRecordsResponse<GameScore>> GetGameScores(GetGameScoresQuery query)
+        {
+            var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId);
 
-        //    var result = await _mongoDBService.FindOne(filter);
+            if (query.Since is not null)
+            {
+                filter &= Builders<GameScore>.Filter.Gte(x => x.CreatedOn, query.Since);
+            }
 
-        //    return new QueryRecordResponse<GameScore>().BuildSuccessResponse(result);
-        //}
+            var count = await _mongoDBService.CountDocuments(filter);
+            var results = await _mongoDBService.GetDocuments(filter: filter, skip: query.PageIndex * query.PageSize, limit: query.PageSize);
+
+            return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
+                count: results is not null ? count : 0,
+                records: results is not null ? results.ToArray() : Array.Empty<GameScore>());
+        }
 
         #endregion
     }

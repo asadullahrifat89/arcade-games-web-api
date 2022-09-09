@@ -10,6 +10,7 @@
         public const string Action_SubmitGameScore = "/api/Command/SubmitGameScore";
 
         public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
+        public const string Action_GetGameScores = "/api/Query/GetGameScores";
 
         public static string GetActionName(string action)
         {
