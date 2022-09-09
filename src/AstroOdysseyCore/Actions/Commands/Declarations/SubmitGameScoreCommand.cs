@@ -2,7 +2,7 @@
 
 namespace AstroOdysseyCore
 {
-    public class SubmitGameScoreCommand : IRequest<ActionCommandResponse>
+    public class SubmitGameScoreCommand : IRequest<ServiceResponse>
     {
         public AttachedUser User { get; set; } = new AttachedUser();
 

@@ -18,7 +18,7 @@ namespace AstroOdysseyCore
             _gameProfileRepository = gameProfileRepository;
         }
 
-        public async Task<ActionCommandResponse> SubmitGameScore(SubmitGameScoreCommand command)
+        public async Task<ServiceResponse> SubmitGameScore(SubmitGameScoreCommand command)
         {
             // get personal best score first before this game
             var filter = Builders<GameScore>.Filter.And(
@@ -39,7 +39,7 @@ namespace AstroOdysseyCore
                 userId: gameScore.User.UserId,
                 gameId: gameScore.GameId);
 
-            return Response.Build().WithResult(gameScore);
+            return Response.Build().BuildSuccessResponse(gameScore);
         }
 
         #endregion

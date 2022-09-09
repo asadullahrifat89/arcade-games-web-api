@@ -65,7 +65,7 @@ namespace AstroOdysseyCore
             return new QueryRecordResponse<User>().BuildSuccessResponse(user);
         }
 
-        public async Task<ActionCommandResponse> Signup(SignupCommand command)
+        public async Task<ServiceResponse> Signup(SignupCommand command)
         {
             var user = User.Initialize(command);
             await _mongoDBService.InsertDocument(user);
@@ -84,7 +84,7 @@ namespace AstroOdysseyCore
             };
 
             await _gameProfileRepository.AddGameProfile(gameProfile);
-            return Response.Build().WithResult(gameProfile);
+            return Response.Build().BuildSuccessResponse(gameProfile);
         }
 
         #endregion

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AstroOdysseyCore
 {
-    public class SubmitGameScoreCommandHandler : IRequestHandler<SubmitGameScoreCommand, ActionCommandResponse>
+    public class SubmitGameScoreCommandHandler : IRequestHandler<SubmitGameScoreCommand, ServiceResponse>
     {
         #region Fields
 
@@ -26,7 +26,7 @@ namespace AstroOdysseyCore
 
         #region Methods
 
-        public async Task<ActionCommandResponse> Handle(SubmitGameScoreCommand command, CancellationToken cancellationToken)
+        public async Task<ServiceResponse> Handle(SubmitGameScoreCommand command, CancellationToken cancellationToken)
         {
             try
             {
@@ -35,15 +35,12 @@ namespace AstroOdysseyCore
 
                 var response = await _repository.SubmitGameScore(command);
 
-                if (response.StatusCode != 0)
-                    _logger.LogError(string.Join("\n", response.ErrorMessages));
-
                 return response;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return Response.Build().WithErrors(new[] { ex.Message });
+                return Response.Build().BuildErrorResponse(ex.Message);
             }
         }
 

@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AstroOdysseyCore
 {
-    public class SignupCommandHandler : IRequestHandler<SignupCommand, ActionCommandResponse>
+    public class SignupCommandHandler : IRequestHandler<SignupCommand, ServiceResponse>
     {
         #region Fields
 
@@ -26,24 +26,21 @@ namespace AstroOdysseyCore
 
         #region Methods
 
-        public async Task<ActionCommandResponse> Handle(SignupCommand command, CancellationToken cancellationToken)
+        public async Task<ServiceResponse> Handle(SignupCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 var validationResult = await _validator.ValidateAsync(command, cancellationToken);
                 validationResult.EnsureValidResult();
 
-                var response = await _repository.Signup(command);
-
-                if (response.StatusCode != 0)
-                    _logger.LogError(string.Join("\n", response.ErrorMessages));
+                var response = await _repository.Signup(command);              
 
                 return response;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return Response.Build().WithErrors(new[] { ex.Message });
+                return Response.Build().BuildErrorResponse(ex.Message);
             }
         }
 
