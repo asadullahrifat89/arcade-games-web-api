@@ -1,6 +1,6 @@
 ﻿namespace AstroOdysseyCore
 {
-    public class UserGameProfile : EntityBase
+    public class GameProfile : EntityBase
     {
         public AttachedUser User { get; set; } = new AttachedUser();
 

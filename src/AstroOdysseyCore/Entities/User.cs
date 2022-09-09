@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AstroOdysseyCore.Extensions;
+using MongoDB.Driver;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,5 +15,19 @@ namespace AstroOdysseyCore
         public string Password { get; set; } = string.Empty;
 
         public string Email { get; set; } = string.Empty;
+
+        public static User Initialize(SignupCommand command)
+        {
+            var encryptedPassword = command.Password.Encrypt();
+
+            var user = new User()
+            {
+                UserName = command.UserName,
+                Email = command.Email,
+                Password = encryptedPassword,
+            };
+
+            return user;
+        }
     }
 }

@@ -22,4 +22,9 @@
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Declarations\Queries\" />
+	  <Folder Include="Validators\Queries\" />
+	</ItemGroup>
+
 </Project>
