@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading;
 
 namespace AstroOdysseyWeb
 {
@@ -56,26 +56,12 @@ namespace AstroOdysseyWeb
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
-
-            var summaries = new[]
+          
+            app.MapGet(Constants.Action_GetGameProfile, async (string gameId, string userId, IMediator mediator) =>
             {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
+                return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = userId });
 
-            app.MapGet("/weatherforecast", () =>
-            {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    (
-                        DateTime.Now.AddDays(index),
-                        Random.Shared.Next(-20, 55),
-                        summaries[Random.Shared.Next(summaries.Length)]
-                    ))
-                    .ToArray();
-
-                return forecast;
-
-            }).WithName("GetWeatherForecast").RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
 
             return app;
         }
