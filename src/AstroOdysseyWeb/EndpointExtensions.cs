@@ -9,16 +9,15 @@ namespace AstroOdysseyWeb
 {
     public static class EndpointExtensions
     {
-        public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app, WebApplicationBuilder builder)
+        public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/security/authenticate",
-            [AllowAnonymous] (AuthenticationRequest authenticationRequest) =>
+            app.MapPost("/security/authenticate", [AllowAnonymous] (AuthenticationRequest authenticationRequest, IConfiguration configuration) =>
             {
                 if (authenticationRequest.UserName == "rifat" && authenticationRequest.Password == "rifat123")
                 {
-                    var issuer = builder.Configuration["Jwt:Issuer"];
-                    var audience = builder.Configuration["Jwt:Audience"];
-                    var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+                    var issuer = configuration["Jwt:Issuer"];
+                    var audience = configuration["Jwt:Audience"];
+                    var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
 
                     var lifeTime = DateTime.UtcNow.AddMinutes(2);
 

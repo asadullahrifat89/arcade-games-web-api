@@ -89,6 +89,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseEndpoints(configure => configure.MapEndpoints(builder));
+app.UseEndpoints(configure => configure.MapEndpoints());
 
 app.Run();
