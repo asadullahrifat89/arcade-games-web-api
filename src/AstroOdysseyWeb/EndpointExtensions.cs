@@ -48,7 +48,13 @@ namespace AstroOdysseyWeb
 
                 return Results.Ok(new AuthToken { Token = jwtToken, LifeTime = lifeTime });
 
-            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
+            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));           
+
+            app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (SignupCommand command, IMediator mediator) =>
+            {
+                return await mediator.Send(command);
+
+            }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
             var summaries = new[]
             {
@@ -69,12 +75,6 @@ namespace AstroOdysseyWeb
                 return forecast;
 
             }).WithName("GetWeatherForecast").RequireAuthorization();
-
-            app.MapPost(Constants.Action_SignUp, async (SignupCommand command, IMediator mediator) =>
-            {
-                return await mediator.Send(command);
-
-            }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
             return app;
         }

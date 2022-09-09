@@ -2,9 +2,13 @@
 {
     public interface IUserRepository
     {
-        Task<bool> BeAnExistingUser(string email);
+        Task<bool> BeAnExistingUserEmail(string userEmail);
 
-        Task<bool> BeValidUser(string email, string password);
+        Task<bool> BeAnExistingUserName(string userName);
+
+        Task<bool> BeAnExistingUserNameOrEmail(string userNameOrEmail);
+
+        Task<bool> BeValidUser(string userNameOrEmail, string password);
 
         Task<GameProfile> Signup(SignupCommand command);
     }
