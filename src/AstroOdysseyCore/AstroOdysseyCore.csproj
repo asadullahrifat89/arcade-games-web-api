@@ -23,8 +23,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Declarations\Queries\" />
-	  <Folder Include="Validators\Queries\" />
+	  <Folder Include="Actions\Queries\Declarations\" />
+	  <Folder Include="Actions\Queries\Handlers\" />
+	  <Folder Include="Actions\Queries\Validators\" />
 	</ItemGroup>
 
 </Project>

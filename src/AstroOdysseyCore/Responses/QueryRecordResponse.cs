@@ -4,7 +4,7 @@
     {
         public ErrorResponse Errors { get; set; } = new ErrorResponse();
 
-        public TRecord Result { get; set; }
+        public TRecord? Result { get; set; }
 
         public bool IsSuccess => Errors.errors is null || Errors.errors.Count() == 0;
 
