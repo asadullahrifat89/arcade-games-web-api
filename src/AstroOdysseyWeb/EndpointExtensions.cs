@@ -14,11 +14,11 @@ namespace AstroOdysseyWeb
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
             app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator) =>
-            {                
+            {
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
-                    return Results.Unauthorized();
+                    return new QueryRecordResponse<AuthToken>().BuildErrorResponse(new ErrorResponse().BuildExternalError(string.Join('\n', validationResult.Errors)));
 
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
@@ -46,9 +46,10 @@ namespace AstroOdysseyWeb
                 var token = tokenHandler.CreateToken(tokenDescriptor);
                 var jwtToken = tokenHandler.WriteToken(token);
 
-                return Results.Ok(new AuthToken { Token = jwtToken, LifeTime = lifeTime });
+                var result = new AuthToken() { Token = jwtToken, LifeTime = lifeTime };
+                return new QueryRecordResponse<AuthToken>().BuildSuccessResponse(result);
 
-            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));           
+            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
             app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (SignupCommand command, IMediator mediator) =>
             {
