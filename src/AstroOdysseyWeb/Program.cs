@@ -14,7 +14,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins("https://localhost:7238", "http://localhost:5238", "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
+        policy.WithOrigins("https://localhost:5000", "https://localhost:7238", "http://localhost:5238", "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
