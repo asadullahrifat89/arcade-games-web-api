@@ -11,6 +11,7 @@ namespace AstroOdysseyCore
         #endregion
 
         #region Ctor
+
         public GameProfileRepository(IMongoDbService mongoDBService)
         {
             _mongoDBService = mongoDBService;
@@ -29,6 +30,11 @@ namespace AstroOdysseyCore
             var result = await _mongoDBService.FindOne(filter);
 
             return new QueryRecordResponse<GameProfile>().BuildSuccessResponse(result);
+        }
+
+        public async Task<bool> AddGameProfile(GameProfile gameProfile)
+        {
+            return await _mongoDBService.InsertDocument(gameProfile);
         }
 
         #endregion

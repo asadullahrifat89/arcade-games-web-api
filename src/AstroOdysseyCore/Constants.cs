@@ -7,6 +7,8 @@
         public const string Action_Authenticate = "/api/Command/Authenticate";
         public const string Action_SignUp = "/api/Command/SignUp";
 
+        public const string Action_SubmitGameScore = "/api/Command/SubmitGameScore";
+
         public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
 
         public static string GetActionName(string action)

@@ -8,14 +8,16 @@ namespace AstroOdysseyCore
         #region Fields
 
         private readonly IMongoDbService _mongoDBService;
+        private readonly IGameProfileRepository _gameProfileRepository;
 
         #endregion
 
         #region Ctor
 
-        public UserRepository(IMongoDbService mongoDBService)
+        public UserRepository(IMongoDbService mongoDBService, IGameProfileRepository gameProfileRepository)
         {
             _mongoDBService = mongoDBService;
+            _gameProfileRepository = gameProfileRepository;
         }
 
         #endregion
@@ -75,9 +77,7 @@ namespace AstroOdysseyCore
                 },
             };
 
-            await _mongoDBService.InsertDocument(gameProfile);
-            gameProfile = await _mongoDBService.FindOne<GameProfile>(x => x.Id == gameProfile.Id);
-
+            await _gameProfileRepository.AddGameProfile(gameProfile);
             return Response.Build().WithResult(gameProfile);
         }
 

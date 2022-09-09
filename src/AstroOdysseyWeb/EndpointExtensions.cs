@@ -35,7 +35,7 @@ namespace AstroOdysseyWeb
                             new Claim(JwtRegisteredClaimNames.Email, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
-                         }),
+                    }),
                     Expires = lifeTime,
                     Issuer = issuer,
                     Audience = audience,
@@ -56,6 +56,12 @@ namespace AstroOdysseyWeb
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
+
+            app.MapPost(Constants.Action_SubmitGameScore, [AllowAnonymous] async (SubmitGameScoreCommand command, IMediator mediator) =>
+            {
+                return await mediator.Send(command);
+
+            }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
 
             app.MapGet(Constants.Action_GetGameProfile, async (string gameId, string userId, IMediator mediator) =>
             {
