@@ -4,6 +4,8 @@
     {
         public const string DatabaseName = "AstroOdyssey";
 
+        public const string Action_Ping = "/api/Query/Ping";
+
         public const string Action_Authenticate = "/api/Command/Authenticate";
         public const string Action_SignUp = "/api/Command/SignUp";
 
