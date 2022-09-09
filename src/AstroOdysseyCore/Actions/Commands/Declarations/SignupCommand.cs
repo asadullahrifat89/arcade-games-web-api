@@ -2,7 +2,7 @@
 
 namespace AstroOdysseyCore
 {
-    public class SignupCommand : IRequest<QueryRecordResponse<GameProfile>>
+    public class SignupCommand : IRequest<ActionCommandResponse>
     {
         public string UserName { get; set; } = string.Empty;
 

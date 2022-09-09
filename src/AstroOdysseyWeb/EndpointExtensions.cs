@@ -18,7 +18,7 @@ namespace AstroOdysseyWeb
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
-                    return new QueryRecordResponse<AuthToken>().BuildErrorResponse(new ErrorResponse().BuildExternalError(string.Join('\n', validationResult.Errors)));
+                    return Response.Build().WithErrors(validationResult.Errors.Select(x => x.ErrorMessage).ToArray());
 
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
@@ -47,7 +47,7 @@ namespace AstroOdysseyWeb
                 var jwtToken = tokenHandler.WriteToken(token);
 
                 var result = new AuthToken() { Token = jwtToken, LifeTime = lifeTime };
-                return new QueryRecordResponse<AuthToken>().BuildSuccessResponse(result);
+                return Response.Build().WithResult(result);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
@@ -56,7 +56,7 @@ namespace AstroOdysseyWeb
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
-          
+
             app.MapGet(Constants.Action_GetGameProfile, async (string gameId, string userId, IMediator mediator) =>
             {
                 return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = userId });

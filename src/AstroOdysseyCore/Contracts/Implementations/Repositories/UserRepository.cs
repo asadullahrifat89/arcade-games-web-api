@@ -22,6 +22,12 @@ namespace AstroOdysseyCore
 
         #region Methods
 
+        public async Task<bool> BeAnExistingUser(string id)
+        {
+            var filter = Builders<User>.Filter.Eq(x => x.Id, id);
+            return await _mongoDBService.Exists(filter);
+        }
+
         public async Task<bool> BeAnExistingUserEmail(string userEmail)
         {
             var filter = Builders<User>.Filter.Eq(x => x.Email, userEmail);
@@ -51,7 +57,7 @@ namespace AstroOdysseyCore
             return await _mongoDBService.Exists(filter);
         }
 
-        public async Task<GameProfile> Signup(SignupCommand command)
+        public async Task<ActionCommandResponse> Signup(SignupCommand command)
         {
             var user = User.Initialize(command);
             await _mongoDBService.InsertDocument(user);
@@ -70,7 +76,9 @@ namespace AstroOdysseyCore
             };
 
             await _mongoDBService.InsertDocument(gameProfile);
-            return await _mongoDBService.FindOne<GameProfile>(x => x.Id == gameProfile.Id);
+            gameProfile = await _mongoDBService.FindOne<GameProfile>(x => x.Id == gameProfile.Id);
+
+            return Response.Build().WithResult(gameProfile);
         }
 
         #endregion
