@@ -24,7 +24,7 @@ namespace AstroOdysseyWeb
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
-                    return Response.Build().WithErrors(validationResult.Errors.Select(x => x.ErrorMessage).ToArray());
+                    return Response.Build().BuildErrorResponse(validationResult.Errors?.ToString());
 
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
@@ -53,7 +53,7 @@ namespace AstroOdysseyWeb
                 var jwtToken = tokenHandler.WriteToken(token);
 
                 var result = new AuthToken() { Token = jwtToken, LifeTime = lifeTime };
-                return Response.Build().WithResult(result);
+                return Response.Build().BuildSuccessResponse(result);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 

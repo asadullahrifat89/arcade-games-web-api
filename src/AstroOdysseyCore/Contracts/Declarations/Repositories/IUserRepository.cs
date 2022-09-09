@@ -14,6 +14,6 @@
 
         Task<QueryRecordResponse<User>> GetUser(GetUserQuery query);
 
-        Task<ActionCommandResponse> Signup(SignupCommand command);
+        Task<ServiceResponse> Signup(SignupCommand command);
     }
 }
