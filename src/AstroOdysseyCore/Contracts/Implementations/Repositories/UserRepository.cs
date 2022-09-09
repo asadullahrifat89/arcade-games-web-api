@@ -1,11 +1,5 @@
 ﻿using AstroOdysseyCore.Extensions;
-using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AstroOdysseyCore
 {
@@ -14,19 +8,27 @@ namespace AstroOdysseyCore
         #region Fields
 
         private readonly IMongoDbService _mongoDBService;
+        private readonly IGameProfileRepository _gameProfileRepository;
 
         #endregion
 
         #region Ctor
 
-        public UserRepository(IMongoDbService mongoDBService)
+        public UserRepository(IMongoDbService mongoDBService, IGameProfileRepository gameProfileRepository)
         {
             _mongoDBService = mongoDBService;
+            _gameProfileRepository = gameProfileRepository;
         }
 
         #endregion
 
         #region Methods
+
+        public async Task<bool> BeAnExistingUser(string id)
+        {
+            var filter = Builders<User>.Filter.Eq(x => x.Id, id);
+            return await _mongoDBService.Exists(filter);
+        }
 
         public async Task<bool> BeAnExistingUserEmail(string userEmail)
         {
@@ -57,7 +59,7 @@ namespace AstroOdysseyCore
             return await _mongoDBService.Exists(filter);
         }
 
-        public async Task<GameProfile> Signup(SignupCommand command)
+        public async Task<ActionCommandResponse> Signup(SignupCommand command)
         {
             var user = User.Initialize(command);
             await _mongoDBService.InsertDocument(user);
@@ -75,8 +77,8 @@ namespace AstroOdysseyCore
                 },
             };
 
-            await _mongoDBService.InsertDocument(gameProfile);
-            return await _mongoDBService.FindOne<GameProfile>(x => x.Id == gameProfile.Id);
+            await _gameProfileRepository.AddGameProfile(gameProfile);
+            return Response.Build().WithResult(gameProfile);
         }
 
         #endregion

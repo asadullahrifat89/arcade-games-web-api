@@ -2,10 +2,10 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
+using MongoDB.Driver;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading;
 
 namespace AstroOdysseyWeb
 {
@@ -18,7 +18,7 @@ namespace AstroOdysseyWeb
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
-                    return new QueryRecordResponse<AuthToken>().BuildErrorResponse(new ErrorResponse().BuildExternalError(string.Join('\n', validationResult.Errors)));
+                    return Response.Build().WithErrors(validationResult.Errors.Select(x => x.ErrorMessage).ToArray());
 
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
@@ -35,7 +35,7 @@ namespace AstroOdysseyWeb
                             new Claim(JwtRegisteredClaimNames.Email, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
-                         }),
+                    }),
                     Expires = lifeTime,
                     Issuer = issuer,
                     Audience = audience,
@@ -47,7 +47,7 @@ namespace AstroOdysseyWeb
                 var jwtToken = tokenHandler.WriteToken(token);
 
                 var result = new AuthToken() { Token = jwtToken, LifeTime = lifeTime };
-                return new QueryRecordResponse<AuthToken>().BuildSuccessResponse(result);
+                return Response.Build().WithResult(result);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
@@ -57,25 +57,23 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
-            var summaries = new[]
+            app.MapPost(Constants.Action_SubmitGameScore, [AllowAnonymous] async (SubmitGameScoreCommand command, IMediator mediator) =>
             {
-                "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-            };
+                return await mediator.Send(command);
 
-            app.MapGet("/weatherforecast", () =>
+            }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
+
+            app.MapGet(Constants.Action_GetGameProfile, async (string gameId, string userId, IMediator mediator) =>
             {
-                var forecast = Enumerable.Range(1, 5).Select(index =>
-                    new WeatherForecast
-                    (
-                        DateTime.Now.AddDays(index),
-                        Random.Shared.Next(-20, 55),
-                        summaries[Random.Shared.Next(summaries.Length)]
-                    ))
-                    .ToArray();
+                return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = userId });
 
-                return forecast;
+            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
 
-            }).WithName("GetWeatherForecast").RequireAuthorization();
+            app.MapGet(Constants.Action_GetGameScores, async (int pageIndex, int pageSize, string gameId, DateTime? since, IMediator mediator) =>
+            {
+                return await mediator.Send(new GetGameScoresQuery() { GameId = gameId, PageIndex = pageIndex, PageSize = pageSize, Since = since });
+
+            }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
             return app;
         }

@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AstroOdysseyCore
+﻿namespace AstroOdysseyCore
 {
     public static class Constants
     {
@@ -12,6 +6,11 @@ namespace AstroOdysseyCore
 
         public const string Action_Authenticate = "/api/Command/Authenticate";
         public const string Action_SignUp = "/api/Command/SignUp";
+
+        public const string Action_SubmitGameScore = "/api/Command/SubmitGameScore";
+
+        public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
+        public const string Action_GetGameScores = "/api/Query/GetGameScores";
 
         public static string GetActionName(string action)
         {
