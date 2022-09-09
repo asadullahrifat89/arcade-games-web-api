@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Microsoft.VisualBasic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -21,6 +22,9 @@ namespace AstroOdysseyWeb
                     var issuer = builder.Configuration["Jwt:Issuer"];
                     var audience = builder.Configuration["Jwt:Audience"];
                     var key = Encoding.ASCII.GetBytes(builder.Configuration["Jwt:Key"]);
+
+                    var lifeTime = DateTime.UtcNow.AddMinutes(2);
+
                     var tokenDescriptor = new SecurityTokenDescriptor
                     {
                         Subject = new ClaimsIdentity(new[]
@@ -31,7 +35,7 @@ namespace AstroOdysseyWeb
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
                          }),
-                        Expires = DateTime.UtcNow.AddMinutes(2),
+                        Expires = lifeTime,
                         Issuer = issuer,
                         Audience = audience,
                         SigningCredentials = new SigningCredentials
@@ -42,7 +46,7 @@ namespace AstroOdysseyWeb
                     var token = tokenHandler.CreateToken(tokenDescriptor);
                     var jwtToken = tokenHandler.WriteToken(token);
 
-                    return Results.Ok(jwtToken);
+                    return Results.Ok(new { Token = jwtToken, LifeTime = lifeTime });
                 }
                 return Results.Unauthorized();
             });
