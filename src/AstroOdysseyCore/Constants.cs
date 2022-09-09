@@ -13,6 +13,7 @@
 
         public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
         public const string Action_GetGameScores = "/api/Query/GetGameScores";
+        public const string Action_GetUser = "/api/Query/GetUser";
 
         public static string GetActionName(string action)
         {

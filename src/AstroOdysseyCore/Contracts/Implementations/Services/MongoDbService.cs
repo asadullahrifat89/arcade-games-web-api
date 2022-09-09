@@ -184,7 +184,7 @@ namespace AstroOdysseyCore
             return result is not null;
         }
 
-        public async Task<T> FindById<T>(int id)
+        public async Task<T> FindById<T>(string id)
         {
             var filter = Builders<T>.Filter.Eq("Id", id);
             var collection = GetCollection<T>();

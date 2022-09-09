@@ -39,7 +39,7 @@ namespace AstroOdysseyCore
 
         Task<T> UpdateById<T>(UpdateDefinition<T> update, string id);
 
-        Task<T> FindById<T>(int id);
+        Task<T> FindById<T>(string id);
 
         Task<T> ReplaceById<T>(T document, string id);
 

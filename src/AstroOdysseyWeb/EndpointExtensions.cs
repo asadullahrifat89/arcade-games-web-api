@@ -81,6 +81,12 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
+            app.MapGet(Constants.Action_GetUser, async (string userId, IMediator mediator) =>
+            {
+                return await mediator.Send(new GetUserQuery() { UserId = userId });
+
+            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
+
             return app;
         }
 
