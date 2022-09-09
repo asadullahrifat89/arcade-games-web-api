@@ -7,20 +7,37 @@ namespace AstroOdysseyCore
         #region Fields
 
         private readonly IMongoDbService _mongoDBService;
+        private readonly IGameProfileRepository _gameProfileRepository;
 
         #endregion
 
         #region Ctor
-        public GameScoreRepository(IMongoDbService mongoDBService)
+        public GameScoreRepository(IMongoDbService mongoDBService, IGameProfileRepository gameProfileRepository)
         {
             _mongoDBService = mongoDBService;
+            _gameProfileRepository = gameProfileRepository;
         }
 
         public async Task<ActionCommandResponse> SubmitGameScore(SubmitGameScoreCommand command)
         {
-            var gameScore = GameScore.Initialize(command);
+            // get personal best score first before this game
+            var filter = Builders<GameScore>.Filter.And(
+                Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
+                Builders<GameScore>.Filter.Eq(x => x.User.UserId, command.User.UserId));
+
+            var personalBestScore = await _mongoDBService.FindOne(filter: filter, sortOrder: SortOrder.Descending, sortFieldName: nameof(GameScore.Score));
+
+            var gameScore = GameScore.Initialize(command);            
+
+            // if current game score is greater than personal best score then update it
+            var bestScore = gameScore.Score >= personalBestScore.Score ? gameScore.Score : personalBestScore.Score;
 
             await _mongoDBService.InsertDocument(gameScore);
+            await _gameProfileRepository.UpdateGameProfile(
+                score: gameScore.Score,
+                bestScore: bestScore,
+                userId: gameScore.User.UserId,
+                gameId: gameScore.GameId);
 
             return Response.Build().WithResult(gameScore);
         }
