@@ -1,9 +1,11 @@
 ﻿using AstroOdysseyCore;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Threading;
 
 namespace AstroOdysseyWeb
 {
@@ -11,40 +13,42 @@ namespace AstroOdysseyWeb
     {
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapPost("/security/authenticate", [AllowAnonymous] (AuthenticationQuery authenticationRequest, IConfiguration configuration) =>
-            {
-                if (authenticationRequest.UserName == "rifat" && authenticationRequest.Password == "rifat123")
+            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator) =>
+            {                
+                var validationResult = await validator.ValidateAsync(command);
+
+                if (!validationResult.IsValid)
+                    return Results.Unauthorized();
+
+                var issuer = configuration["Jwt:Issuer"];
+                var audience = configuration["Jwt:Audience"];
+                var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
+
+                var lifeTime = DateTime.UtcNow.AddMinutes(2);
+
+                var tokenDescriptor = new SecurityTokenDescriptor
                 {
-                    var issuer = configuration["Jwt:Issuer"];
-                    var audience = configuration["Jwt:Audience"];
-                    var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
-
-                    var lifeTime = DateTime.UtcNow.AddMinutes(2);
-
-                    var tokenDescriptor = new SecurityTokenDescriptor
+                    Subject = new ClaimsIdentity(new[]
                     {
-                        Subject = new ClaimsIdentity(new[]
-                        {
                             new Claim("Id", Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.Sub, authenticationRequest.UserName),
-                            new Claim(JwtRegisteredClaimNames.Email, authenticationRequest.UserName),
+                            new Claim(JwtRegisteredClaimNames.Sub, command.UserName),
+                            new Claim(JwtRegisteredClaimNames.Email, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
                          }),
-                        Expires = lifeTime,
-                        Issuer = issuer,
-                        Audience = audience,
-                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
-                    };
-                    var tokenHandler = new JwtSecurityTokenHandler();
-                    var token = tokenHandler.CreateToken(tokenDescriptor);
-                    var jwtToken = tokenHandler.WriteToken(token);
+                    Expires = lifeTime,
+                    Issuer = issuer,
+                    Audience = audience,
+                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
+                };
 
-                    return Results.Ok(new { Token = jwtToken, LifeTime = lifeTime });
-                }
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var jwtToken = tokenHandler.WriteToken(token);
 
-                return Results.Unauthorized();
-            });
+                return Results.Ok(new AuthToken { Token = jwtToken, LifeTime = lifeTime });
+
+            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
             var summaries = new[]
             {
@@ -63,8 +67,14 @@ namespace AstroOdysseyWeb
                     .ToArray();
 
                 return forecast;
-            })
-            .WithName("GetWeatherForecast").RequireAuthorization();
+
+            }).WithName("GetWeatherForecast").RequireAuthorization();
+
+            app.MapPost(Constants.Action_SignUp, async (SignupCommand command, IMediator mediator) =>
+            {
+                return await mediator.Send(command);
+
+            }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
             return app;
         }

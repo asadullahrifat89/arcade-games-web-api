@@ -1,7 +1,10 @@
+using AstroOdysseyCore;
 using AstroOdysseyWeb;
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,7 +42,20 @@ builder.Services.AddAuthentication(options =>
 });
 builder.Services.AddAuthorization();
 
-// Add services to the container.
+// Add http context accessor
+builder.Services.AddHttpContextAccessor();
+
+// Add mediator
+builder.Services.AddMediatR(typeof(SignupCommand).GetTypeInfo().Assembly);
+
+// Add validators
+builder.Services.AddValidators();
+
+// Add services
+builder.Services.AddCoreServices();
+
+// Add repositories
+builder.Services.AddRepositories();
 
 // Add swagger
 builder.Services.AddEndpointsApiExplorer();
