@@ -1,9 +1,6 @@
 ﻿using AstroOdysseyCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi.Models;
-using Microsoft.VisualBasic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -15,9 +12,9 @@ namespace AstroOdysseyWeb
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app, WebApplicationBuilder builder)
         {
             app.MapPost("/security/authenticate",
-            [AllowAnonymous] (User user) =>
+            [AllowAnonymous] (AuthenticationRequest authenticationRequest) =>
             {
-                if (user.UserName == "rifat" && user.Password == "rifat123")
+                if (authenticationRequest.UserName == "rifat" && authenticationRequest.Password == "rifat123")
                 {
                     var issuer = builder.Configuration["Jwt:Issuer"];
                     var audience = builder.Configuration["Jwt:Audience"];
@@ -30,17 +27,15 @@ namespace AstroOdysseyWeb
                         Subject = new ClaimsIdentity(new[]
                         {
                             new Claim("Id", Guid.NewGuid().ToString()),
-                            new Claim(JwtRegisteredClaimNames.Sub, user.UserName),
-                            new Claim(JwtRegisteredClaimNames.Email, user.UserName),
+                            new Claim(JwtRegisteredClaimNames.Sub, authenticationRequest.UserName),
+                            new Claim(JwtRegisteredClaimNames.Email, authenticationRequest.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti,
                             Guid.NewGuid().ToString())
                          }),
                         Expires = lifeTime,
                         Issuer = issuer,
                         Audience = audience,
-                        SigningCredentials = new SigningCredentials
-                        (new SymmetricSecurityKey(key),
-                        SecurityAlgorithms.HmacSha512Signature)
+                        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
                     };
                     var tokenHandler = new JwtSecurityTokenHandler();
                     var token = tokenHandler.CreateToken(tokenDescriptor);
@@ -48,6 +43,7 @@ namespace AstroOdysseyWeb
 
                     return Results.Ok(new { Token = jwtToken, LifeTime = lifeTime });
                 }
+
                 return Results.Unauthorized();
             });
 
@@ -66,9 +62,11 @@ namespace AstroOdysseyWeb
                         summaries[Random.Shared.Next(summaries.Length)]
                     ))
                     .ToArray();
+
                 return forecast;
             })
             .WithName("GetWeatherForecast").RequireAuthorization();
+
             return app;
         }
 

@@ -9,13 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add cors
 builder.Services.AddCors(options =>
 {
-    options.AddPolicy("CorsPolicy",
-        policy =>
-        {
-            policy.WithOrigins("https://localhost:7238", "http://localhost:5238", "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        });
+    options.AddPolicy("CorsPolicy", policy =>
+    {
+        policy.WithOrigins("https://localhost:7238", "http://localhost:5238", "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
 });
 
 // Add authentication
