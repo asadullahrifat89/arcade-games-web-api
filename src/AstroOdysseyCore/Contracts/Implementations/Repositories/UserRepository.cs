@@ -59,6 +59,12 @@ namespace AstroOdysseyCore
             return await _mongoDBService.Exists(filter);
         }
 
+        public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
+        {
+            var user = await _mongoDBService.FindById<User>(query.UserId);
+            return new QueryRecordResponse<User>().BuildSuccessResponse(user);
+        }
+
         public async Task<ActionCommandResponse> Signup(SignupCommand command)
         {
             var user = User.Initialize(command);
