@@ -13,6 +13,12 @@ namespace AstroOdysseyWeb
     {
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
+            app.MapGet(Constants.Action_Ping, [AllowAnonymous] () =>
+            {
+                return Results.Ok("I am alive");
+
+            }).WithName(Constants.GetActionName(Constants.Action_Ping));
+
             app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator) =>
             {
                 var validationResult = await validator.ValidateAsync(command);
