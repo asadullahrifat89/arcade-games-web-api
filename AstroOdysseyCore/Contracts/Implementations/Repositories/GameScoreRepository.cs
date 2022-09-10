@@ -27,10 +27,12 @@ namespace AstroOdysseyCore
 
             var personalBestScore = await _mongoDBService.FindOne(filter: filter, sortOrder: SortOrder.Descending, sortFieldName: nameof(GameScore.Score));
 
-            var gameScore = GameScore.Initialize(command);            
+            var gameScore = GameScore.Initialize(command);
 
             // if current game score is greater than personal best score then update it
-            var bestScore = gameScore.Score >= personalBestScore.Score ? gameScore.Score : personalBestScore.Score;
+            var bestScore = personalBestScore is null
+                ? gameScore.Score 
+                : gameScore.Score >= personalBestScore.Score ? gameScore.Score : personalBestScore.Score;
 
             await _mongoDBService.InsertDocument(gameScore);
             await _gameProfileRepository.UpdateGameProfile(
