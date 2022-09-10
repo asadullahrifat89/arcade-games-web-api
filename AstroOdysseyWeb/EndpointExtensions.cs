@@ -21,45 +21,9 @@ namespace AstroOdysseyWeb
 
             app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (
                 AuthenticationCommand command,
-                IConfiguration configuration,
-                AuthenticationCommandValidator validator,
-                IUserRepository userRepository) =>
+                IMediator mediator) =>
             {
-                var validationResult = await validator.ValidateAsync(command);
-
-                if (!validationResult.IsValid)
-                    return Response.Build().BuildErrorResponse(validationResult.ToString());
-
-                var user = await userRepository.GetUser(userNameOrEmail: command.UserName, password: command.Password);
-
-                var id = user.Id;
-                var issuer = configuration["Jwt:Issuer"];
-                var audience = configuration["Jwt:Audience"];
-                var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
-
-                var lifeTime = DateTime.UtcNow.AddMinutes(2);
-
-                var tokenDescriptor = new SecurityTokenDescriptor
-                {
-                    Subject = new ClaimsIdentity(new[]
-                    {
-                            new Claim("Id", id),
-                            new Claim(JwtRegisteredClaimNames.Sub, command.UserName),
-                            new Claim(JwtRegisteredClaimNames.Email, command.UserName),
-                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
-                    }),
-                    Expires = lifeTime,
-                    Issuer = issuer,
-                    Audience = audience,
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha512Signature)
-                };
-
-                var tokenHandler = new JwtSecurityTokenHandler();
-                var token = tokenHandler.CreateToken(tokenDescriptor);
-                var jwtToken = tokenHandler.WriteToken(token);
-
-                var result = new AuthToken() { Token = jwtToken, LifeTime = lifeTime };
-                return Response.Build().BuildSuccessResponse(result);
+                return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
