@@ -29,7 +29,9 @@ namespace AstroOdysseyCore
 
             var result = await _mongoDBService.FindOne(filter);
 
-            return new QueryRecordResponse<GameProfile>().BuildSuccessResponse(result);
+            return result is not null
+                ? new QueryRecordResponse<GameProfile>().BuildSuccessResponse(result)
+                : new QueryRecordResponse<GameProfile>().BuildErrorResponse(new ErrorResponse().BuildExternalError("Game profile not found."));
         }
 
         public async Task<bool> AddGameProfile(GameProfile gameProfile)

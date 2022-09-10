@@ -6,7 +6,7 @@
 
         public TRecord? Result { get; set; }
 
-        public bool IsSuccess => Errors.errors is null || Errors.errors.Count() == 0;
+        public bool IsSuccess => Errors.Errors is null || Errors.Errors.Count() == 0;
 
         public QueryRecordResponse<TRecord> BuildSuccessResponse(TRecord result)
         {
