@@ -63,7 +63,7 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_SubmitGameScore, [AllowAnonymous] async (SubmitGameScoreCommand command, IMediator mediator) =>
+            app.MapPost(Constants.Action_SubmitGameScore, async (SubmitGameScoreCommand command, IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
