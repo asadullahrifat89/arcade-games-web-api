@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
             "http://localhost:5000",
             "https://localhost:7238",
             "http://localhost:5238",
-            "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
+            "https://asadullahrifat89.github.io")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
