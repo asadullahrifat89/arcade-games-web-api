@@ -59,6 +59,17 @@ namespace AstroOdysseyCore
             return await _mongoDBService.Exists(filter);
         }
 
+        public async Task<User> GetUser(string userNameOrEmail, string password)
+        {
+            var encryptedPassword = password.Encrypt();
+
+            var filter = Builders<User>.Filter.And(
+                   Builders<User>.Filter.Or(Builders<User>.Filter.Eq(x => x.Email, userNameOrEmail), Builders<User>.Filter.Eq(x => x.UserName, userNameOrEmail)),
+                   Builders<User>.Filter.Eq(x => x.Password, encryptedPassword));
+
+            return await _mongoDBService.FindOne(filter);
+        }
+
         public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
         {
             var user = await _mongoDBService.FindById<User>(query.UserId);

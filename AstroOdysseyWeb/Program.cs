@@ -1,7 +1,9 @@
 using AstroOdysseyCore;
 using AstroOdysseyWeb;
+using DnsClient;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
@@ -15,9 +17,9 @@ builder.Services.AddCors(options =>
     options.AddPolicy("CorsPolicy", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:5000", 
-            "https://localhost:7238", 
-            "http://localhost:5238", 
+            "http://localhost:5000",
+            "https://localhost:7238",
+            "http://localhost:5238",
             "https://asadullahrifat89.github.io/Astro-Odyssey-Uno-Platform/")
             .AllowAnyHeader()
             .AllowAnyMethod();
@@ -48,6 +50,14 @@ builder.Services.AddAuthorization();
 
 // Add http context accessor
 builder.Services.AddHttpContextAccessor();
+
+// Add http logging
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.All;
+    options.RequestBodyLogLimit = 4096;
+    options.ResponseBodyLogLimit = 4096;
+});
 
 // Add mediator
 builder.Services.AddMediatR(typeof(SignupCommand).GetTypeInfo().Assembly);
@@ -109,6 +119,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseHttpLogging();
 app.UseEndpoints(configure => configure.MapEndpoints());
 
 app.Run();
