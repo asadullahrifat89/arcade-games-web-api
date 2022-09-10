@@ -19,7 +19,11 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
-            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator, IUserRepository userRepository) =>
+            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (
+                AuthenticationCommand command,
+                IConfiguration configuration,
+                AuthenticationCommandValidator validator,
+                IUserRepository userRepository) =>
             {
                 var validationResult = await validator.ValidateAsync(command);
 
@@ -42,8 +46,7 @@ namespace AstroOdysseyWeb
                             new Claim("Id", id),
                             new Claim(JwtRegisteredClaimNames.Sub, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Email, command.UserName),
-                            new Claim(JwtRegisteredClaimNames.Jti,
-                            Guid.NewGuid().ToString())
+                            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                     }),
                     Expires = lifeTime,
                     Issuer = issuer,
@@ -60,45 +63,75 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
-            app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (SignupCommand command, IMediator mediator) =>
+            app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (
+                SignupCommand command,
+                IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_SubmitGameScore, async (SubmitGameScoreCommand command, IMediator mediator) =>
+            app.MapPost(Constants.Action_SubmitGameScore, async (
+                SubmitGameScoreCommand command,
+                IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetGameProfile, async (string gameId, IMediator mediator, IHttpContextAccessor httpContextAccessor) =>
+            app.MapGet(Constants.Action_GetGameProfile, async (
+                string gameId,
+                IMediator mediator,
+                IHttpContextAccessor httpContextAccessor) =>
             {
-                return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = GetUserIdFromHttpContext(httpContextAccessor) });
+                return await mediator.Send(new GetGameProfileQuery()
+                {
+                    GameId = gameId,
+                    UserId = GetUserIdFromHttpContext(httpContextAccessor)
+                });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetGameScores, async (int pageIndex, int pageSize, string gameId, DateTime? since, IMediator mediator) =>
+            app.MapGet(Constants.Action_GetGameScores, async (
+                int pageIndex,
+                int pageSize,
+                string gameId,
+                DateTime? since,
+                IMediator mediator) =>
             {
-                return await mediator.Send(new GetGameScoresQuery() { GameId = gameId, PageIndex = pageIndex, PageSize = pageSize, Since = since });
+                return await mediator.Send(new GetGameScoresQuery()
+                {
+                    GameId = gameId,
+                    PageIndex = pageIndex,
+                    PageSize = pageSize,
+                    Since = since
+                });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetUser, async (IMediator mediator, IHttpContextAccessor httpContextAccessor) =>
+            app.MapGet(Constants.Action_GetUser, async (
+                IMediator mediator,
+                IHttpContextAccessor httpContextAccessor) =>
             {
-                return await mediator.Send(new GetUserQuery() { UserId = GetUserIdFromHttpContext(httpContextAccessor) });
+                return await mediator.Send(new GetUserQuery()
+                {
+                    UserId = GetUserIdFromHttpContext(httpContextAccessor)
+                });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
 
             return app;
         }
 
-        private static string? GetUserIdFromHttpContext(IHttpContextAccessor httpContextAccessor)
+        private static string GetUserIdFromHttpContext(IHttpContextAccessor httpContextAccessor)
         {
             var httpContext = httpContextAccessor.HttpContext;
             var identity = httpContext?.User.Identity as ClaimsIdentity;
 
-            IEnumerable<Claim> claims = identity?.Claims;
+            if (identity is null)
+                return string.Empty;
+
+            IEnumerable<Claim> claims = identity.Claims;
 
             var userId = claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
             return userId;
