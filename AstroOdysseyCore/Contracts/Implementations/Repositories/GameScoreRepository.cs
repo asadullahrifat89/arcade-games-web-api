@@ -25,7 +25,10 @@ namespace AstroOdysseyCore
                 Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
                 Builders<GameScore>.Filter.Eq(x => x.User.UserId, command.User.UserId));
 
-            var personalBestScore = await _mongoDBService.FindOne(filter: filter, sortOrder: SortOrder.Descending, sortFieldName: nameof(GameScore.Score));
+            var personalBestScore = await _mongoDBService.FindOne(
+                filter: filter,
+                sortOrder: SortOrder.Descending,
+                sortFieldName: nameof(GameScore.Score));
 
             var gameScore = GameScore.Initialize(command);
 
@@ -58,7 +61,12 @@ namespace AstroOdysseyCore
             }
 
             var count = await _mongoDBService.CountDocuments(filter);
-            var results = await _mongoDBService.GetDocuments(filter: filter, skip: query.PageIndex * query.PageSize, limit: query.PageSize);
+            var results = await _mongoDBService.GetDocuments(
+                filter: filter,
+                skip: query.PageIndex * query.PageSize,
+                limit: query.PageSize,
+                sortOrder: SortOrder.Descending,
+                sortFieldName: nameof(GameScore.Score));
 
             return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
                 count: results is not null ? count : 0,
