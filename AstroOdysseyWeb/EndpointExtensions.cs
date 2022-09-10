@@ -19,13 +19,16 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
-            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator) =>
+            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (AuthenticationCommand command, IConfiguration configuration, AuthenticationCommandValidator validator, IUserRepository userRepository) =>
             {
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
                     return Response.Build().BuildErrorResponse(validationResult.ToString());
 
+                var user = await userRepository.GetUser(userNameOrEmail: command.UserName, password: command.Password);
+
+                var id = user.Id;
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
                 var key = Encoding.ASCII.GetBytes(configuration["Jwt:Key"]);
@@ -36,7 +39,7 @@ namespace AstroOdysseyWeb
                 {
                     Subject = new ClaimsIdentity(new[]
                     {
-                            new Claim("Id", Guid.NewGuid().ToString()),
+                            new Claim("Id", id),
                             new Claim(JwtRegisteredClaimNames.Sub, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Email, command.UserName),
                             new Claim(JwtRegisteredClaimNames.Jti,
@@ -69,9 +72,9 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetGameProfile, async (string gameId, string userId, IMediator mediator) =>
+            app.MapGet(Constants.Action_GetGameProfile, async (string gameId, IMediator mediator, IHttpContextAccessor httpContextAccessor) =>
             {
-                return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = userId });
+                return await mediator.Send(new GetGameProfileQuery() { GameId = gameId, UserId = GetUserIdFromHttpContext(httpContextAccessor) });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
 
@@ -81,18 +84,24 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetUser, async (string userId, IMediator mediator) =>
+            app.MapGet(Constants.Action_GetUser, async (IMediator mediator, IHttpContextAccessor httpContextAccessor) =>
             {
-                return await mediator.Send(new GetUserQuery() { UserId = userId });
+                return await mediator.Send(new GetUserQuery() { UserId = GetUserIdFromHttpContext(httpContextAccessor) });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
 
             return app;
         }
 
-        internal record WeatherForecast(DateTime Date, int TemperatureC, string? Summary)
+        private static string? GetUserIdFromHttpContext(IHttpContextAccessor httpContextAccessor)
         {
-            public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            var httpContext = httpContextAccessor.HttpContext;
+            var identity = httpContext?.User.Identity as ClaimsIdentity;
+
+            IEnumerable<Claim> claims = identity?.Claims;
+
+            var userId = claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+            return userId;
         }
     }
 }

@@ -12,6 +12,8 @@
 
         Task<bool> BeValidUser(string userNameOrEmail, string password);
 
+        Task<User> GetUser(string userNameOrEmail, string password);
+
         Task<QueryRecordResponse<User>> GetUser(GetUserQuery query);
 
         Task<ServiceResponse> Signup(SignupCommand command);
