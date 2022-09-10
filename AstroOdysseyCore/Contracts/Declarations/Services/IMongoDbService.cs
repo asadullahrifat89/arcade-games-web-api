@@ -21,6 +21,8 @@ namespace AstroOdysseyCore
 
         Task<List<T>> GetDocuments<T>(FilterDefinition<T> filter, int skip, int limit);
 
+        Task<List<T>> GetDocuments<T>(FilterDefinition<T> filter, int skip, int limit, SortOrder sortOrder, string sortFieldName);
+
         Task<bool> InsertDocument<T>(T document);
 
         Task<bool> InsertDocuments<T>(IEnumerable<T> documents);

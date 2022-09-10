@@ -114,6 +114,33 @@ namespace AstroOdysseyCore
             return result;
         }
 
+        public async Task<List<T>> GetDocuments<T>(FilterDefinition<T> filter, int skip, int limit, SortOrder sortOrder, string sortFieldName)
+        {
+            var collection = GetCollection<T>();
+
+            switch (sortOrder)
+            {
+                case SortOrder.Ascending:
+                    {
+                        var sort = Builders<T>.Sort.Ascending(sortFieldName);
+                        var result = await collection.Find(filter).Sort(sort).Skip(skip).Limit(limit).ToListAsync();
+                        return result;
+                    }
+                case SortOrder.Descending:
+                    {
+                        var sort = Builders<T>.Sort.Descending(sortFieldName);
+                        var result = await collection.Find(filter).Sort(sort).Skip(skip).Limit(limit).ToListAsync();
+                        return result;
+                    }
+                case SortOrder.None:
+                default:
+                    {
+                        var result = await collection.Find(filter).Skip(skip).Limit(limit).ToListAsync();
+                        return result;
+                    }
+            }
+        }
+
         public async Task<bool> InsertDocument<T>(T document)
         {
             var collection = GetCollection<T>();
