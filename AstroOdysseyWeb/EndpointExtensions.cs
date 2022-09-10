@@ -24,7 +24,7 @@ namespace AstroOdysseyWeb
                 var validationResult = await validator.ValidateAsync(command);
 
                 if (!validationResult.IsValid)
-                    return Response.Build().BuildErrorResponse(validationResult.Errors?.ToString());
+                    return Response.Build().BuildErrorResponse(validationResult.ToString());
 
                 var issuer = configuration["Jwt:Issuer"];
                 var audience = configuration["Jwt:Audience"];
