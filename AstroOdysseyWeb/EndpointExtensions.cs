@@ -48,7 +48,7 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_GenerateSession)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_ValidateSession, async (
+            app.MapPost(Constants.Action_ValidateSession, [AllowAnonymous] async (
                ValidateSessionCommand command,
                IMediator mediator) =>
             {
