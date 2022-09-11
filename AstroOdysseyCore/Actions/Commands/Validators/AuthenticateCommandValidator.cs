@@ -2,11 +2,11 @@
 
 namespace AstroOdysseyCore
 {
-    public class AuthenticationCommandValidator : AbstractValidator<AuthenticateCommand>
+    public class AuthenticateCommandValidator : AbstractValidator<AuthenticateCommand>
     {
         private readonly IUserRepository _userRepository;
 
-        public AuthenticationCommandValidator(IUserRepository userRepository)
+        public AuthenticateCommandValidator(IUserRepository userRepository)
         {
             _userRepository = userRepository;
 

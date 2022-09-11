@@ -8,8 +8,8 @@ namespace AstroOdysseyCore
         #region Fields
 
         private readonly ILogger<AuthenticateCommandHandler> _logger;
-        private readonly AuthenticationCommandValidator _validator;
-        private readonly IAuthenticationRepository _repository;
+        private readonly AuthenticateCommandValidator _validator;
+        private readonly ISessionRepository _repository;
 
         #endregion
 
@@ -17,8 +17,8 @@ namespace AstroOdysseyCore
 
         public AuthenticateCommandHandler(
             ILogger<AuthenticateCommandHandler> logger,
-            AuthenticationCommandValidator validator,
-            IAuthenticationRepository repository)
+            AuthenticateCommandValidator validator,
+            ISessionRepository repository)
         {
             _logger = logger;
             _validator = validator;

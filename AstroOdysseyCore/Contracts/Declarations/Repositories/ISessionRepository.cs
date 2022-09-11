@@ -1,6 +1,6 @@
 ﻿namespace AstroOdysseyCore
 {
-    public interface IAuthenticationRepository
+    public interface ISessionRepository
     {
         Task<bool> BeAnExistingSession(string sessionId);
 

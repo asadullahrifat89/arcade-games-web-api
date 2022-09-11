@@ -8,7 +8,7 @@ using System.Text;
 
 namespace AstroOdysseyCore
 {
-    public class AuthenticationRepository : IAuthenticationRepository
+    public class SessionRepository : ISessionRepository
     {
         #region Fields
 
@@ -20,7 +20,7 @@ namespace AstroOdysseyCore
 
         #region Ctor
 
-        public AuthenticationRepository(
+        public SessionRepository(
             IMongoDbService mongoDBService,
             IUserRepository userRepository,
             IConfiguration configuration)
