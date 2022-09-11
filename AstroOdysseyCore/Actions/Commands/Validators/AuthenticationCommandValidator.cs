@@ -2,7 +2,7 @@
 
 namespace AstroOdysseyCore
 {
-    public class AuthenticationCommandValidator : AbstractValidator<AuthenticationCommand>
+    public class AuthenticationCommandValidator : AbstractValidator<AuthenticateCommand>
     {
         private readonly IUserRepository _userRepository;
 
@@ -17,7 +17,7 @@ namespace AstroOdysseyCore
             RuleFor(x => x).MustAsync(BeValidUser).WithMessage("Invalid pasword.");
         }
 
-        private async Task<bool> BeValidUser(AuthenticationCommand command, CancellationToken arg2)
+        private async Task<bool> BeValidUser(AuthenticateCommand command, CancellationToken arg2)
         {
             return await _userRepository.BeValidUser(userNameOrEmail: command.UserName, password: command.Password);
         }

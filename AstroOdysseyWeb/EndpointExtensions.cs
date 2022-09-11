@@ -20,7 +20,7 @@ namespace AstroOdysseyWeb
             }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
             app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (
-                AuthenticationCommand command,
+                AuthenticateCommand command,
                 IMediator mediator) =>
             {
                 return await mediator.Send(command);

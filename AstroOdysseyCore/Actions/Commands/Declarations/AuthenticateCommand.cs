@@ -2,7 +2,7 @@
 
 namespace AstroOdysseyCore
 {
-    public class AuthenticationCommand : IRequest<ServiceResponse>
+    public class AuthenticateCommand : IRequest<ServiceResponse>
     {
         public string UserName { get; set; } = string.Empty;
 
