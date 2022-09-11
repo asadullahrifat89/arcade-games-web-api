@@ -73,7 +73,9 @@ namespace AstroOdysseyCore
         public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
         {
             var user = await _mongoDBService.FindById<User>(query.UserId);
-            return new QueryRecordResponse<User>().BuildSuccessResponse(user);
+            return user is null 
+                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist.")) 
+                : new QueryRecordResponse<User>().BuildSuccessResponse(user);
         }
 
         public async Task<ServiceResponse> Signup(SignupCommand command)
@@ -81,20 +83,9 @@ namespace AstroOdysseyCore
             var user = User.Initialize(command);
             await _mongoDBService.InsertDocument(user);
 
-            var gameProfile = new GameProfile()
-            {
-                GameId = command.GameId,
-                LastGameScore = 0,
-                PersonalBestScore = 0,
-                User = new AttachedUser()
-                {
-                    UserId = user.Id,
-                    UserName = command.UserName,
-                    UserEmail = command.Email,
-                },
-            };
-
+            var gameProfile = GameProfile.Initialize(command: command, userId: user.Id);
             await _gameProfileRepository.AddGameProfile(gameProfile);
+
             return Response.Build().BuildSuccessResponse(gameProfile);
         }
 

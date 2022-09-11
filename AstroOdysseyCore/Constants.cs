@@ -8,8 +8,9 @@
 
         public const string Action_Authenticate = "/api/Command/Authenticate";
         public const string Action_SignUp = "/api/Command/SignUp";
-
         public const string Action_SubmitGameScore = "/api/Command/SubmitGameScore";
+        public const string Action_GenerateSession = "/api/Command/GenerateSession";
+        public const string Action_ValidateSession = "/api/Command/ValidateSession";
 
         public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
         public const string Action_GetGameProfiles = "/api/Query/GetGameProfiles";
