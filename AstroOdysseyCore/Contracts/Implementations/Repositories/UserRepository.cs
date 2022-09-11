@@ -73,7 +73,9 @@ namespace AstroOdysseyCore
         public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
         {
             var user = await _mongoDBService.FindById<User>(query.UserId);
-            return user is null ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist.")) : new QueryRecordResponse<User>().BuildSuccessResponse(user);
+            return user is null 
+                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist.")) 
+                : new QueryRecordResponse<User>().BuildSuccessResponse(user);
         }
 
         public async Task<ServiceResponse> Signup(SignupCommand command)

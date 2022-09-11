@@ -3,7 +3,7 @@
 namespace AstroOdysseyCore
 {
     /// <summary>
-    /// Generates a session for a user and returns sessionid.
+    /// Generates a session for a user and game and returns encrypted session.
     /// </summary>
     public class GenerateSessionCommand : IRequest<ServiceResponse>
     {

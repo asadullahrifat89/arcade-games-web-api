@@ -13,11 +13,7 @@ namespace AstroOdysseyWeb
     {
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapGet(Constants.Action_Ping, [AllowAnonymous] () =>
-            {
-                return Results.Ok("I am alive");
-
-            }).WithName(Constants.GetActionName(Constants.Action_Ping));
+            #region Commands
 
             app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (
                 AuthenticateCommand command,
@@ -26,6 +22,7 @@ namespace AstroOdysseyWeb
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
+
 
             app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (
                 SignupCommand command,
@@ -42,6 +39,32 @@ namespace AstroOdysseyWeb
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
+
+            app.MapPost(Constants.Action_GenerateSession, async (
+                GenerateSessionCommand command,
+                IMediator mediator) =>
+            {
+                return await mediator.Send(command);
+
+            }).WithName(Constants.GetActionName(Constants.Action_GenerateSession)).RequireAuthorization();
+
+            app.MapPost(Constants.Action_ValidateSession, async (
+               ValidateSessionCommand command,
+               IMediator mediator) =>
+            {
+                return await mediator.Send(command);
+
+            }).WithName(Constants.GetActionName(Constants.Action_ValidateSession)).RequireAuthorization();
+
+            #endregion
+
+            #region Queries
+
+            app.MapGet(Constants.Action_Ping, [AllowAnonymous] () =>
+                {
+                    return Results.Ok("I am alive");
+
+                }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
             app.MapGet(Constants.Action_GetGameProfile, async (
                 string gameId,
@@ -97,7 +120,9 @@ namespace AstroOdysseyWeb
                     UserId = GetUserIdFromHttpContext(httpContextAccessor)
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization(); 
+
+            #endregion
 
             return app;
         }
