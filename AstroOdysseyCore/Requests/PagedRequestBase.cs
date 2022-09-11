@@ -1,7 +1,4 @@
-﻿using AstroOdysseyCore;
-using MediatR;
-
-namespace AstroOdysseyCore
+﻿namespace AstroOdysseyCore
 {
     public class PagedRequestBase<T> : RequestBase<T>
     {

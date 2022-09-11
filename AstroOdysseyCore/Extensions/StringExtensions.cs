@@ -6,6 +6,7 @@ namespace AstroOdysseyCore.Extensions
     public static class StringExtensions
     {
         public const string NumericFormat = "#,0.##";
+        private static readonly string encryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
         public static bool IsNullOrBlank(this string text)
         {
@@ -19,7 +20,6 @@ namespace AstroOdysseyCore.Extensions
                 return plainText;
             }
 
-            string encryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             byte[] clearBytes = Encoding.Unicode.GetBytes(plainText);
 
             using (Aes encryptor = Aes.Create())
@@ -50,7 +50,6 @@ namespace AstroOdysseyCore.Extensions
                 return encodedData;
             }
 
-            string encryptionKey = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             encodedData = encodedData.Replace(" ", "+");
             byte[] cipherBytes = Convert.FromBase64String(encodedData);
             using (Aes encryptor = Aes.Create())
