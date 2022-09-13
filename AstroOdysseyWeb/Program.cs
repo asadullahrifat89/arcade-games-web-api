@@ -11,6 +11,15 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+#if DEBUG
+// Add http logging
+builder.Services.AddHttpLogging(options =>
+{
+    options.LoggingFields = HttpLoggingFields.Request | HttpLoggingFields.Request;    
+});
+
+#endif
+
 // Add cors
 builder.Services.AddCors(options =>
 {
@@ -50,14 +59,6 @@ builder.Services.AddAuthorization();
 
 // Add http context accessor
 builder.Services.AddHttpContextAccessor();
-
-// Add http logging
-builder.Services.AddHttpLogging(options =>
-{
-    options.LoggingFields = HttpLoggingFields.All;
-    options.RequestBodyLogLimit = 4096;
-    options.ResponseBodyLogLimit = 4096;
-});
 
 // Add mediator
 builder.Services.AddMediatR(typeof(SignupCommand).GetTypeInfo().Assembly);
@@ -110,6 +111,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+#if DEBUG
+app.UseHttpLogging();
+#endif
+
 // Configure the HTTP request pipeline.
 app.UseHttpsRedirection();
 
@@ -119,7 +124,6 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseHttpLogging();
 app.UseEndpoints(configure => configure.MapEndpoints());
 
 app.Run();
