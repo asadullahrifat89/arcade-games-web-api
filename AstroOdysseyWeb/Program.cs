@@ -15,7 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add http logging
 builder.Services.AddHttpLogging(options =>
 {
-    options.LoggingFields = HttpLoggingFields.Request | HttpLoggingFields.Request;    
+    options.LoggingFields = HttpLoggingFields.Request | HttpLoggingFields.Request;
 });
 
 #endif
@@ -25,13 +25,16 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", policy =>
     {
-        policy.WithOrigins(
-            "http://localhost:5000",
-            "https://localhost:7238",
-            "http://localhost:5238",
-            "https://asadullahrifat89.github.io")
+#if DEBUG
+        policy.WithOrigins("http://localhost:5000")
             .AllowAnyHeader()
             .AllowAnyMethod();
+#else
+        policy.WithOrigins("https://asadullahrifat89.github.io")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+#endif
+
     });
 });
 
