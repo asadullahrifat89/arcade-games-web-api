@@ -83,6 +83,9 @@ namespace AstroOdysseyCore
             var user = User.Initialize(command);
             await _mongoDBService.InsertDocument(user);
 
+            //TODO: maintain a list of games in a collection and always match if a game id exists or not
+            //TODO: generate multiple game profiles based on game ids stored in database
+
             var gameProfile = GameProfile.Initialize(command: command, userId: user.Id);
             await _gameProfileRepository.AddGameProfile(gameProfile);
 
