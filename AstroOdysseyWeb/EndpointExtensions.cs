@@ -1,11 +1,8 @@
 ﻿using AstroOdysseyCore;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
-using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 
 namespace AstroOdysseyWeb
 {
@@ -15,42 +12,52 @@ namespace AstroOdysseyWeb
         {
             #region Commands
 
-            app.MapPost(Constants.Action_Authenticate, [AllowAnonymous] async (
-                AuthenticateCommand command,
-                IMediator mediator) =>
+            app.MapPost(
+                pattern: Constants.Action_Authenticate, 
+                handler: [AllowAnonymous] async (
+                    AuthenticateCommand command,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
 
 
-            app.MapPost(Constants.Action_SignUp, [AllowAnonymous] async (
-                SignupCommand command,
-                IMediator mediator) =>
+            app.MapPost(
+                pattern: Constants.Action_SignUp, 
+                handler: [AllowAnonymous] async (
+                    SignupCommand command,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_SubmitGameScore, async (
-                SubmitGameScoreCommand command,
-                IMediator mediator) =>
+            app.MapPost(
+                pattern: Constants.Action_SubmitGameScore, 
+                handler: async (
+                    SubmitGameScoreCommand command,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_GenerateSession, async (
-                GenerateSessionCommand command,
-                IMediator mediator) =>
+            app.MapPost(
+                pattern: Constants.Action_GenerateSession,
+                handler: async (
+                    GenerateSessionCommand command,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
             }).WithName(Constants.GetActionName(Constants.Action_GenerateSession)).RequireAuthorization();
 
-            app.MapPost(Constants.Action_ValidateSession, [AllowAnonymous] async (
-               ValidateSessionCommand command,
-               IMediator mediator) =>
+            app.MapPost(
+                pattern: Constants.Action_ValidateSession, 
+                handler: [AllowAnonymous] async (
+                    ValidateSessionCommand command,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(command);
 
@@ -60,16 +67,20 @@ namespace AstroOdysseyWeb
 
             #region Queries
 
-            app.MapGet(Constants.Action_Ping, [AllowAnonymous] () =>
+            app.MapGet(
+                pattern: Constants.Action_Ping, 
+                handler: [AllowAnonymous] () =>
                 {
                     return Results.Ok("I am alive");
 
                 }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
-            app.MapGet(Constants.Action_GetGameProfile, async (
-                string gameId,
-                IMediator mediator,
-                IHttpContextAccessor httpContextAccessor) =>
+            app.MapGet(
+                pattern: Constants.Action_GetGameProfile, 
+                handler: async (
+                    string gameId,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
             {
                 return await mediator.Send(new GetGameProfileQuery()
                 {
@@ -79,11 +90,13 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetGameProfiles, async (
-                int pageIndex,
-                int pageSize,
-                string gameId,
-                IMediator mediator) =>
+            app.MapGet(
+                pattern: Constants.Action_GetGameProfiles,
+                handler: async (
+                    int pageIndex,
+                    int pageSize,
+                    string gameId,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(new GetGameProfilesQuery()
                 {
@@ -94,26 +107,30 @@ namespace AstroOdysseyWeb
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameProfiles)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetGameScores, async (
-                int pageIndex,
-                int pageSize,
-                string gameId,
-                DateTime? since,
-                IMediator mediator) =>
+            app.MapGet(
+                pattern: Constants.Action_GetGameScores,
+                handler: async (
+                    int pageIndex,
+                    int pageSize,
+                    string gameId,
+                    DateTime scoreDay,
+                    IMediator mediator) =>
             {
                 return await mediator.Send(new GetGameScoresQuery()
                 {
                     GameId = gameId,
                     PageIndex = pageIndex,
                     PageSize = pageSize,
-                    Since = since
+                    ScoreDay = scoreDay
                 });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
-            app.MapGet(Constants.Action_GetUser, async (
-                IMediator mediator,
-                IHttpContextAccessor httpContextAccessor) =>
+            app.MapGet(
+                pattern: Constants.Action_GetUser, 
+                handler: async (
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
             {
                 return await mediator.Send(new GetUserQuery()
                 {

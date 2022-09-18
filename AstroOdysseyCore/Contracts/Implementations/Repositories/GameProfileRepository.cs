@@ -34,6 +34,24 @@ namespace AstroOdysseyCore
                 : new QueryRecordResponse<GameProfile>().BuildErrorResponse(new ErrorResponse().BuildExternalError("Game profile not found."));
         }
 
+        public async Task<QueryRecordsResponse<GameProfile>> GetGameProfiles(GetGameProfilesQuery query)
+        {
+            var filter = Builders<GameProfile>.Filter.Eq(x => x.GameId, query.GameId);
+
+            var count = await _mongoDBService.CountDocuments(filter);
+
+            var results = await _mongoDBService.GetDocuments(
+              filter: filter,
+              skip: query.PageIndex * query.PageSize,
+              limit: query.PageSize,
+              sortOrder: SortOrder.Descending,
+              sortFieldName: nameof(GameProfile.PersonalBestScore));
+
+            return new QueryRecordsResponse<GameProfile>().BuildSuccessResponse(
+               count: results is not null ? count : 0,
+               records: results is not null ? results.ToArray() : Array.Empty<GameProfile>());
+        }
+
         public async Task<bool> AddGameProfile(GameProfile gameProfile)
         {
             return await _mongoDBService.InsertDocument(gameProfile);
@@ -53,24 +71,6 @@ namespace AstroOdysseyCore
                 filter: filter);
 
             return updated is not null;
-        }
-
-        public async Task<QueryRecordsResponse<GameProfile>> GetGameProfiles(GetGameProfilesQuery query)
-        {
-            var filter = Builders<GameProfile>.Filter.Eq(x => x.GameId, query.GameId);
-
-            var count = await _mongoDBService.CountDocuments(filter);
-
-            var results = await _mongoDBService.GetDocuments(
-              filter: filter,
-              skip: query.PageIndex * query.PageSize,
-              limit: query.PageSize,
-              sortOrder: SortOrder.Descending,
-              sortFieldName: nameof(GameProfile.PersonalBestScore));
-
-            return new QueryRecordsResponse<GameProfile>().BuildSuccessResponse(
-               count: results is not null ? count : 0,
-               records: results is not null ? results.ToArray() : Array.Empty<GameProfile>());
         }
 
         #endregion

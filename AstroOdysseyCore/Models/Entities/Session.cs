@@ -1,6 +1,4 @@
-﻿using AstroOdysseyCore.Extensions;
-
-namespace AstroOdysseyCore
+﻿namespace AstroOdysseyCore
 {
     public class Session : EntityBase
     {

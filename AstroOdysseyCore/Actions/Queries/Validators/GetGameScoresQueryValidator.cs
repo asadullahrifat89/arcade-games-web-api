@@ -9,7 +9,7 @@ namespace AstroOdysseyCore
             RuleFor(x => x.PageIndex).GreaterThanOrEqualTo(0);
             RuleFor(x => x.PageSize).GreaterThan(0);
             RuleFor(x => x.GameId).NotNull().NotEmpty();
-            RuleFor(x => x.Since).Must(since => since <= DateTime.UtcNow).When(x => x.Since is not null);
+            RuleFor(x => x.ScoreDay).Must(scoreDay => scoreDay <= DateTime.UtcNow).WithMessage("Score day can't be before today.");
         }
     }
 }
