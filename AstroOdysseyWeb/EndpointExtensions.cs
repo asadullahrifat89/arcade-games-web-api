@@ -113,7 +113,7 @@ namespace AstroOdysseyWeb
                     int pageIndex,
                     int pageSize,
                     string gameId,
-                    DateTime? since,
+                    DateTime scoreDay,
                     IMediator mediator) =>
             {
                 return await mediator.Send(new GetGameScoresQuery()
@@ -121,7 +121,7 @@ namespace AstroOdysseyWeb
                     GameId = gameId,
                     PageIndex = pageIndex,
                     PageSize = pageSize,
-                    Since = since
+                    ScoreDay = scoreDay
                 });
 
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();

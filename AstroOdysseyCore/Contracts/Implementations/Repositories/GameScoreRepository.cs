@@ -12,39 +12,11 @@ namespace AstroOdysseyCore
         #endregion
 
         #region Ctor
+
         public GameScoreRepository(IMongoDbService mongoDBService, IGameProfileRepository gameProfileRepository)
         {
             _mongoDBService = mongoDBService;
             _gameProfileRepository = gameProfileRepository;
-        }
-
-        public async Task<ServiceResponse> SubmitGameScore(SubmitGameScoreCommand command)
-        {
-            // get personal best score first before this game
-            var filter = Builders<GameScore>.Filter.And(
-                Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
-                Builders<GameScore>.Filter.Eq(x => x.User.UserId, command.User.UserId));
-
-            var personalBestScore = await _mongoDBService.FindOne(
-                filter: filter,
-                sortOrder: SortOrder.Descending,
-                sortFieldName: nameof(GameScore.Score));
-
-            var gameScore = GameScore.Initialize(command);
-
-            // if current game score is greater than personal best score then update it
-            var bestScore = personalBestScore is null
-                ? gameScore.Score 
-                : gameScore.Score >= personalBestScore.Score ? gameScore.Score : personalBestScore.Score;
-
-            await _mongoDBService.InsertDocument(gameScore);
-            await _gameProfileRepository.UpdateGameProfile(
-                score: gameScore.Score,
-                bestScore: bestScore,
-                userId: gameScore.User.UserId,
-                gameId: gameScore.GameId);
-
-            return Response.Build().BuildSuccessResponse(gameScore);
         }
 
         #endregion
@@ -55,12 +27,11 @@ namespace AstroOdysseyCore
         {
             var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId);
 
-            if (query.Since is not null)
-            {
-                filter &= Builders<GameScore>.Filter.Gte(x => x.CreatedOn, query.Since);
-            }
+            var scoreDay = query.ScoreDay.ToUniversalTime();
+            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, new DateTime(year: scoreDay.Year, month: scoreDay.Month, day: scoreDay.Day));
 
             var count = await _mongoDBService.CountDocuments(filter);
+
             var results = await _mongoDBService.GetDocuments(
                 filter: filter,
                 skip: query.PageIndex * query.PageSize,
@@ -71,6 +42,75 @@ namespace AstroOdysseyCore
             return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
                 count: results is not null ? count : 0,
                 records: results is not null ? results.ToArray() : Array.Empty<GameScore>());
+        }
+
+        public async Task<ServiceResponse> SubmitGameScore(SubmitGameScoreCommand command)
+        {
+            var currentScore = GameScore.Initialize(command);
+
+            // get personal best score before applying current game score
+            GameScore? personalBestScore = await GetPersonalBestScore(command);
+
+            // if current game score is greater than personal best score then update it
+            double bestScore = personalBestScore is null
+                ? currentScore.Score
+                : currentScore.Score > personalBestScore.Score ? currentScore.Score : personalBestScore.Score;
+
+            await _gameProfileRepository.UpdateGameProfile(
+                score: currentScore.Score,
+                bestScore: bestScore,
+                userId: currentScore.User.UserId,
+                gameId: currentScore.GameId);
+
+            // check if a score exists for the current day
+            GameScore? dailyScore = await GetScoreOfTheDay(command);
+
+            // if no score for the day exists then insert new game score for the day
+            if (dailyScore is null)
+            {
+                await _mongoDBService.InsertDocument(currentScore);
+            }
+            else // if current score beats existing daily score then update
+            {
+                if (currentScore.Score > dailyScore.Score)
+                {
+                    var update = Builders<GameScore>.Update
+                        .Set(x => x.Score, currentScore.Score)
+                        .Set(x => x.ModifiedOn, DateTime.UtcNow);
+
+                    await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
+                }
+            }
+
+            return Response.Build().BuildSuccessResponse(currentScore);
+        }
+
+        private async Task<GameScore> GetPersonalBestScore(SubmitGameScoreCommand command)
+        {
+            var filter = Builders<GameScore>.Filter.And(
+                Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
+                Builders<GameScore>.Filter.Eq(x => x.User.UserId, command.User.UserId));
+
+            var personalBestScore = await _mongoDBService.FindOne(
+                filter: filter,
+                sortOrder: SortOrder.Descending,
+                sortFieldName: nameof(GameScore.Score));
+
+            return personalBestScore;
+        }
+
+        private async Task<GameScore> GetScoreOfTheDay(SubmitGameScoreCommand command)
+        {
+            var today = new DateTime(year: DateTime.UtcNow.Year, month: DateTime.UtcNow.Month, day: DateTime.UtcNow.Day);
+
+            var filter = Builders<GameScore>.Filter.And(
+                Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
+                Builders<GameScore>.Filter.Eq(x => x.User.UserId, command.User.UserId),
+                Builders<GameScore>.Filter.Eq(x => x.ScoreDay, today));
+
+            var dailyScore = await _mongoDBService.FindOne(filter: filter);
+
+            return dailyScore;
         }
 
         #endregion

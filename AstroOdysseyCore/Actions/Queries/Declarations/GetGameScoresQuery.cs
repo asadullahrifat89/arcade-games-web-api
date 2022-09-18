@@ -2,6 +2,6 @@
 {
     public class GetGameScoresQuery : PagedRequestBase<QueryRecordsResponse<GameScore>>
     {
-        public DateTime? Since { get; set; }
+        public DateTime ScoreDay { get; set; }
     }
 }
