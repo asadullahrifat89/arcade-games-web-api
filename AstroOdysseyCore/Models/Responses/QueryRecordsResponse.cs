@@ -53,6 +53,6 @@
         /// <summary>
         /// When the data was added.
         /// </summary>
-        public DateTime AddedOn { get; set; } = DateTime.UtcNow;
+        public DateTime AddedOn { get; set; } = DateTime.Now;
     }
 }

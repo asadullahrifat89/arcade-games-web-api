@@ -17,10 +17,10 @@
         {
             return new Session()
             {
-                ExpiresOn = DateTime.UtcNow.AddDays(2),
+                ExpiresOn = DateTime.Now.AddDays(2),
                 GameId = command.GameId,
                 UserId = command.UserId,
-                SessionId = DateTime.UtcNow.Ticks.ToString(),
+                SessionId = DateTime.Now.Ticks.ToString(),
             };
         }
     }

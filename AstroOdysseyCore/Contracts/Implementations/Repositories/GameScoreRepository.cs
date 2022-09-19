@@ -26,9 +26,8 @@ namespace AstroOdysseyCore
         public async Task<QueryRecordsResponse<GameScore>> GetGameScores(GetGameScoresQuery query)
         {
             var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId);
-
-            var scoreDay = query.ScoreDay.ToUniversalTime().Date;
-            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, scoreDay);
+            
+            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, query.ScoreDay.Date);
 
             var count = await _mongoDBService.CountDocuments(filter);
 
@@ -76,7 +75,7 @@ namespace AstroOdysseyCore
                 {
                     var update = Builders<GameScore>.Update
                         .Set(x => x.Score, currentScore.Score)
-                        .Set(x => x.ModifiedOn, DateTime.UtcNow);
+                        .Set(x => x.ModifiedOn, DateTime.Now);
 
                     await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
                 }
@@ -101,7 +100,7 @@ namespace AstroOdysseyCore
 
         private async Task<GameScore> GetScoreOfTheDay(SubmitGameScoreCommand command)
         {
-            var today = DateTime.UtcNow.Date;
+            var today = DateTime.Now.Date;
 
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
