@@ -101,7 +101,7 @@ namespace AstroOdysseyCore
 
         private async Task<GameScore> GetScoreOfTheDay(SubmitGameScoreCommand command)
         {
-            var today = new DateTime(year: DateTime.UtcNow.Year, month: DateTime.UtcNow.Month, day: DateTime.UtcNow.Day);
+            var today = DateTime.UtcNow.Date;
 
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
