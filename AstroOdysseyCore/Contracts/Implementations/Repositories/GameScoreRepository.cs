@@ -27,7 +27,7 @@ namespace AstroOdysseyCore
         {
             var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId);
             
-            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, query.ScoreDay.Date);
+            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, query.ScoreDay);
 
             var count = await _mongoDBService.CountDocuments(filter);
 
@@ -62,7 +62,7 @@ namespace AstroOdysseyCore
                 gameId: currentScore.GameId);
 
             // check if a score exists for the current day
-            GameScore? dailyScore = await GetScoreOfTheDay(command);
+            GameScore? dailyScore = await GetTodaysScore(command);
 
             // if no score for the day exists then insert new game score for the day
             if (dailyScore is null)
@@ -98,9 +98,9 @@ namespace AstroOdysseyCore
             return personalBestScore;
         }
 
-        private async Task<GameScore> GetScoreOfTheDay(SubmitGameScoreCommand command)
+        private async Task<GameScore> GetTodaysScore(SubmitGameScoreCommand command)
         {
-            var today = DateTime.Now.Date;
+            var today = DateTime.Now.Date.ToString("dd-MMM-yyyy");
 
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),
