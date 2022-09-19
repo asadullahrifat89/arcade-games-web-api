@@ -13,7 +13,7 @@ namespace AstroOdysseyWeb
             #region Commands
 
             app.MapPost(
-                pattern: Constants.Action_Authenticate, 
+                pattern: Constants.Action_Authenticate,
                 handler: [AllowAnonymous] async (
                     AuthenticateCommand command,
                     IMediator mediator) =>
@@ -24,7 +24,7 @@ namespace AstroOdysseyWeb
 
 
             app.MapPost(
-                pattern: Constants.Action_SignUp, 
+                pattern: Constants.Action_SignUp,
                 handler: [AllowAnonymous] async (
                     SignupCommand command,
                     IMediator mediator) =>
@@ -34,7 +34,7 @@ namespace AstroOdysseyWeb
             }).WithName(Constants.GetActionName(Constants.Action_SignUp)).RequireAuthorization();
 
             app.MapPost(
-                pattern: Constants.Action_SubmitGameScore, 
+                pattern: Constants.Action_SubmitGameScore,
                 handler: async (
                     SubmitGameScoreCommand command,
                     IMediator mediator) =>
@@ -54,7 +54,7 @@ namespace AstroOdysseyWeb
             }).WithName(Constants.GetActionName(Constants.Action_GenerateSession)).RequireAuthorization();
 
             app.MapPost(
-                pattern: Constants.Action_ValidateSession, 
+                pattern: Constants.Action_ValidateSession,
                 handler: [AllowAnonymous] async (
                     ValidateSessionCommand command,
                     IMediator mediator) =>
@@ -68,7 +68,7 @@ namespace AstroOdysseyWeb
             #region Queries
 
             app.MapGet(
-                pattern: Constants.Action_Ping, 
+                pattern: Constants.Action_Ping,
                 handler: [AllowAnonymous] () =>
                 {
                     return Results.Ok("I am alive");
@@ -76,7 +76,7 @@ namespace AstroOdysseyWeb
                 }).WithName(Constants.GetActionName(Constants.Action_Ping));
 
             app.MapGet(
-                pattern: Constants.Action_GetGameProfile, 
+                pattern: Constants.Action_GetGameProfile,
                 handler: async (
                     string gameId,
                     IMediator mediator,
@@ -127,7 +127,7 @@ namespace AstroOdysseyWeb
             }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
 
             app.MapGet(
-                pattern: Constants.Action_GetUser, 
+                pattern: Constants.Action_GetUser,
                 handler: async (
                     IMediator mediator,
                     IHttpContextAccessor httpContextAccessor) =>
@@ -137,7 +137,7 @@ namespace AstroOdysseyWeb
                     UserId = GetUserIdFromHttpContext(httpContextAccessor)
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization(); 
+            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
 
             #endregion
 
@@ -154,7 +154,15 @@ namespace AstroOdysseyWeb
 
             IEnumerable<Claim> claims = identity.Claims;
 
-            var userId = claims?.FirstOrDefault(x => x.Type == "Id")?.Value;
+            if (claims is null)
+                return string.Empty;
+
+            var claim = claims.FirstOrDefault(x => x.Type == "Id");
+            
+            if (claim is null)
+                return string.Empty;
+
+            var userId = claim.Value;
             return userId;
         }
     }

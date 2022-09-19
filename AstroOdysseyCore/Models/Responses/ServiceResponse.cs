@@ -4,20 +4,20 @@ namespace AstroOdysseyCore
 {
     public class ServiceResponse
     {
-        public string RequestUri { get; set; }
+        public string RequestUri { get; set; } = string.Empty;
 
-        public string ExternalError { get; set; }
+        public string ExternalError { get; set; } = string.Empty;
 
         public HttpStatusCode HttpStatusCode { get; set; } = HttpStatusCode.OK;
 
-        public object Result { get; set; }
+        public object Result { get; set; } = new object();
 
-        public ServiceResponse BuildSuccessResponse(object result, string requestUri = null)
+        public ServiceResponse BuildSuccessResponse(object result, string requestUri = "")
         {
             return new ServiceResponse() { HttpStatusCode = HttpStatusCode.OK, Result = result, RequestUri = requestUri };
         }
 
-        public ServiceResponse BuildErrorResponse(string error, string requestUri = null)
+        public ServiceResponse BuildErrorResponse(string error, string requestUri = "")
         {
             return new ServiceResponse() { HttpStatusCode = HttpStatusCode.InternalServerError, ExternalError = error, RequestUri = requestUri };
         }

@@ -6,7 +6,7 @@
 
         public ErrorResponse BuildExternalError(params string[] error)
         {
-            return new ErrorResponse() { Errors = error?.Where(x => x is not null)?.ToArray() };
+            return new ErrorResponse() { Errors = error is not null? error.ToArray(): Array.Empty<string>() };
         }
     }
 }

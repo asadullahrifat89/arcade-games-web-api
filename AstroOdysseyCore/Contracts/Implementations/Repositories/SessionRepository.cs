@@ -84,6 +84,9 @@ namespace AstroOdysseyCore
 
             var user = response.Result;
 
+            if (user is null)
+                return Response.Build().BuildErrorResponse("User not found.");
+
             AuthToken result = GenerateAuthToken(user);
 
             return Response.Build().BuildSuccessResponse(result);
