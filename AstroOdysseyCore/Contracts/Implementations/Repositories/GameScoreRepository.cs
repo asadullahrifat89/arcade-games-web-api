@@ -27,7 +27,7 @@ namespace AstroOdysseyCore
         {
             var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, query.GameId);
 
-            var scoreDay = query.ScoreDay.ToUniversalTime();
+            var scoreDay = query.ScoreDay.ToUniversalTime().Date;
             filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, scoreDay);
 
             var count = await _mongoDBService.CountDocuments(filter);
