@@ -8,7 +8,7 @@
 
         public string GameId { get; set; } = string.Empty;
 
-        public DateTime ScoreDay { get; set; } = DateTime.UtcNow.Date;
+        public DateTime ScoreDay { get; set; } = DateTime.Now.Date;
 
         public static GameScore Initialize(SubmitGameScoreCommand command)
         {
