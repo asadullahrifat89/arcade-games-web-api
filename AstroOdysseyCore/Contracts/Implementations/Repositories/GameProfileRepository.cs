@@ -67,7 +67,7 @@ namespace AstroOdysseyCore
                 update: Builders<GameProfile>.Update
                 .Set(x => x.PersonalBestScore, bestScore)
                 .Set(x => x.LastGameScore, score)
-                .Set(x => x.ModifiedOn, DateTime.Now),
+                .Set(x => x.ModifiedOn, DateTime.UtcNow),
                 filter: filter);
 
             return updated is not null;
