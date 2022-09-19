@@ -113,7 +113,7 @@ namespace AstroOdysseyWeb
                     int pageIndex,
                     int pageSize,
                     string gameId,
-                    DateTime scoreDay,
+                    string scoreDay,
                     IMediator mediator) =>
             {
                 return await mediator.Send(new GetGameScoresQuery()
