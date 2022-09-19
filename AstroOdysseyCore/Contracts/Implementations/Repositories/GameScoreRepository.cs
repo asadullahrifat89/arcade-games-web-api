@@ -75,7 +75,7 @@ namespace AstroOdysseyCore
                 {
                     var update = Builders<GameScore>.Update
                         .Set(x => x.Score, currentScore.Score)
-                        .Set(x => x.ModifiedOn, DateTime.Now);
+                        .Set(x => x.ModifiedOn, DateTime.UtcNow);
 
                     await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
                 }
@@ -100,7 +100,7 @@ namespace AstroOdysseyCore
 
         private async Task<GameScore> GetTodaysScore(SubmitGameScoreCommand command)
         {
-            var today = DateTime.Now.Date.ToString("dd-MMM-yyyy");
+            var today = DateTime.UtcNow.Date.ToString("dd-MMM-yyyy");
 
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, command.GameId),

@@ -73,7 +73,7 @@ namespace AstroOdysseyCore
 
             var session = await _mongoDBService.FindOne<Session>(x => x.SessionId == sessionId && x.GameId == command.GameId);
 
-            if (session is null || DateTime.Now > session.ExpiresOn)
+            if (session is null || DateTime.UtcNow > session.ExpiresOn)
                 return Response.Build().BuildErrorResponse("Session expired."); // user will be forced to login again
 
             // get user details
@@ -99,7 +99,7 @@ namespace AstroOdysseyCore
             var audience = _configuration["Jwt:Audience"];
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 
-            var lifeTime = DateTime.Now.AddMinutes(2);
+            var lifeTime = DateTime.UtcNow.AddMinutes(2);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
