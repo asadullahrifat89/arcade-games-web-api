@@ -10,6 +10,8 @@ namespace AstroOdysseyCore
         {
             _userRepository = userRepository;
 
+            RuleFor(x => x.FullName).NotNull().NotEmpty();
+
             RuleFor(x => x.UserName).NotNull().NotEmpty();
             RuleFor(x => x.UserName).MustAsync(NotBeAnExistingUserName).WithMessage("Username already exists.");
 
