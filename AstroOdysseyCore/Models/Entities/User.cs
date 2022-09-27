@@ -4,6 +4,8 @@ namespace AstroOdysseyCore
 {
     public class User : EntityBase
     {
+        public string FullName { get; set; } = string.Empty;
+
         public string UserName { get; set; } = string.Empty;
 
         public string Password { get; set; } = string.Empty;
@@ -16,6 +18,7 @@ namespace AstroOdysseyCore
 
             var user = new User()
             {
+                FullName = command.FullName,
                 UserName = command.UserName,
                 Email = command.Email,
                 Password = encryptedPassword,
