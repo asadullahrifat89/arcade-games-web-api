@@ -51,13 +51,13 @@ namespace AstroOdysseyCore
             GameScore? personalBestScore = await GetPersonalBestScore(command);
 
             // if current game score is greater than personal best score then update it
-            double bestScore = personalBestScore is null
+            double personalBestScoreToCommit = personalBestScore is null
                 ? currentScore.Score
                 : currentScore.Score > personalBestScore.Score ? currentScore.Score : personalBestScore.Score;
 
             await _gameProfileRepository.UpdateGameProfile(
                 score: currentScore.Score,
-                bestScore: bestScore,
+                bestScore: personalBestScoreToCommit,
                 userId: currentScore.User.UserId,
                 gameId: currentScore.GameId);
 
@@ -71,14 +71,13 @@ namespace AstroOdysseyCore
             }
             else // if current score beats existing daily score then update
             {
-                if (currentScore.Score > dailyScore.Score)
-                {
-                    var update = Builders<GameScore>.Update
-                        .Set(x => x.Score, currentScore.Score)
-                        .Set(x => x.ModifiedOn, DateTime.UtcNow);
+                var dailyScoreToCommit = currentScore.Score > dailyScore.Score ? currentScore.Score : dailyScore.Score;
 
-                    await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
-                }
+                var update = Builders<GameScore>.Update
+                    .Set(x => x.Score, dailyScoreToCommit)
+                    .Set(x => x.ModifiedOn, DateTime.UtcNow);
+
+                await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
             }
 
             return Response.Build().BuildSuccessResponse(currentScore);

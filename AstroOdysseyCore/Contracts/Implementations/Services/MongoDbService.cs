@@ -20,7 +20,7 @@ namespace AstroOdysseyCore
            IConfiguration configuration,
            ILogger<MongoDbService> logger)
         {
-            _connectionString = configuration.GetConnectionString("DatabaseConnectionString");
+            _connectionString = configuration["ConnectionStrings:DatabaseConnectionString"];
             _logger = logger;
         }
 
