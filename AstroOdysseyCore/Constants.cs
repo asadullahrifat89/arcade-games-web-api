@@ -27,5 +27,11 @@
 
             return action;
         }
+
+        public static string[] GAME_IDS = new string[]
+        {
+            "astro-odyssey",
+            "sky-way",
+        };
     }
 }
