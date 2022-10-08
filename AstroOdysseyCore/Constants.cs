@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public const string DatabaseName = "AstroOdyssey";
+        public const string DatabaseName = "ArcadeStation";
 
         public const string Action_Ping = "/api/Query/Ping";
 
