@@ -73,8 +73,8 @@ namespace AstroOdysseyCore
         public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
         {
             var user = await _mongoDBService.FindById<User>(query.UserId);
-            return user is null 
-                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist.")) 
+            return user is null
+                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist."))
                 : new QueryRecordResponse<User>().BuildSuccessResponse(user);
         }
 
@@ -86,10 +86,17 @@ namespace AstroOdysseyCore
             //TODO: maintain a list of games in a collection and always match if a game id exists or not
             //TODO: generate multiple game profiles based on game ids stored in database
 
-            var gameProfile = GameProfile.Initialize(command: command, userId: user.Id);
-            await _gameProfileRepository.AddGameProfile(gameProfile);
+            GameProfile[] gameProfiles = Constants.GAME_IDS.Select(gameId => GameProfile.Initialize(
+                command: command,
+                userId: user.Id,
+                gameId: gameId)).ToArray();
 
-            return Response.Build().BuildSuccessResponse(gameProfile);
+            foreach (var gameProfile in gameProfiles)
+            {
+                await _gameProfileRepository.AddGameProfile(gameProfile);
+            }
+
+            return Response.Build().BuildSuccessResponse(gameProfiles.First(x => x.GameId == command.GameId));
         }
 
         #endregion

@@ -19,7 +19,9 @@ namespace AstroOdysseyCore
             RuleFor(x => x.Email).MustAsync(NotBeAnExistingUserEmail).WithMessage("Email already exists.");
 
             RuleFor(x => x.Password).NotNull().NotEmpty();
+
             RuleFor(x => x.GameId).NotNull().NotEmpty();
+            RuleFor(x => x.GameId).Must(x => Constants.GAME_IDS.Contains(x)).WithMessage("Invalid game id.");
         }
 
         private async Task<bool> NotBeAnExistingUserName(string userName, CancellationToken arg2)
