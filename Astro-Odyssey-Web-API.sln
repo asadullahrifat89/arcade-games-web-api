@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstroOdysseyWeb", "AstroOdysseyWeb\AstroOdysseyWeb.csproj", "{F7BD31A5-55ED-4A5F-9C42-0582A1243677}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroOdysseyWeb", "AstroOdysseyWeb\AstroOdysseyWeb.csproj", "{F7BD31A5-55ED-4A5F-9C42-0582A1243677}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstroOdysseyCore", "AstroOdysseyCore\AstroOdysseyCore.csproj", "{142861BD-CDCB-40A0-991E-B6052E7E3DB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstroOdysseyCore", "AstroOdysseyCore\AstroOdysseyCore.csproj", "{142861BD-CDCB-40A0-991E-B6052E7E3DB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
