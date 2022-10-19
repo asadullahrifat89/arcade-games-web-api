@@ -32,6 +32,7 @@
         {
             "astro-odyssey",
             "sky-way",
+            "hungry-worm",
         };
     }
 }
