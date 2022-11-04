@@ -34,7 +34,8 @@
             "space-shooter",
             "sky-racer",
             "hungry-worm",
-            "candy-craze"
+            "candy-craze",
+            "memory-match"
         };
 
         public static string[] Client_Origins = new string[]
