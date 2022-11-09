@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/SpaceShooterWeb/SpaceShooterWeb.csproj",
+                "${workspaceFolder}/src/AdventGamesWeb/AdventGamesWeb.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/SpaceShooterWeb/SpaceShooterWeb.csproj",
+                "${workspaceFolder}/src/AdventGamesWeb/AdventGamesWeb.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -33,7 +33,7 @@
                 "watch",
                 "run",
                 "--project",
-                "${workspaceFolder}/SpaceShooterWeb/SpaceShooterWeb.csproj"
+                "${workspaceFolder}/src/AdventGamesWeb/AdventGamesWeb.csproj"
             ],
             "problemMatcher": "$msCompile"
         }
