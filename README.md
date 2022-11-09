@@ -11,4 +11,4 @@ Patterns:
 2. Repository pattern.
 4. Mediator pattern.
 
-Hosted on Heroku free tier dynos. Expired on November 28th.
+Hosted on Heroku free tier dynos. Expires on November 28th.
