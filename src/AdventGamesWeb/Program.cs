@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using System.Text;
 using Serilog;
+using Microsoft.AspNetCore.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,6 @@ builder.Services.AddHttpLogging(options =>
 // Add cors
 builder.Services.AddCors(options =>
 {
-    //TODO: add allowed origins for production
     options.AddPolicy("CorsPolicy", policy =>
     {
 #if DEBUG
@@ -58,7 +58,13 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuerSigningKey = true
     };
 });
-builder.Services.AddAuthorization();
+//builder.Services.AddAuthorization();
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
 
 // Add http context accessor
 builder.Services.AddHttpContextAccessor();
@@ -79,7 +85,7 @@ builder.Services.AddRepositories();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(option =>
 {
-    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Arcade Games Web API", Version = "v1" });
+    option.SwaggerDoc("v1", new OpenApiInfo { Title = "Advent Games Web API", Version = "v1" });
     option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
@@ -105,6 +111,9 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
+builder.Configuration.AddJsonFile("gameprizes.json", optional: false, reloadOnChange: false);
+builder.Services.Configure<GamePrizesOptions>(builder.Configuration.GetSection("GamePrizesOptions"));
+
 // Add serilog
 var logger = new LoggerConfiguration()
   .ReadFrom.Configuration(builder.Configuration)
@@ -120,11 +129,11 @@ builder.Logging.AddSerilog(logger);
 // App build
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+//if (app.Environment.IsDevelopment())
+//{
+app.UseSwagger();
+app.UseSwaggerUI();
+//}
 
 #if DEBUG
 app.UseHttpLogging();
@@ -140,5 +149,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(configure => configure.MapEndpoints());
+
+//TODO: this is temporary
+
+var service = (IGamePrizeRepository)app.Services.GetRequiredService(typeof(IGamePrizeRepository));
+service?.LoadGamePrizesFromJson();
 
 app.Run();

@@ -40,7 +40,7 @@ namespace AdventGamesWeb
             {
                 return await mediator.Send(command);
 
-            }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore));
 
             app.MapPost(
                 pattern: Constants.Action_GenerateSession,
@@ -50,7 +50,7 @@ namespace AdventGamesWeb
             {
                 return await mediator.Send(command);
 
-            }).WithName(Constants.GetActionName(Constants.Action_GenerateSession)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GenerateSession));
 
             app.MapPost(
                 pattern: Constants.Action_ValidateSession,
@@ -87,7 +87,7 @@ namespace AdventGamesWeb
                     UserId = GetUserIdFromHttpContext(httpContextAccessor)
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile));
 
             app.MapGet(
                 pattern: Constants.Action_GetGameProfiles,
@@ -104,7 +104,7 @@ namespace AdventGamesWeb
                     PageSize = pageSize,
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfiles)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfiles));
 
             app.MapGet(
                 pattern: Constants.Action_GetGameScores,
@@ -114,37 +114,98 @@ namespace AdventGamesWeb
                     string gameId,
                     string scoreDay,
                     IMediator mediator) =>
+                {
+                    return await mediator.Send(new GetGameScoresQuery()
+                    {
+                        GameId = gameId,
+                        PageIndex = pageIndex,
+                        PageSize = pageSize,
+                        ScoreDay = scoreDay
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameScores));
+
+            app.MapGet(
+                pattern: Constants.Action_GetGameHighScores,
+                handler: async (
+                  string gameId,
+                  int limit,
+                  HighScoreFilter filter,
+                  DateTime? fromDate,
+                  DateTime? toDate,
+                  IMediator mediator) =>
+                {
+                    return await mediator.Send(new GetGameHighScoresQuery()
+                    {
+                        GameId = gameId,
+                        FromDate = fromDate,
+                        ToDate = toDate,
+                        Filter = filter,
+                        Limit = limit,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameHighScores));
+
+            app.MapGet(
+               pattern: Constants.Action_GetGameWinners,
+               handler: async (
+                 string gameId,
+                 int limit,
+                 HighScoreFilter filter,
+                 DateTime? fromDate,
+                 DateTime? toDate,
+                 IMediator mediator) =>
+               {
+                   return await mediator.Send(new GetGameWinnersQuery()
+                   {
+                       GameId = gameId,
+                       FromDate = fromDate,
+                       ToDate = toDate,
+                       Filter = filter,
+                       Limit = limit,
+                   });
+
+               }).WithName(Constants.GetActionName(Constants.Action_GetGameWinners));
+
+            app.MapGet(
+                pattern: Constants.Action_GetGamePrizes,
+                handler: async (
+                    string gameId,
+                    int pageIndex,
+                    int pageSize,
+                    int? day,
+                    string? searchTerm,
+                    string? culture,
+                    IMediator mediator) =>
             {
-                return await mediator.Send(new GetGameScoresQuery()
+                return await mediator.Send(new GetGamePrizesQuery()
                 {
                     GameId = gameId,
                     PageIndex = pageIndex,
                     PageSize = pageSize,
-                    ScoreDay = scoreDay
+                    SearchTerm = searchTerm,
+                    Day = day,
+                    Culture = culture,
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetGameScores)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetGamePrizes));
 
             app.MapGet(
-              pattern: Constants.Action_GetGameHighScores,
-              handler: async (
-                  string gameId,
-                  int limit,                  
-                  HighScoreFilter filter,
-                  DateTime? fromDate,
-                  DateTime? toDate,                  
-                  IMediator mediator) =>
-              {
-                  return await mediator.Send(new GetGameHighScoresQuery()
-                  {                      
-                      GameId = gameId,
-                      FromDate = fromDate,
-                      ToDate = toDate,
-                      Filter = filter,
-                      Limit = limit,
-                  });
+             pattern: Constants.Action_GetGamePrize,
+             handler: [AllowAnonymous] async (
+                 string gameId,
+                 int day,
+                 string culture,
+                 IMediator mediator) =>
+             {
+                 return await mediator.Send(new GetGamePrizeQuery()
+                 {
+                     GameId = gameId,
+                     Day = day,
+                     Culture = culture,
+                 });
 
-              }).WithName(Constants.GetActionName(Constants.Action_GetGameHighScores)).RequireAuthorization();
+             }).WithName(Constants.GetActionName(Constants.Action_GetGamePrize));
 
             app.MapGet(
                 pattern: Constants.Action_GetUser,
@@ -157,7 +218,7 @@ namespace AdventGamesWeb
                     UserId = GetUserIdFromHttpContext(httpContextAccessor)
                 });
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetUser)).RequireAuthorization();
+            }).WithName(Constants.GetActionName(Constants.Action_GetUser));
 
             app.MapGet(
               pattern: Constants.Action_CheckIdentityAvailability,

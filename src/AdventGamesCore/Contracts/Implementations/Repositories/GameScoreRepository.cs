@@ -8,15 +8,20 @@ namespace AdventGamesCore
 
         private readonly IMongoDbService _mongoDBService;
         private readonly IGameProfileRepository _gameProfileRepository;
+        private readonly IGamePrizeRepository _gamePrizeRepository;
 
         #endregion
 
         #region Ctor
 
-        public GameScoreRepository(IMongoDbService mongoDBService, IGameProfileRepository gameProfileRepository)
+        public GameScoreRepository(
+            IMongoDbService mongoDBService,
+            IGameProfileRepository gameProfileRepository,
+            IGamePrizeRepository gamePrizeRepository)
         {
             _mongoDBService = mongoDBService;
             _gameProfileRepository = gameProfileRepository;
+            _gamePrizeRepository = gamePrizeRepository;
         }
 
         #endregion
@@ -69,6 +74,8 @@ namespace AdventGamesCore
 
         public async Task<ServiceResponse> SubmitGameScore(SubmitGameScoreCommand command)
         {
+            GameScore gameScore;
+
             var currentScore = GameScore.Initialize(command);
 
             // get personal best score before applying current game score
@@ -92,6 +99,8 @@ namespace AdventGamesCore
             if (dailyScore is null)
             {
                 await _mongoDBService.InsertDocument(currentScore);
+
+                gameScore = await _mongoDBService.FindById<GameScore>(currentScore.Id);
             }
             else // if current score beats existing daily high score then update
             {
@@ -102,10 +111,14 @@ namespace AdventGamesCore
                     .Set(x => x.ModifiedOn, DateTime.UtcNow);
 
                 await _mongoDBService.UpdateById(update: update, id: dailyScore.Id);
+
+                gameScore = await _mongoDBService.FindById<GameScore>(dailyScore.Id);
             }
 
-            // TODO: HIGH SCORE GOAL-> check if this score has crossed high score goal for the current date time
-            return Response.Build().BuildSuccessResponse(currentScore);
+            // check if this score yields any game prize or not
+            GamePlayResult gamePrizeResponse = await _gamePrizeRepository.GetGamePlayResult(gameScore);
+
+            return Response.Build().BuildSuccessResponse(gamePrizeResponse);
         }
 
         #endregion

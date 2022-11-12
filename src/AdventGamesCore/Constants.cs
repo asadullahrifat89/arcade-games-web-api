@@ -16,6 +16,9 @@
         public const string Action_GetUser = "/api/Query/GetUser";
         public const string Action_CheckIdentityAvailability = "/api/Query/CheckIdentityAvailability";
         public const string Action_GetGameHighScores = "/api/Query/GetGameHighScores";
+        public const string Action_GetGamePrizes = "/api/Query/GetGamePrizes";
+        public const string Action_GetGamePrize = "/api/Query/GetGamePrize";
+        public const string Action_GetGameWinners = "/api/Query/GetGameWinners";
 
         public static string GetActionName(string action)
         {
@@ -43,3 +46,4 @@
         };
     }
 }
+
