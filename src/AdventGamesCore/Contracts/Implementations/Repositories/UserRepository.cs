@@ -1,5 +1,6 @@
 ﻿using AdventGamesCore.Extensions;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 namespace AdventGamesCore
 {
@@ -73,9 +74,18 @@ namespace AdventGamesCore
         public async Task<QueryRecordResponse<User>> GetUser(GetUserQuery query)
         {
             var user = await _mongoDBService.FindById<User>(query.UserId);
-            return user is null 
-                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist.")) 
+            return user is null
+                ? new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist."))
                 : new QueryRecordResponse<User>().BuildSuccessResponse(user);
+        }
+
+        public async Task<User[]> GetUsers(string[] userIds)
+        {
+            var filter = Builders<User>.Filter.In(x => x.Id, userIds);
+
+            var results = await _mongoDBService.GetDocuments(filter: filter);
+
+            return results is null? Array.Empty<User>(): results.ToArray();
         }
 
         public async Task<ServiceResponse> Signup(SignupCommand command)

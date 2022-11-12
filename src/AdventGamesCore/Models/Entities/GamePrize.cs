@@ -2,26 +2,31 @@
 {
     public class GamePrize : EntityBase
     {
+        public string GameId { get; set; } = string.Empty;
+
+        public string Name { get; set; } = string.Empty;
+
         public int Day { get; set; } = 1;
 
-        public CultureValue[] Descriptions { get; set; } = Array.Empty<CultureValue>();
+        public CultureValue[] PrizeDescriptions { get; set; } = Array.Empty<CultureValue>();
 
-        public PrizeWinningCriteria PrizeWinningCriteria { get; set; } = new();
+        public WinningCriteria WinningCriteria { get; set; } = new();
     }
 
-    public class PrizeWinningCriteria
+    public class WinningCriteria
     {
-        public CultureValue[] Descriptions { get; set; } = Array.Empty<CultureValue>();
+        public WinningCriteriaType CriteriaType { get; set; } = WinningCriteriaType.DailyHighScore;
 
         public double ScoreThreshold { get; set; }
 
-        public WinningCriteria Criteria { get; set; } = WinningCriteria.None;
+        public CultureValue[] CriteriaDescriptions { get; set; } = Array.Empty<CultureValue>();
+
+        public CultureValue[] WinningDescriptions { get; set; } = Array.Empty<CultureValue>();
     }
 
-    public enum WinningCriteria
+    public enum WinningCriteriaType
     {
-        None,
+        DailyHighScore,
         ScoreThreshold,
-        HighScore
     }
 }
