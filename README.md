@@ -1,5 +1,5 @@
 # Astro-Odyssey-Web-API
-A .NET 6 minimal API for [Astro-Odyssey-Uno-Platform](https://github.com/asadullahrifat89/Astro-Odyssey-Uno-Platform). Serves as the backend service for the game developed with Uno WASM.
+A .NET 7 minimal API for the games built on Uno Platform. Serves as the backend service.
 
 Features:
 1. JWT token based authentication.
@@ -10,5 +10,3 @@ Patterns:
 1. CQRS lite pattern.
 2. Repository pattern.
 4. Mediator pattern.
-
-Hosted on Heroku free tier dynos. Expires on November 28th.
