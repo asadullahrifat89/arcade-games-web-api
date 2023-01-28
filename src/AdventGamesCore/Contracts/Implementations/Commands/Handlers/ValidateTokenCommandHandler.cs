@@ -3,22 +3,22 @@ using Microsoft.Extensions.Logging;
 
 namespace AdventGamesCore
 {
-    public class ValidateSessionCommandHandler : IRequestHandler<ValidateSessionCommand, ServiceResponse>
+    public class ValidateTokenCommandHandler : IRequestHandler<ValidateTokenCommand, ServiceResponse>
     {
         #region Fields
 
-        private readonly ILogger<ValidateSessionCommandHandler> _logger;
-        private readonly ValidateSessionCommandValidator _validator;
-        private readonly ISessionRepository _repository;
+        private readonly ILogger<ValidateTokenCommandHandler> _logger;
+        private readonly ValidateTokenCommandValidator _validator;
+        private readonly IAuthTokenRepository _repository;
 
         #endregion
 
         #region Ctor
 
-        public ValidateSessionCommandHandler(
-            ILogger<ValidateSessionCommandHandler> logger,
-            ValidateSessionCommandValidator validator,
-            ISessionRepository repository)
+        public ValidateTokenCommandHandler(
+            ILogger<ValidateTokenCommandHandler> logger,
+            ValidateTokenCommandValidator validator,
+            IAuthTokenRepository repository)
         {
             _logger = logger;
             _validator = validator;
@@ -29,14 +29,14 @@ namespace AdventGamesCore
 
         #region Methods
 
-        public async Task<ServiceResponse> Handle(ValidateSessionCommand command, CancellationToken cancellationToken)
+        public async Task<ServiceResponse> Handle(ValidateTokenCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 var validationResult = await _validator.ValidateAsync(command, cancellationToken);
                 validationResult.EnsureValidResult();
 
-                var response = await _repository.ValidateSession(command);
+                var response = await _repository.ValidateToken(command);
 
                 return response;
             }

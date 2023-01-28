@@ -6,4 +6,9 @@ namespace AdventGamesCore
     {
         public string GameId { get; set; } = string.Empty;
     }
+
+    public class RequestBaseDto 
+    {
+        public string GameId { get; set; } = string.Empty;
+    }
 }

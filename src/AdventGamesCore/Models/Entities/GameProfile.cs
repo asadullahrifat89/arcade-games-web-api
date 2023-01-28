@@ -10,6 +10,8 @@
 
         public string GameId { get; set; } = string.Empty;
 
+        public string CompanyId { get; set; } = string.Empty;
+
         public static GameProfile Initialize(SignupCommand command, string userId, string gameId)
         {
             return new GameProfile()
@@ -17,11 +19,11 @@
                 GameId = gameId,
                 LastGameScore = 0,
                 PersonalBestScore = 0,
+                CompanyId = command.CompanyId,
                 User = new AttachedUser()
                 {
                     UserId = userId,
-                    UserName = command.UserName,
-                    UserEmail = command.Email,
+                    UserName = command.UserName
                 },
             };
         }

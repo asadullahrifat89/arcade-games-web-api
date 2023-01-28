@@ -9,7 +9,7 @@ namespace AdventGamesCore
 
         private readonly ILogger<AuthenticateCommandHandler> _logger;
         private readonly AuthenticateCommandValidator _validator;
-        private readonly ISessionRepository _repository;
+        private readonly IAuthTokenRepository _repository;
 
         #endregion
 
@@ -18,7 +18,7 @@ namespace AdventGamesCore
         public AuthenticateCommandHandler(
             ILogger<AuthenticateCommandHandler> logger,
             AuthenticateCommandValidator validator,
-            ISessionRepository repository)
+            IAuthTokenRepository repository)
         {
             _logger = logger;
             _validator = validator;

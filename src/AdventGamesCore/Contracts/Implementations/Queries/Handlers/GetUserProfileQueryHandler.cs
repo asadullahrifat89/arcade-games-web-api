@@ -3,21 +3,21 @@ using Microsoft.Extensions.Logging;
 
 namespace AdventGamesCore
 {
-    public class GetUserQueryHandler : IRequestHandler<GetUserQuery, QueryRecordResponse<User>>
+    public class GetUserProfileQueryHandler : IRequestHandler<GetUserProfileQuery, QueryRecordResponse<UserProfile>>
     {
         #region Fields
 
-        private readonly ILogger<GetUserQueryHandler> _logger;
-        private readonly GetUserQueryValidator _validator;
+        private readonly ILogger<GetUserProfileQueryHandler> _logger;
+        private readonly GetUserProfileQueryValidator _validator;
         private readonly IUserRepository _repository;
 
         #endregion
 
         #region Ctor
 
-        public GetUserQueryHandler(
-            ILogger<GetUserQueryHandler> logger,
-            GetUserQueryValidator validator,
+        public GetUserProfileQueryHandler(
+            ILogger<GetUserProfileQueryHandler> logger,
+            GetUserProfileQueryValidator validator,
             IUserRepository repository)
         {
             _logger = logger;
@@ -29,19 +29,19 @@ namespace AdventGamesCore
 
         #region Methods
 
-        public async Task<QueryRecordResponse<User>> Handle(GetUserQuery query, CancellationToken cancellationToken)
+        public async Task<QueryRecordResponse<UserProfile>> Handle(GetUserProfileQuery query, CancellationToken cancellationToken)
         {
             try
             {
                 var validationResult = await _validator.ValidateAsync(query, cancellationToken);
                 validationResult.EnsureValidResult();
 
-                return await _repository.GetUser(query);
+                return await _repository.GetUserProfile(query);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return new QueryRecordResponse<User>().BuildErrorResponse(new ErrorResponse().BuildExternalError(ex.Message));
+                return new QueryRecordResponse<UserProfile>().BuildErrorResponse(new ErrorResponse().BuildExternalError(ex.Message));
             }
         }
 

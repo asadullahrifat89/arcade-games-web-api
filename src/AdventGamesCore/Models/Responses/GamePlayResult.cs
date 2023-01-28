@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdventGamesCore
+﻿namespace AdventGamesCore
 {
     public class GamePlayResult
     {
@@ -16,6 +10,8 @@ namespace AdventGamesCore
 
         public CultureValue[] WinningDescriptions { get; set; } = Array.Empty<CultureValue>();
 
+        public CultureValue[] PrizeUrls { get; set; } = Array.Empty<CultureValue>();
+
         public static GamePlayResult Initialize(GamePrize gamePrize, CultureValue[] winningDescriptions)
         {
             return new GamePlayResult
@@ -23,7 +19,8 @@ namespace AdventGamesCore
                 GameId = gamePrize.GameId,
                 PrizeName = gamePrize.Name,
                 PrizeDescriptions = gamePrize.PrizeDescriptions,
-                WinningDescriptions = winningDescriptions
+                WinningDescriptions = winningDescriptions,
+                PrizeUrls = gamePrize.PrizeUrls,
             };
         }
     }

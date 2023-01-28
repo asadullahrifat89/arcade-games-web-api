@@ -9,18 +9,24 @@
 
         public string UserId { get; set; } = string.Empty;
 
-        public DateTime ExpiresOn { get; set; }
+        public string CompanyId { get; set; } = string.Empty;
 
         public string GameId { get; set; } = string.Empty;
+
+        /// <summary>
+        /// When a game play starts this is saved as false. Once score is submitted this is updated to true.
+        /// </summary>
+        public bool IsComplete { get; set; } = false;
 
         public static Session Initialize(GenerateSessionCommand command)
         {
             return new Session()
             {
-                ExpiresOn = DateTime.UtcNow.AddDays(2),
-                GameId = command.GameId,
-                UserId = command.UserId,
                 SessionId = DateTime.UtcNow.Ticks.ToString(),
+                UserId = command.UserId,
+                CompanyId = command.CompanyId,
+                GameId = command.GameId,
+                IsComplete = false,
             };
         }
     }

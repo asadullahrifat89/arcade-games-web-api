@@ -1,0 +1,266 @@
+﻿{
+  "SeasonOptions": {
+    "Seasons": [
+      {
+        "id": "spiga-christmas",
+        "name": "christmas",
+        "companyId": "spiga",
+        "startTime": "2022-12-01T00:00:00",
+        "endTime": "2022-12-24T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Oh no! Our Pizza delivery to the moon got lost in space! Help us collecting the pizza slices, so we can still deliver the order and in return we will suprise you with new goodies every day."
+          },
+          {
+            "culture": "de",
+            "value": "Oh nein! Unsere Lieferung zum Mond ging im All verloren! Hilf uns die Pizzastücke wieder einzusammeln, damit wir diese zustellen können und als Dankeschön überraschen wir dich jeden Tag mit tollen Preisen."
+          },
+          {
+            "culture": "fr",
+            "value": "Ah non ! Notre envoi vers la lune s'est perdu dans l'espace ! Aidez-nous à collecter les tranches de pizza, afin que nous puissions continuer à livrer la commande et en retour, nous vous surprendrons avec de nouvelles surprises chaque jour."
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#630311",
+          "bubbleType1BackgroundColor": "#eee4e5",
+          "bubbleType2BackgroundColor": "#caaaaf",
+          "bubbleType3BackgroundColor": "#863a46",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#432d20",
+          "seasonDeadlineColor": "#bfc835",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#bfc835",
+          "offerColor": "#b4bd00",
+          "playButtonBackgroundColor": "#b4bd00",
+          "playButtonBorderColor": "#432d20",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Keep playing, because, among all the top 100 high scorers of the advent time, we will raffle off an overnight stay in a Moxy hotel after Advent."
+          },
+          {
+            "Culture": "de",
+            "Value": "Weiter spielen lohnt sich, denn unter allen Top 100 High Scorern der Adventszeit, verlosen wir eine Übernachtung in einem Moxy Hotel."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Continuer à jouer vaut la peine, car parmi tous les 100 meilleurs high scorers, nous tirerons au sort une nuit dans un hôtel après la période de l'Avent."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          }
+        ]
+      },
+      {
+        "id": "emil-christmas",
+        "name": "christmas",
+        "companyId": "emil",
+        "startTime": "2022-12-01T00:00:00",
+        "endTime": "2022-12-24T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Help! Our EMIL order to the moon got lost in space! Collect as many bowls as possible and as a thank you we will give a great prize for the highest high score of the day! So it pays off to participate every day! We count on your help!"
+          },
+          {
+            "culture": "de",
+            "value": "Hilfe! Unsere EMIL Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!"
+          },
+          {
+            "culture": "fr",
+            "value": "Au secours ! Notre commande EMIL pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#343530",
+          "bubbleType1BackgroundColor": "#e9e9e9",
+          "bubbleType2BackgroundColor": "#babab8",
+          "bubbleType3BackgroundColor": "#71716f",
+          "cardBackgroundColor": "#fc9c9d",
+          "cardBorder": "#ffffff",
+          "seasonDeadlineColor": "#ffffff",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#ffffff",
+          "offerColor": "#ffffff",
+          "playButtonBackgroundColor": "#fc9c9d",
+          "playButtonBorderColor": "#ffffff",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! It's in your hand! The player who scores the most until midnight, will win the daily prize."
+          },
+          {
+            "Culture": "de",
+            "Value": "Game on! Du allein hast es in den Händen, denn die Person mit dem höchsten High Score Wert bis um Mitternacht wird den Tagespreis gewinnen."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Game on! Tu l'as entre les mains, car la personne ayant obtenu le meilleur score jusqu'à minuit remportera le prix du jour."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          }
+        ]
+      },
+      {
+        "id": "andiamo-christmas",
+        "name": "christmas",
+        "companyId": "andiamo",
+        "startTime": "2022-12-01T00:00:00",
+        "endTime": "2022-12-24T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Help! Our Andiamo Delivery order to the moon got lost in space! Collect as many bowls as possible and as a thank you we will give a great prize for the highest high score of the day! So it pays off to participate every day! We count on your help!"
+          },
+          {
+            "culture": "de",
+            "value": "Hilfe! Unsere Andiamo Delivery Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!"
+          },
+          {
+            "culture": "fr",
+            "value": "Au secours ! Notre commande Andiamo Delivery pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#9b9c9e",
+          "bubbleType1BackgroundColor": "#f4f4f4",
+          "bubbleType2BackgroundColor": "#dddddf",
+          "bubbleType3BackgroundColor": "#b9babc",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#2b700c",
+          "seasonDeadlineColor": "#9bca40",
+          "offerDetailsColor": "#9ea2a4",
+          "winningCriteriaColor": "#9ea0a2",
+          "requiredPointsColor": "#8ec327",
+          "offerColor": "#8cc223",
+          "playButtonBackgroundColor": "#8cc222",
+          "playButtonBorderColor": "#2c700d",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! It's in your hand! The player who scores the most until midnight, will win the daily prize.."
+          },
+          {
+            "Culture": "de",
+            "Value": "Game on! Du allein hast es in den Händen, denn die Person mit dem höchsten High Score Wert bis um Mitternacht wird den Tagespreis gewinnen."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Game on! Tu l'as entre les mains, car la personne ayant obtenu le meilleur score jusqu'à minuit remportera le prix du jour."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          }
+        ]
+      },
+      {
+        "id": "sv-restaurant-christmas",
+        "name": "christmas",
+        "companyId": "sv-restaurant",
+        "startTime": "2022-12-01T00:00:00",
+        "endTime": "2022-12-24T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Let the games begin! Every 6 days we unlock a new game and you have 6 days to win the period's prize! Among the top 20 high scorers of that time, we will then draw the prize! So stay tuned!"
+          },
+          {
+            "culture": "de",
+            "value": "Lasst die Spiele beginnen! Alle 6 Tage schalten wir ein neues Spiel frei und ihr habt 6 Tage Zeit, um den Preis zu gewinnen! Unter den Top 20 High Scorern der Periode, verlosen wir dann den Preis! Dran bleiben lohnt sich also!"
+          },
+          {
+            "culture": "fr",
+            "value": "Que les jeux commencent! Tous les 6 jours, nous débloquons un nouveau jeu et vous avez 6 jours pour le gagner! Nous tirerons au sort le prix parmi les 20 meilleurs joueurs de la période! Cela vaut donc la peine de s'accrocher!"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#9b9c9e",
+          "bubbleType1BackgroundColor": "#f4f4f4",
+          "bubbleType2BackgroundColor": "#dddddf",
+          "bubbleType3BackgroundColor": "#b9babc",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#2b700c",
+          "seasonDeadlineColor": "#9bca40",
+          "offerDetailsColor": "#9ea2a4",
+          "winningCriteriaColor": "#9ea0a2",
+          "requiredPointsColor": "#8ec327",
+          "offerColor": "#8cc223",
+          "playButtonBackgroundColor": "#8cc222",
+          "playButtonBorderColor": "#2c700d",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! Among all the top 20 period's high scorers, we will draw a lucky winner who gets the period's prize."
+          },
+          {
+            "Culture": "de",
+            "Value": "Das Spiel läuft! Unter den 20 besten Highscorern der Periode ziehen wir einen glücklichen Gewinner, der den Preis erhält."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Le jeu est en cours! Parmi les 20 meilleurs highscorers de la période, nous tirerons au sort un heureux gagnant qui recevra le prix."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          }
+        ]
+      }
+    ]
+  }
+}

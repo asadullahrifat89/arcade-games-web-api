@@ -6,6 +6,8 @@
 
         Task<QueryRecordsResponse<GameScore>> GetGameScores(GetGameScoresQuery query);
 
-        Task<QueryRecordsResponse<GameScore>> GetGameHighScores(GetGameHighScoresQuery query);
+        Task<QueryRecordsResponse<GameHighScore>> GetGameHighScores(GetGameHighScoresQuery query);
+
+        Task BanHackers();
     }
 }

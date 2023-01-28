@@ -1,172 +1,268 @@
 ﻿using AdventGamesCore;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using MongoDB.Driver;
+using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
 namespace AdventGamesWeb
 {
     public static class EndpointExtensions
     {
+        #region Methods
+
+        #region Public
+
         public static IEndpointRouteBuilder MapEndpoints(this IEndpointRouteBuilder app)
         {
             #region Commands
 
-            app.MapPost(
-                pattern: Constants.Action_Authenticate,
-                handler: [AllowAnonymous] async (
-                    AuthenticateCommand command,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(command);
+            Authenticate(app);
 
-            }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
+            SignUp(app);
 
-            app.MapPost(
-                pattern: Constants.Action_SignUp,
-                handler: [AllowAnonymous] async (
-                    SignupCommand command,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(command);
+            SubmitGameScore(app);
 
-            }).WithName(Constants.GetActionName(Constants.Action_SignUp));
+            GenerateSession(app);
 
-            app.MapPost(
-                pattern: Constants.Action_SubmitGameScore,
-                handler: async (
-                    SubmitGameScoreCommand command,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(command);
-
-            }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore));
-
-            app.MapPost(
-                pattern: Constants.Action_GenerateSession,
-                handler: async (
-                    GenerateSessionCommand command,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(command);
-
-            }).WithName(Constants.GetActionName(Constants.Action_GenerateSession));
-
-            app.MapPost(
-                pattern: Constants.Action_ValidateSession,
-                handler: [AllowAnonymous] async (
-                    ValidateSessionCommand command,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(command);
-
-            }).WithName(Constants.GetActionName(Constants.Action_ValidateSession));
+            ValidateToken(app);
 
             #endregion
 
             #region Queries
 
+            Ping(app);
+
+            GetGameProfiles(app);
+
+            GetGameProfile(app);
+
+            GetGameScoresOfTheDay(app);
+
+            GetGameHighScores(app);
+
+            GetGameWinners(app);
+
+            GetGamePrizes(app);
+
+            GetGamePrizeOfTheDay(app);
+
+            GetUserProfile(app);
+
+            GetUserProfiles(app);
+
+            CheckIdentityAvailability(app);
+
+            GetSeason(app);
+
+            GetCompany(app);
+
+            GetGameSchedule(app);
+
+            #endregion            
+
+            return app;
+        }
+
+        #endregion
+
+        #region Private
+
+        #region Commands
+
+        private static void Authenticate(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_Authenticate,
+                handler: [AllowAnonymous] async (
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var httpContext = httpContextAccessor.HttpContext;
+
+                    if (httpContext is null)
+                        return new ServiceResponse().BuildBadRequestResponse("Bad request");
+
+                    return await mediator.Send(new AuthenticateCommand()
+                    {
+                        UserName = httpContext.Request.Form["UserName"].ToString(),
+                        Password = httpContext.Request.Form["Password"].ToString(),
+                        CompanyId = httpContext.Request.Form["CompanyId"].ToString(),
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_Authenticate));
+        }
+
+        private static void SignUp(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_SignUp,
+                handler: [AllowAnonymous] async (
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var httpContext = httpContextAccessor.HttpContext;
+
+                    if (httpContext is null)
+                        return new ServiceResponse().BuildBadRequestResponse("Bad request");
+
+                    return await mediator.Send(new SignupCommand()
+                    {
+                        Email = httpContext.Request.Form["Email"].ToString(),
+                        FullName = httpContext.Request.Form["FullName"].ToString(),
+                        UserName = httpContext.Request.Form["UserName"].ToString(),
+                        Password = httpContext.Request.Form["Password"].ToString(),
+                        City = httpContext.Request.Form["City"].ToString(),
+                        GameId = httpContext.Request.Form["GameId"].ToString(),
+                        CompanyId = httpContext.Request.Form["CompanyId"].ToString(),
+                        MetaData = new Dictionary<string, string>() { { "SubscribedNewsletters", httpContext.Request.Form["SubscribedNewsletters"].ToString() } }
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_SignUp));
+        }
+
+        private static void SubmitGameScore(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_SubmitGameScore,
+                handler: async (
+                    SubmitGameScoreCommandDto command,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new SubmitGameScoreCommand()
+                    {
+                        CompanyId = CompanyId,
+                        GameId = command.GameId,
+                        Score = command.Score,
+                        User = command.User,
+                        SessionId = command.SessionId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_SubmitGameScore));
+        }
+
+        private static void GenerateSession(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_GenerateSession,
+                handler: async (
+                    GenerateSessionCommandDto command,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GenerateSessionCommand()
+                    {
+                        GameId = command.GameId,
+                        UserId = command.UserId,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GenerateSession));
+        }
+
+        private static void ValidateToken(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_ValidateToken,
+                handler: [AllowAnonymous] async (
+                    ValidateTokenCommand command,
+                    IMediator mediator) =>
+                {
+                    return await mediator.Send(command);
+
+                }).WithName(Constants.GetActionName(Constants.Action_ValidateToken));
+        }
+
+        #endregion
+
+        #region Queries
+
+        private static void Ping(IEndpointRouteBuilder app)
+        {
             app.MapGet(
                 pattern: Constants.Action_Ping,
                 handler: [AllowAnonymous] () =>
                 {
-                    return Results.Ok("I am alive");
+                    var environemntVariable = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+
+                    return Results.Ok($"{environemntVariable}: I am alive!");
 
                 }).WithName(Constants.GetActionName(Constants.Action_Ping));
+        }
 
-            app.MapGet(
-                pattern: Constants.Action_GetGameProfile,
-                handler: async (
-                    string gameId,
+        private static void CheckIdentityAvailability(IEndpointRouteBuilder app)
+        {
+            app.MapPost(
+                pattern: Constants.Action_CheckIdentityAvailability,
+                handler: [AllowAnonymous] async (
                     IMediator mediator,
                     IHttpContextAccessor httpContextAccessor) =>
-            {
-                return await mediator.Send(new GetGameProfileQuery()
                 {
-                    GameId = gameId,
-                    UserId = GetUserIdFromHttpContext(httpContextAccessor)
-                });
+                    var httpContext = httpContextAccessor.HttpContext;
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile));
+                    if (httpContext is null)
+                        return new QueryRecordResponse<bool>().BuildErrorResponse(new ErrorResponse().BuildExternalError("Bad request"));
 
-            app.MapGet(
-                pattern: Constants.Action_GetGameProfiles,
-                handler: async (
-                    int pageIndex,
-                    int pageSize,
-                    string gameId,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(new GetGameProfilesQuery()
-                {
-                    GameId = gameId,
-                    PageIndex = pageIndex,
-                    PageSize = pageSize,
-                });
-
-            }).WithName(Constants.GetActionName(Constants.Action_GetGameProfiles));
-
-            app.MapGet(
-                pattern: Constants.Action_GetGameScores,
-                handler: async (
-                    int pageIndex,
-                    int pageSize,
-                    string gameId,
-                    string scoreDay,
-                    IMediator mediator) =>
-                {
-                    return await mediator.Send(new GetGameScoresQuery()
+                    return await mediator.Send(new CheckIdentityAvailabilityQuery()
                     {
-                        GameId = gameId,
-                        PageIndex = pageIndex,
-                        PageSize = pageSize,
-                        ScoreDay = scoreDay
+                        UserName = httpContext.Request.Form["UserName"].ToString(),
+                        Email = httpContext.Request.Form["Email"].ToString(),
+                        GameId = httpContext.Request.Form["GameId"].ToString(),
+                        CompanyId = httpContext.Request.Form["CompanyId"].ToString(),
                     });
 
-                }).WithName(Constants.GetActionName(Constants.Action_GetGameScores));
+                }).WithName(Constants.GetActionName(Constants.Action_CheckIdentityAvailability));
+        }
 
+        private static void GetUserProfile(IEndpointRouteBuilder app)
+        {
             app.MapGet(
-                pattern: Constants.Action_GetGameHighScores,
+                pattern: Constants.Action_GetUserProfile,
                 handler: async (
-                  string gameId,
-                  int limit,
-                  HighScoreFilter filter,
-                  DateTime? fromDate,
-                  DateTime? toDate,
-                  IMediator mediator) =>
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
                 {
-                    return await mediator.Send(new GetGameHighScoresQuery()
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetUserProfileQuery()
                     {
-                        GameId = gameId,
-                        FromDate = fromDate,
-                        ToDate = toDate,
-                        Filter = filter,
-                        Limit = limit,
+                        UserId = UserId,
+                        CompanyId = CompanyId,
                     });
 
-                }).WithName(Constants.GetActionName(Constants.Action_GetGameHighScores));
+                }).WithName(Constants.GetActionName(Constants.Action_GetUserProfile));
+        }
 
+        private static void GetGamePrizeOfTheDay(IEndpointRouteBuilder app)
+        {
             app.MapGet(
-               pattern: Constants.Action_GetGameWinners,
-               handler: async (
-                 string gameId,
-                 int limit,
-                 HighScoreFilter filter,
-                 DateTime? fromDate,
-                 DateTime? toDate,
-                 IMediator mediator) =>
-               {
-                   return await mediator.Send(new GetGameWinnersQuery()
-                   {
-                       GameId = gameId,
-                       FromDate = fromDate,
-                       ToDate = toDate,
-                       Filter = filter,
-                       Limit = limit,
-                   });
+                pattern: Constants.Action_GetGamePrizeOfTheDay,
+                handler: [AllowAnonymous] async (
+                    string gameId,
+                    //int day,
+                    string culture,
+                    string companyId,
+                    IMediator mediator) =>
+                {
+                    _ = int.TryParse(DateTime.UtcNow.ToString("dd-MMM-yyyy").Split('-')[0], out int _day); // take the day part
 
-               }).WithName(Constants.GetActionName(Constants.Action_GetGameWinners));
+                    return await mediator.Send(new GetGamePrizeOfTheDayQuery()
+                    {
+                        GameId = gameId,
+                        Day = _day,
+                        Culture = culture,
+                        CompanyId = companyId,
+                    });
 
+                }).WithName(Constants.GetActionName(Constants.Action_GetGamePrizeOfTheDay));
+        }
+
+        private static void GetGamePrizes(IEndpointRouteBuilder app)
+        {
             app.MapGet(
                 pattern: Constants.Action_GetGamePrizes,
                 handler: async (
@@ -176,92 +272,258 @@ namespace AdventGamesWeb
                     int? day,
                     string? searchTerm,
                     string? culture,
-                    IMediator mediator) =>
-            {
-                return await mediator.Send(new GetGamePrizesQuery()
-                {
-                    GameId = gameId,
-                    PageIndex = pageIndex,
-                    PageSize = pageSize,
-                    SearchTerm = searchTerm,
-                    Day = day,
-                    Culture = culture,
-                });
-
-            }).WithName(Constants.GetActionName(Constants.Action_GetGamePrizes));
-
-            app.MapGet(
-             pattern: Constants.Action_GetGamePrize,
-             handler: [AllowAnonymous] async (
-                 string gameId,
-                 int day,
-                 string culture,
-                 IMediator mediator) =>
-             {
-                 return await mediator.Send(new GetGamePrizeQuery()
-                 {
-                     GameId = gameId,
-                     Day = day,
-                     Culture = culture,
-                 });
-
-             }).WithName(Constants.GetActionName(Constants.Action_GetGamePrize));
-
-            app.MapGet(
-                pattern: Constants.Action_GetUser,
-                handler: async (
                     IMediator mediator,
                     IHttpContextAccessor httpContextAccessor) =>
-            {
-                return await mediator.Send(new GetUserQuery()
                 {
-                    UserId = GetUserIdFromHttpContext(httpContextAccessor)
-                });
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
 
-            }).WithName(Constants.GetActionName(Constants.Action_GetUser));
+                    return await mediator.Send(new GetGamePrizesQuery()
+                    {
+                        GameId = gameId,
+                        PageIndex = pageIndex,
+                        PageSize = pageSize,
+                        SearchTerm = searchTerm,
+                        Day = day,
+                        Culture = culture,
+                        CompanyId = CompanyId,
+                    });
 
-            app.MapGet(
-              pattern: Constants.Action_CheckIdentityAvailability,
-              handler: [AllowAnonymous] async (
-                  string userName,
-                  string email,
-                  string gameId,
-                  IMediator mediator) =>
-              {
-                  return await mediator.Send(new CheckIdentityAvailabilityQuery()
-                  {
-                      UserName = userName,
-                      Email = email,
-                      GameId = gameId,
-                  });
-
-              }).WithName(Constants.GetActionName(Constants.Action_CheckIdentityAvailability));
-
-            #endregion
-
-            return app;
+                }).WithName(Constants.GetActionName(Constants.Action_GetGamePrizes));
         }
 
-        private static string GetUserIdFromHttpContext(IHttpContextAccessor httpContextAccessor)
+        private static void GetGameWinners(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+               pattern: Constants.Action_GetGameWinners,
+               handler: async (
+                 string gameId,
+                 int limit,
+                 HighScoreFilter filter,
+                 DateTime? fromDate,
+                 DateTime? toDate,
+                 IMediator mediator,
+                 IHttpContextAccessor httpContextAccessor) =>
+               {
+                   var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                   return await mediator.Send(new GetGameWinnersQuery()
+                   {
+                       GameId = gameId,
+                       FromDate = fromDate,
+                       ToDate = toDate,
+                       Filter = filter,
+                       Limit = limit,
+                       CompanyId = CompanyId,
+                   });
+
+               }).WithName(Constants.GetActionName(Constants.Action_GetGameWinners));
+        }
+
+        private static void GetGameHighScores(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetGameHighScores,
+                handler: async (
+                    string gameId,
+                    int limit,
+                    HighScoreFilter filter,
+                    DateTime? fromDate,
+                    DateTime? toDate,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetGameHighScoresQuery()
+                    {
+                        GameId = gameId,
+                        FromDate = fromDate,
+                        ToDate = toDate,
+                        Filter = filter,
+                        Limit = limit,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameHighScores));
+        }
+
+        private static void GetGameScoresOfTheDay(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetGameScoresOfTheDay,
+                handler: async (
+                    int pageIndex,
+                    int pageSize,
+                    string gameId,
+                    //string scoreDay,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var _scoreDay = DateTime.UtcNow.ToString("dd-MMM-yyyy");
+
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetGameScoresQuery()
+                    {
+                        GameId = gameId,
+                        PageIndex = pageIndex,
+                        PageSize = pageSize,
+                        ScoreDay = _scoreDay,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameScoresOfTheDay));
+        }
+
+        private static void GetGameProfiles(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetGameProfiles,
+                handler: async (
+                    int pageIndex,
+                    int pageSize,
+                    string gameId,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetGameProfilesQuery()
+                    {
+                        GameId = gameId,
+                        PageIndex = pageIndex,
+                        PageSize = pageSize,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameProfiles));
+        }
+
+        private static void GetGameProfile(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetGameProfile,
+                handler: async (
+                    string gameId,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetGameProfileQuery()
+                    {
+                        GameId = gameId,
+                        UserId = UserId,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameProfile));
+        }
+
+        private static void GetSeason(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetSeason,
+                handler: [AllowAnonymous] async (
+                    string companyId,
+                    IMediator mediator) =>
+                {
+                    return await mediator.Send(new GetSeasonQuery()
+                    {
+                        CompanyId = companyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetSeason));
+        }
+
+        private static void GetCompany(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetCompany,
+                handler: [AllowAnonymous] async (
+                    string companyId,
+                    IMediator mediator) =>
+                {
+                    return await mediator.Send(new GetCompanyQuery()
+                    {
+                        CompanyId = companyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetCompany));
+        }
+
+        private static void GetGameSchedule(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetGameSchedule,
+                handler: [AllowAnonymous] async (
+                    string companyId,
+                    string seasonId,
+                    IMediator mediator) =>
+                {
+                    return await mediator.Send(new GetGameScheduleQuery()
+                    {
+                        CompanyId = companyId,
+                        SeasonId = seasonId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetGameSchedule));
+        }
+
+        private static void GetUserProfiles(IEndpointRouteBuilder app)
+        {
+            app.MapGet(
+                pattern: Constants.Action_GetUserProfiles,
+                handler: async (
+                    int pageIndex,
+                    int pageSize,
+                    IMediator mediator,
+                    IHttpContextAccessor httpContextAccessor) =>
+                {
+                    var (UserId, CompanyId) = GetUserContextFromHttpContext(httpContextAccessor);
+
+                    return await mediator.Send(new GetUserProfilesQuery()
+                    {
+                        PageIndex = pageIndex,
+                        PageSize = pageSize,
+                        CompanyId = CompanyId,
+                    });
+
+                }).WithName(Constants.GetActionName(Constants.Action_GetUserProfiles));
+        }
+
+        #endregion
+
+        #region Misc
+
+        private static (string UserId, string CompanyId) GetUserContextFromHttpContext(IHttpContextAccessor httpContextAccessor)
         {
             var httpContext = httpContextAccessor.HttpContext;
-            var identity = httpContext?.User.Identity as ClaimsIdentity;
 
-            if (identity is null)
-                return string.Empty;
+            if (httpContext?.User.Identity is not ClaimsIdentity identity)
+                return (string.Empty, string.Empty);
 
             IEnumerable<Claim> claims = identity.Claims;
 
             if (claims is null)
-                return string.Empty;
+                return (string.Empty, string.Empty);
 
-            var claim = claims.FirstOrDefault(x => x.Type == "Id");
+            var userIdClaim = claims.FirstOrDefault(x => x.Type == "Id");
+            var companyIdClaim = claims.FirstOrDefault(x => x.Type == "CompanyId");
 
-            if (claim is null)
-                return string.Empty;
+            if (userIdClaim is null || companyIdClaim is null)
+                return (string.Empty, string.Empty);
 
-            var userId = claim.Value;
-            return userId;
+            var userId = userIdClaim.Value;
+            var comapnyId = companyIdClaim.Value;
+
+            return (userId, comapnyId);
         }
+
+        #endregion
+
+        #endregion
+
+        #endregion
     }
 }

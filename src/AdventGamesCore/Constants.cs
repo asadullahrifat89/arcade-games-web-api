@@ -8,17 +8,21 @@
         public const string Action_SignUp = "/api/Command/SignUp";
         public const string Action_SubmitGameScore = "/api/Command/SubmitGameScore";
         public const string Action_GenerateSession = "/api/Command/GenerateSession";
-        public const string Action_ValidateSession = "/api/Command/ValidateSession";
+        public const string Action_ValidateToken = "/api/Command/ValidateToken";
 
         public const string Action_GetGameProfile = "/api/Query/GetGameProfile";
         public const string Action_GetGameProfiles = "/api/Query/GetGameProfiles";
-        public const string Action_GetGameScores = "/api/Query/GetGameScores";
-        public const string Action_GetUser = "/api/Query/GetUser";
+        public const string Action_GetGameScoresOfTheDay = "/api/Query/GetGameScoresOfTheDay";
+        public const string Action_GetUserProfile = "/api/Query/GetUserProfile";
+        public const string Action_GetUserProfiles = "/api/Query/GetUserProfiles";
         public const string Action_CheckIdentityAvailability = "/api/Query/CheckIdentityAvailability";
         public const string Action_GetGameHighScores = "/api/Query/GetGameHighScores";
         public const string Action_GetGamePrizes = "/api/Query/GetGamePrizes";
-        public const string Action_GetGamePrize = "/api/Query/GetGamePrize";
+        public const string Action_GetGamePrizeOfTheDay = "/api/Query/GetGamePrizeOfTheDay";
         public const string Action_GetGameWinners = "/api/Query/GetGameWinners";
+        public const string Action_GetSeason = "/api/Query/GetSeason";
+        public const string Action_GetCompany = "/api/Query/GetCompany";
+        public const string Action_GetGameSchedule = "/api/Query/GetGameSchedule";
 
         public static string GetActionName(string action)
         {
@@ -34,16 +38,21 @@
         public static string[] GAME_IDS = new string[]
         {
             "space-shooter",
-            "sky-racer",
+            "sky-way",
             "hungry-worm",
             "candy-craze",
-            "memory-match"
+            "memory-match",
+            "honk-hero"
         };
 
         public static string[] Client_Origins = new string[]
         {
+            "https://*.seliselocal.com",
+            "https://*.adventgames.ch",
             "https://asadullahrifat89.github.io"
         };
+
+        public static string[] AllowedSwaggerEnvironments = new[] { "Development", "dev-az" };
     }
 }
 

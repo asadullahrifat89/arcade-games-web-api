@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net7.0</TargetFramework>
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<UserSecretsId>6ffe3330-63d6-41b0-b365-532406db322f</UserSecretsId>
@@ -26,7 +26,40 @@
 	  <Content Update="appsettings.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
-	  <Content Update="gameprizes.json">
+	  <Content Update="Jsons\prod-az\CompanyOptions.prod-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\dev-az\CompanyOptions.dev-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\dev-az\GamePrizeOptions.dev-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\prod-az\GamePrizeOptions.prod-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\prod-az\GameScheduleOptions.prod-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\dev-az\GameScheduleOptions.dev-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\Development\GameScheduleOptions.Development.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\prod-az\SeasonOptions.prod-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\dev-az\SeasonOptions.dev-az.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\Development\SeasonOptions.Development.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\Development\CompanyOptions.Development.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Update="Jsons\Development\GamePrizeOptions.Development.json">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>

@@ -50,5 +50,7 @@ namespace AdventGamesCore
         Task<bool> DeleteById<T>(string id);
 
         Task<bool> UpsertById<T>(T document, string id);
+
+        Task DropCollection<T>();
     }
 }
