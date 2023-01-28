@@ -1,0 +1,348 @@
+﻿{
+  "GameScheduleOptions": {
+    "GameSchedules": [
+      {
+        "CompanyId": "selise",
+        "SeasonId": "selise-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2022-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "SELISE Space Shooter"
+            },
+            {
+              "Culture": "de",
+              "Value": "SELISE Space Shooter"
+            },
+            {
+              "Culture": "fr",
+              "Value": "SELISE Space Shooter"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and stay on top of the leaderboard!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlage den Highscore und bleibe an der Spitze der Rangliste!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battez le meilleur score et restez en tête du classement !"
+            }
+          ],
+          "GameUrl": "https://selise-space-shooter.seliselocal.com",
+          "GameId": "space-shooter"
+        }
+      },
+      {
+        "CompanyId": "horen-maare",
+        "SeasonId": "horen-maare-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2023-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Honk Hero"
+            },
+            {
+              "Culture": "de",
+              "Value": "Honk Hero"
+            },
+            {
+              "Culture": "bn",
+              "Value": "হংক হিরো"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Let's tag fools who honk for no reason"
+            },
+            {
+              "Culture": "de",
+              "Value": "Lasst uns Narren markieren, die ohne Grund hupen"
+            },
+            {
+              "Culture": "bn",
+              "Value": "আসুন বোকাদের ট্যাগ করি যারা অকারণে হর্ন দেয়"
+            }
+          ],
+          "GameUrl": "https://selise-honk-hero.seliselocal.com",
+          "GameId": "honk-hero"
+        }
+      },
+      {
+        "CompanyId": "spiga",
+        "SeasonId": "spiga-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2022-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Save the SPIGA Pizza!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Rette die SPIGA Pizza!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Sauve la pizza SPIGA!"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win great prizes!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlage den High Score und gewinne tolle Preise!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner de supers prix!"
+            }
+          ],
+          "GameUrl": "https://spiga-space-shooter.seliselocal.com",
+          "GameId": "space-shooter"
+        }
+      },
+      {
+        "CompanyId": "emil",
+        "SeasonId": "emil-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2022-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Save the Emil Bowl!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Rette die Emil Bowl!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Sauve la bowl Emil!"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win great prizes!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlage den High Score und gewinne tolle Preise!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner de supers prix!"
+            }
+          ],
+          "GameUrl": "https://emil-space-shooter.seliselocal.com",
+          "GameId": "space-shooter"
+        }
+      },
+      {
+        "CompanyId": "andiamo",
+        "SeasonId": "andiamo-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2022-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Save the Andiamo Bowl!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Rette die Andiamo Bowl!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Sauve la bowl Andiamo!"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win great prizes!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlage den High Score und gewinne tolle Preise!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner de supers prix!"
+            }
+          ],
+          "GameUrl": "https://andiamo-space-shooter.seliselocal.com",
+          "GameId": "space-shooter"
+        }
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "SeasonId": "sv-restaurant-christmas",
+        "StartTime": "2022-01-01T00:00:00",
+        "EndTime": "2022-03-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Candy Craze"
+            },
+            {
+              "Culture": "de",
+              "Value": "Candy Craze"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Candy Craze"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win the prize of the week!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlagt den High Score und gewinnt den Wochenpreis!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner le prix de la semaine!"
+            }
+          ],
+          "GameUrl": "https://sv-restaurant-candy-craze.seliselocal.com",
+          "GameId": "candy-craze"
+        }
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "SeasonId": "sv-restaurant-christmas",
+        "StartTime": "2022-04-01T00:00:00",
+        "EndTime": "2022-07-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Hungry Worm"
+            },
+            {
+              "Culture": "de",
+              "Value": "Hungry Worm"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Hungry Worm"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win the prize of the week!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlagt den High Score und gewinnt den Wochenpreis!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner le prix de la semaine!"
+            }
+          ],
+          "GameUrl": "https://sv-restaurant-hungry-worm.seliselocal.com",
+          "GameId": "hungry-worm"
+        }
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "SeasonId": "sv-restaurant-christmas",
+        "StartTime": "2022-08-01T00:00:00",
+        "EndTime": "2022-10-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Sky Way"
+            },
+            {
+              "Culture": "de",
+              "Value": "Sky Way"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Sky Way"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win the prize of the week!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlagt den High Score und gewinnt den Wochenpreis!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner le prix de la semaine!"
+            }
+          ],
+          "GameUrl": "https://sv-restaurant-sky-way.seliselocal.com",
+          "GameId": "sky-way"
+        }
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "SeasonId": "sv-restaurant-christmas",
+        "StartTime": "2022-11-01T00:00:00",
+        "EndTime": "2022-12-31T23:59:59",
+        "Game": {
+          "GameNames": [
+            {
+              "Culture": "en",
+              "Value": "Memory Match"
+            },
+            {
+              "Culture": "de",
+              "Value": "Memory Match"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Memory Match"
+            }
+          ],
+          "GameDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Beat the high score and win the prize of the week!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Schlagt den High Score und gewinnt den Wochenpreis!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Battre le meilleure score et gagner le prix de la semaine!"
+            }
+          ],
+          "GameUrl": "https://sv-restaurant-memory-match.seliselocal.com",
+          "GameId": "memory-match"
+        }
+      }
+    ]
+  }
+}

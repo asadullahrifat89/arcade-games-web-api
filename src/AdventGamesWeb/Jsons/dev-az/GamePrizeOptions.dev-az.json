@@ -1,0 +1,682 @@
+﻿{
+  "GamePrizeOptions": {
+    "GamePrizes": [
+      {
+        "CompanyId": "selise",
+        "GameId": "space-shooter",
+        "Name": "Access to all SELISE job openings",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "access to all SELISE job openings"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zu allen SELISE-Stellenangeboten"
+          },
+          {
+            "Culture": "fr",
+            "Value": "accès à toutes les offres d'emploi de SELISE"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "500",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score 500 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn Sie 500 Punkte erreichen, gewinnen Sie"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si vous obtenez 500, vous gagnerez"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize."
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen."
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour."
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://selisegroup.com/career/"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://selisegroup.com/career/"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://selisegroup.com/career/"
+          }
+        ]
+      },
+      {
+        "CompanyId": "horen-maare",
+        "GameId": "honk-hero",
+        "Name": "Access to Horen maare shop",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Access to Horen Maare e-shop"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zum E-Shop von Horen Maare"
+          },
+          {
+            "Culture": "bn",
+            "Value": "হরেন মারে ই-শপের অ্যাক্সেস"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "500",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score 500 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn Sie 500 Punkte erreichen, gewinnen Sie"
+            },
+            {
+              "Culture": "bn",
+              "Value": "500 স্কোর করলে আপনি জিতবেন"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "bn",
+              "Value": "অভিনন্দন! আপনি দৈনিক পুরস্কার জিতেছেন!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "bn",
+              "Value": "আবার চেষ্টা করুন! আর মাত্র কয়েক পয়েন্ট এবং আপনি আজকের বিশেষ পুরস্কার জিতবেন!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://horenmaare.store.selise.site/"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://horenmaare.store.selise.site/"
+          },
+          {
+            "Culture": "bn",
+            "Value": "https://horenmaare.store.selise.site/"
+          }
+        ]
+      },
+      {
+        "CompanyId": "selise",
+        "GameId": "candy-craze",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "access to all SELISE job openings"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zu allen SELISE-Stellenangeboten"
+          },
+          {
+            "Culture": "fr",
+            "Value": "accès à toutes les offres d'emploi de SELISE"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "selise",
+        "GameId": "hungry-worm",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "access to all SELISE job openings"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zu allen SELISE-Stellenangeboten"
+          },
+          {
+            "Culture": "fr",
+            "Value": "accès à toutes les offres d'emploi de SELISE"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "selise",
+        "GameId": "sky-way",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "access to all SELISE job openings"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zu allen SELISE-Stellenangeboten"
+          },
+          {
+            "Culture": "fr",
+            "Value": "accès à toutes les offres d'emploi de SELISE"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "selise",
+        "GameId": "memory-match",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "access to all SELISE job openings"
+          },
+          {
+            "Culture": "de",
+            "Value": "Zugang zu allen SELISE-Stellenangeboten"
+          },
+          {
+            "Culture": "fr",
+            "Value": "accès à toutes les offres d'emploi de SELISE"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "Eistee gratis zur Pizza",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 free ice tea with your pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Eistee zu deiner Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 thé glacé gratuit avec ta pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you reach 70 points, you win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du 70 Punkte erreichst, gewinnst du"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens 70 points, tu gagnes"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize."
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen."
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour."
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "Eistee gratis zur Pizza",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 free ice tea with your pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Eistee zu deiner Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 thé glacé gratuit avec ta pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Today's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize."
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen."
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour."
+            }
+          ],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "Eistee gratis zur Pizza",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 free ice tea with your pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Eistee zu deiner Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 thé glacé gratuit avec ta pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Today's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize."
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen."
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour."
+            }
+          ],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "candy-craze",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "hungry-worm",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "sky-way",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "memory-match",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This week's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der beste Punktesammler dieser Woche gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le meilleur score de la semaine gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      }
+    ]
+  }
+}

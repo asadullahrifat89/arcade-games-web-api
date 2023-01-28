@@ -2,12 +2,12 @@
 {
     public interface ISessionRepository
     {
-        Task<bool> BeAnExistingSession(string sessionId);
+        Task<bool> BeAnExistingSession(string sessionId, string gameId);
 
-        Task<ServiceResponse> Authenticate(AuthenticateCommand command);
+        Task<bool> BeAnIncompleteSession(string sessionId, string gameId);
 
         Task<ServiceResponse> GenerateSession(GenerateSessionCommand command);
 
-        Task<ServiceResponse> ValidateSession(ValidateSessionCommand command);
+        Task<bool> CompleteSession(string sessionId, string gameId);
     }
 }

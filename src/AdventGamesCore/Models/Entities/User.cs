@@ -14,6 +14,8 @@ namespace AdventGamesCore
 
         public string City { get; set; } = string.Empty;
 
+        public string CompanyId { get; set; } = string.Empty;
+
         public Dictionary<string, string> MetaData { get; set; } = new Dictionary<string, string>();
 
         public static User Initialize(SignupCommand command)
@@ -28,6 +30,7 @@ namespace AdventGamesCore
                 Password = encryptedPassword,
                 City = command.City,
                 MetaData = command.MetaData,
+                CompanyId = command.CompanyId,
             };
 
             return user;

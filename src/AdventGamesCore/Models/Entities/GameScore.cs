@@ -8,6 +8,8 @@
 
         public string GameId { get; set; } = string.Empty;
 
+        public string CompanyId { get; set; } = string.Empty;
+
         public string ScoreDay { get; set; } = DateTime.UtcNow.Date.ToString("dd-MMM-yyyy");
 
         public static GameScore Initialize(SubmitGameScoreCommand command)
@@ -17,17 +19,20 @@
                 Score = command.Score,
                 GameId = command.GameId,
                 User = command.User,
+                CompanyId = command.CompanyId,
+                ScoreDay = DateTime.UtcNow.Date.ToString("dd-MMM-yyyy")
             };
         }
 
-        public static GameScore Initialize(GameProfile gameProfile)
+        public static GameScore Initialize(GameHighScore gameHighScore)
         {
             return new GameScore()
             {
-                Score = gameProfile.PersonalBestScore,
-                GameId = gameProfile.GameId,
-                User = gameProfile.User,
-                ScoreDay = gameProfile.ModifiedOn is not null ? gameProfile.ModifiedOn.Value.ToString("dd-MMM-yyyy") : gameProfile.CreatedOn.ToString("dd-MMM-yyyy")
+                Score = gameHighScore.Score,
+                GameId = gameHighScore.GameId,
+                User = new AttachedUser() { UserId = gameHighScore.UserId, UserName = gameHighScore.UserName },
+                CompanyId = gameHighScore.CompanyId,
+                ScoreDay = gameHighScore.ScoreDay
             };
         }
     }

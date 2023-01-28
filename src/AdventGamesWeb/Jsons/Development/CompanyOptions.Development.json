@@ -1,0 +1,42 @@
+﻿{
+  "CompanyOptions": {
+    "Companies": [
+      {
+        "Id": "selise",
+        "Name": "Selise Digital Platforms",
+        "WebSiteUrl": "https://selisegroup.com/",
+        "DefaultLanguage": "en"
+      },
+      {
+        "Id": "horen-maare",
+        "Name": "Horen Maare",
+        "WebSiteUrl": "https://horenmaare.selise.site/",
+        "DefaultLanguage": "en"
+      },
+      {
+        "Id": "spiga",
+        "Name": "Spiga Restaurant",
+        "WebSiteUrl": "https://www.spiga-ristorante.ch/",
+        "DefaultLanguage": "de"
+      },
+      {
+        "Id": "emil",
+        "Name": "Emil Smart Fridge",
+        "WebSiteUrl": "https://www.emil-froehlich.ch/en/home",
+        "DefaultLanguage": "de"
+      },
+      {
+        "Id": "andiamo",
+        "Name": "Andiamo Delivery",
+        "WebSiteUrl": "https://www.sv-group.ch/de/geschaeftsbereiche/vielfaeltige-gastronomieloesungen-fuer-unternehmen/unser-flexibles-angebot/andiamo-delivery",
+        "DefaultLanguage": "de"
+      },
+      {
+        "Id": "sv-restaurant",
+        "Name": "SV Restaurant",
+        "WebSiteUrl": "https://www.sv-restaurant.ch/de/",
+        "DefaultLanguage": "de"
+      }
+    ]
+  }
+}

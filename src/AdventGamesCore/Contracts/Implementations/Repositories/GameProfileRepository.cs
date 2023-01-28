@@ -25,7 +25,8 @@ namespace AdventGamesCore
         {
             var filter = Builders<GameProfile>.Filter.And(
                 Builders<GameProfile>.Filter.Eq(x => x.GameId, query.GameId),
-                Builders<GameProfile>.Filter.Eq(x => x.User.UserId, query.UserId));
+                Builders<GameProfile>.Filter.Eq(x => x.User.UserId, query.UserId),
+                Builders<GameProfile>.Filter.Eq(x => x.CompanyId, query.CompanyId));
 
             var result = await _mongoDBService.FindOne(filter);
 
@@ -34,6 +35,7 @@ namespace AdventGamesCore
             {
                 var exists = Builders<GameProfile>.Filter.And(
                     Builders<GameProfile>.Filter.In(x => x.GameId, Constants.GAME_IDS),
+                    Builders<GameProfile>.Filter.Eq(x => x.CompanyId, query.CompanyId),
                     Builders<GameProfile>.Filter.Eq(x => x.User.UserId, query.UserId));
 
                 if (await _mongoDBService.Exists(exists))
@@ -45,11 +47,11 @@ namespace AdventGamesCore
                         GameId = query.GameId,
                         LastGameScore = 0,
                         PersonalBestScore = 0,
+                        CompanyId = query.CompanyId,
                         User = new AttachedUser()
                         {
                             UserId = user.Id,
-                            UserName = user.UserName,
-                            UserEmail = user.Email,
+                            UserName = user.UserName
                         }
                     }))
                     {
@@ -65,7 +67,12 @@ namespace AdventGamesCore
 
         public async Task<QueryRecordsResponse<GameProfile>> GetGameProfiles(GetGameProfilesQuery query)
         {
-            var filter = Builders<GameProfile>.Filter.Eq(x => x.GameId, query.GameId);
+            var filter = Builders<GameProfile>.Filter.And(
+                Builders<GameProfile>.Filter.Eq(x => x.GameId, query.GameId),
+                Builders<GameProfile>.Filter.Eq(x => x.CompanyId, query.CompanyId),
+                Builders<GameProfile>.Filter.Gt(x => x.PersonalBestScore, 0),
+                Builders<GameProfile>.Filter.Lt(x => x.PersonalBestScore, double.MaxValue),
+                Builders<GameProfile>.Filter.Lt(x => x.PersonalBestScore, 99999));
 
             var count = await _mongoDBService.CountDocuments(filter);
 
@@ -86,11 +93,12 @@ namespace AdventGamesCore
             return await _mongoDBService.InsertDocument(gameProfile);
         }
 
-        public async Task<bool> UpdateGameProfile(double score, double bestScore, string userId, string gameId)
+        public async Task<bool> UpdateGameProfile(double score, double bestScore, string userId, string gameId, string companyId)
         {
             var filter = Builders<GameProfile>.Filter.And(
                   Builders<GameProfile>.Filter.Eq(x => x.GameId, gameId),
-                  Builders<GameProfile>.Filter.Eq(x => x.User.UserId, userId));
+                  Builders<GameProfile>.Filter.Eq(x => x.User.UserId, userId),
+                  Builders<GameProfile>.Filter.Eq(x => x.CompanyId, companyId));
 
             var updated = await _mongoDBService.UpdateDocument(
                 update: Builders<GameProfile>.Update
@@ -100,6 +108,21 @@ namespace AdventGamesCore
                 filter: filter);
 
             return updated is not null;
+        }
+
+        public async Task BanHackers()
+        {
+            var filter = Builders<GameProfile>.Filter.Or(
+               Builders<GameProfile>.Filter.Lt(x => x.PersonalBestScore, 0),
+               Builders<GameProfile>.Filter.Gt(x => x.PersonalBestScore, 99999),
+               Builders<GameProfile>.Filter.Eq(x => x.PersonalBestScore, double.MaxValue));
+
+            var count = await _mongoDBService.CountDocuments(filter);
+
+            if (count > 0)
+            {
+                await _mongoDBService.DeleteDocuments(filter);
+            }
         }
 
         #endregion

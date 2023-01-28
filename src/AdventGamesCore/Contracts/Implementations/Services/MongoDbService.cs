@@ -286,6 +286,16 @@ namespace AdventGamesCore
             return result is not null && result.IsAcknowledged;
         }
 
+        public async Task DropCollection<T>()
+        {
+            var client = new MongoClient(_connectionString);
+            var database = client.GetDatabase(_databaseName);
+
+            var collectionName = typeof(T).Name + "s";
+
+            await database.DropCollectionAsync(collectionName);
+        }
+
         #endregion
 
         #endregion

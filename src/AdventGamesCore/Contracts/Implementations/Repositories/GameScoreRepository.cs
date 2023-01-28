@@ -9,6 +9,8 @@ namespace AdventGamesCore
         private readonly IMongoDbService _mongoDBService;
         private readonly IGameProfileRepository _gameProfileRepository;
         private readonly IGamePrizeRepository _gamePrizeRepository;
+        private readonly ISessionRepository _sessionRepository;
+        private readonly IUserRepository _userRepository;
 
         #endregion
 
@@ -17,11 +19,15 @@ namespace AdventGamesCore
         public GameScoreRepository(
             IMongoDbService mongoDBService,
             IGameProfileRepository gameProfileRepository,
-            IGamePrizeRepository gamePrizeRepository)
+            IGamePrizeRepository gamePrizeRepository,
+            ISessionRepository sessionRepository,
+            IUserRepository userRepository)
         {
             _mongoDBService = mongoDBService;
             _gameProfileRepository = gameProfileRepository;
             _gamePrizeRepository = gamePrizeRepository;
+            _sessionRepository = sessionRepository;
+            _userRepository = userRepository;
         }
 
         #endregion
@@ -32,42 +38,49 @@ namespace AdventGamesCore
 
         public async Task<QueryRecordsResponse<GameScore>> GetGameScores(GetGameScoresQuery query)
         {
-            return await GetGameScoresForDate(
+            var (GameScores, Count) = await GetGameScoresForDate(
                 gameId: query.GameId,
                 skip: query.PageIndex * query.PageSize,
                 limit: query.PageSize,
-                scoreDay: query.ScoreDay);
+                scoreDay: query.ScoreDay,
+                companyId: query.CompanyId);
+
+            return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
+              count: GameScores is not null ? Count : 0,
+              records: GameScores is not null ? GameScores.ToArray() : Array.Empty<GameScore>());
         }
 
-        public async Task<QueryRecordsResponse<GameScore>> GetGameHighScores(GetGameHighScoresQuery query)
+        public async Task<QueryRecordsResponse<GameHighScore>> GetGameHighScores(GetGameHighScoresQuery query)
         {
             switch (query.Filter)
             {
                 case HighScoreFilter.ALLTIME:
                     {
-                        return await GetGameScoresForAllTime(
+                        return await GetGameHighScoresForAllTime(
                             gameId: query.GameId,
-                            limit: query.Limit);
+                            limit: query.Limit,
+                            companyId: query.CompanyId);
                     }
                 case HighScoreFilter.DATE:
                     {
-                        return await GetGameScoresForDate(
+                        return await GetGameHighScoresForDate(
                             gameId: query.GameId,
-                            skip: 0,
                             limit: query.Limit,
-                            scoreDay: query.FromDate.Value.ToString("dd-MMM-yyyy"));
+                            scoreDay: query.FromDate.Value.ToString("dd-MMM-yyyy"),
+                            companyId: query.CompanyId);
                     }
                 case HighScoreFilter.DATERANGE:
                     {
-                        return await GetGameScoresForDateRange(
+                        return await GetGameHighScoresForDateRange(
                             gameId: query.GameId,
                             fromDate: query.FromDate.Value,
                             toDate: query.ToDate.Value,
-                            limit: query.Limit);
+                            limit: query.Limit,
+                            companyId: query.CompanyId);
                     }
                 default:
                     {
-                        return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(count: 0, records: Array.Empty<GameScore>());
+                        return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(count: 0, records: Array.Empty<GameHighScore>());
                     }
             }
         }
@@ -79,7 +92,10 @@ namespace AdventGamesCore
             var currentScore = GameScore.Initialize(command);
 
             // get personal best score before applying current game score
-            GameScore? personalBestScore = await GetPersonalBestScore(gameId: command.GameId, userId: command.User.UserId);
+            GameScore? personalBestScore = await GetPersonalBestScore(
+                gameId: command.GameId,
+                userId: command.User.UserId,
+                companyId: command.CompanyId);
 
             // if current game score is greater than personal best score then update it
             double personalBestScoreToCommit = personalBestScore is null
@@ -90,10 +106,14 @@ namespace AdventGamesCore
                 score: currentScore.Score,
                 bestScore: personalBestScoreToCommit,
                 userId: currentScore.User.UserId,
-                gameId: currentScore.GameId);
+                gameId: currentScore.GameId,
+                companyId: currentScore.CompanyId);
 
             // check if a score exists for the current day
-            GameScore? dailyScore = await GetTodaysScore(gameId: command.GameId, userId: command.User.UserId);
+            GameScore? dailyScore = await GetTodaysScore(
+                gameId: command.GameId,
+                userId: command.User.UserId,
+                companyId: command.CompanyId);
 
             // if no score for the day exists then insert new game score for the day
             if (dailyScore is null)
@@ -118,18 +138,39 @@ namespace AdventGamesCore
             // check if this score yields any game prize or not
             GamePlayResult gamePrizeResponse = await _gamePrizeRepository.GetGamePlayResult(gameScore);
 
+            // once score gets submitted session gets completed
+            await _sessionRepository.CompleteSession(
+                sessionId: command.SessionId,
+                gameId: command.GameId);
+
             return Response.Build().BuildSuccessResponse(gamePrizeResponse);
+        }
+
+        public async Task BanHackers()
+        {
+            var filter = Builders<GameScore>.Filter.Or(
+               Builders<GameScore>.Filter.Lt(x => x.Score, 0),
+               Builders<GameScore>.Filter.Gt(x => x.Score, 99999),
+               Builders<GameScore>.Filter.Eq(x => x.Score, double.MaxValue));
+
+            var count = await _mongoDBService.CountDocuments(filter);
+
+            if (count > 0)
+            {
+                await _mongoDBService.DeleteDocuments(filter);
+            }
         }
 
         #endregion
 
         #region Private
 
-        private async Task<GameScore> GetPersonalBestScore(string gameId, string userId)
+        private async Task<GameScore> GetPersonalBestScore(string gameId, string userId, string companyId)
         {
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, gameId),
-                Builders<GameScore>.Filter.Eq(x => x.User.UserId, userId));
+                Builders<GameScore>.Filter.Eq(x => x.User.UserId, userId),
+                Builders<GameScore>.Filter.Eq(x => x.CompanyId, companyId));
 
             var personalBestScore = await _mongoDBService.FindOne(
                 filter: filter,
@@ -139,41 +180,116 @@ namespace AdventGamesCore
             return personalBestScore;
         }
 
-        private async Task<GameScore> GetTodaysScore(string gameId, string userId)
+        private async Task<GameScore> GetTodaysScore(string gameId, string userId, string companyId)
         {
             var today = DateTime.UtcNow.Date.ToString("dd-MMM-yyyy");
 
             var filter = Builders<GameScore>.Filter.And(
                 Builders<GameScore>.Filter.Eq(x => x.GameId, gameId),
                 Builders<GameScore>.Filter.Eq(x => x.User.UserId, userId),
-                Builders<GameScore>.Filter.Eq(x => x.ScoreDay, today));
+                Builders<GameScore>.Filter.Eq(x => x.ScoreDay, today),
+                Builders<GameScore>.Filter.Eq(x => x.CompanyId, companyId));
 
             var dailyScore = await _mongoDBService.FindOne(filter: filter);
 
             return dailyScore;
         }
 
-        private async Task<QueryRecordsResponse<GameScore>> GetGameScoresForDateRange(string gameId, DateTime fromDate, DateTime toDate, int limit)
+        private async Task<QueryRecordsResponse<GameHighScore>> GetGameHighScoresForDate(string gameId, int limit, string scoreDay, string companyId)
         {
-            var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, gameId);
+            var (GameScores, Count) = await GetGameScoresForDate(
+                gameId: gameId,
+                skip: 0,
+                limit: limit,
+                scoreDay: scoreDay,
+                companyId: companyId);
 
-            // player high scores are maintained day wise so get all the scores in the date range and get them as sorted by score
-            filter &= Builders<GameScore>.Filter.Where(x => (x.CreatedOn >= fromDate || x.ModifiedOn >= fromDate) && (x.CreatedOn <= toDate || x.ModifiedOn <= toDate));
+            if (GameScores is null || GameScores.Count == 0)
+                return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(0, Array.Empty<GameHighScore>());
 
-            var results = await _mongoDBService.GetDocuments(
+            var gameScores = GameScores;
+            var count = Count;
+
+            var userIds = gameScores.Select(x => x.User.UserId).ToArray();
+
+            var users = await _userRepository.GetUsers(
+                userIds: userIds,
+                companyId: companyId);
+
+            List<GameHighScore> gameHighScores = new();
+
+            foreach (var gameScore in gameScores)
+            {
+                var user = users.First(x => x.Id == gameScore.User.UserId);
+                gameHighScores.Add(GameHighScore.Initialize(gameScore, user));
+            }
+
+            return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(
+                count: count,
+                records: gameHighScores.ToArray());
+        }
+
+        private async Task<QueryRecordsResponse<GameHighScore>> GetGameHighScoresForDateRange(string gameId, DateTime fromDate, DateTime toDate, int limit, string companyId)
+        {
+            var (GameScores, Count) = await GetGameScoresForDateRange(
+                gameId: gameId,
+                fromDate: fromDate,
+                toDate: toDate,
+                limit: limit,
+                companyId: companyId);
+
+            if (GameScores is null || GameScores.Count == 0)
+                return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(0, Array.Empty<GameHighScore>());
+
+            var gameScores = GameScores;
+            var count = Count;
+
+            var userIds = gameScores.Select(x => x.User.UserId).ToArray();
+
+            var users = await _userRepository.GetUsers(
+                userIds: userIds,
+                companyId: companyId);
+
+            List<GameHighScore> gameHighScores = new();
+
+            foreach (var gameScore in gameScores)
+            {
+                var user = users.First(x => x.Id == gameScore.User.UserId);
+                gameHighScores.Add(GameHighScore.Initialize(gameScore, user));
+            }
+
+            return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(
+                count: count,
+                records: gameHighScores.ToArray());
+        }
+
+        private async Task<(List<GameScore> GameScores, long Count)> GetGameScoresForDateRange(string gameId, DateTime fromDate, DateTime toDate, int limit, string companyId)
+        {
+            var filter = Builders<GameScore>.Filter.And(
+                Builders<GameScore>.Filter.Eq(x => x.GameId, gameId),
+                Builders<GameScore>.Filter.Eq(x => x.CompanyId, companyId),
+                Builders<GameScore>.Filter.Gt(x => x.Score, 0),
+                Builders<GameScore>.Filter.Lt(x => x.Score, double.MaxValue),
+                Builders<GameScore>.Filter.Lt(x => x.Score, 99999),
+                Builders<GameScore>.Filter.Where(x => (x.CreatedOn >= fromDate || x.ModifiedOn >= fromDate) && (x.CreatedOn <= toDate || x.ModifiedOn <= toDate)));
+
+            // get all game scores which fall between the date range
+            var gameScores = await _mongoDBService.GetDocuments(
                 filter: filter,
                 sortOrder: SortOrder.Descending,
                 sortFieldName: nameof(GameScore.Score));
 
-            // get players who played during the date range
-            var usernames = results.Select(x => x.User.UserName).Distinct();
+            if (gameScores is null || gameScores.Count == 0)
+                return (new List<GameScore>(), 0);
+
+            var usernames = gameScores.Select(x => x.User.UserName).Distinct();
 
             var highScorers = new List<GameScore>();
 
+            // take the first score as it is the highest score
             foreach (var username in usernames)
             {
-                // as all the records are already sorted by score, the first record for each player is the highest score
-                if (results.First(x => x.User.UserName == username) is GameScore playerHighScore)
+                if (gameScores.First(x => x.User.UserName == username) is GameScore playerHighScore)
                     highScorers.Add(playerHighScore);
 
                 if (highScorers.Count >= limit)
@@ -182,40 +298,18 @@ namespace AdventGamesCore
 
             var count = highScorers.Count;
 
-            return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
-                count: count,
-                records: highScorers.ToArray());
+            return (highScorers, count);
         }
 
-        private async Task<QueryRecordsResponse<GameScore>> GetGameScoresForAllTime(string gameId, int limit)
+        private async Task<(List<GameScore> GameScores, long Count)> GetGameScoresForDate(string gameId, int skip, int limit, string scoreDay, string companyId)
         {
-            var filter = Builders<GameProfile>.Filter.Eq(x => x.GameId, gameId);
-            filter &= Builders<GameProfile>.Filter.Gt(x => x.PersonalBestScore, 0);
-
-            var results = await _mongoDBService.GetDocuments(
-              filter: filter,
-              skip: 0,
-              limit: limit,
-              sortOrder: SortOrder.Descending,
-              sortFieldName: nameof(GameProfile.PersonalBestScore));
-
-            var highScorers = new List<GameScore>();
-
-            if (results is not null)
-                highScorers.AddRange(results.Select(x => GameScore.Initialize(x)));
-
-            var count = highScorers.Count;
-
-            return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
-                count: count,
-                records: highScorers.Any() ? highScorers.ToArray() : Array.Empty<GameScore>());
-        }
-
-        private async Task<QueryRecordsResponse<GameScore>> GetGameScoresForDate(string gameId, int skip, int limit, string scoreDay)
-        {
-            var filter = Builders<GameScore>.Filter.Eq(x => x.GameId, gameId);
-
-            filter &= Builders<GameScore>.Filter.Eq(x => x.ScoreDay, scoreDay);
+            var filter = Builders<GameScore>.Filter.And(
+                Builders<GameScore>.Filter.Eq(x => x.GameId, gameId),
+                Builders<GameScore>.Filter.Eq(x => x.CompanyId, companyId),
+                Builders<GameScore>.Filter.Gt(x => x.Score, 0),
+                Builders<GameScore>.Filter.Lt(x => x.Score, double.MaxValue),
+                Builders<GameScore>.Filter.Lt(x => x.Score, 99999),
+                Builders<GameScore>.Filter.Eq(x => x.ScoreDay, scoreDay));
 
             var count = await _mongoDBService.CountDocuments(filter);
 
@@ -226,9 +320,47 @@ namespace AdventGamesCore
                 sortOrder: SortOrder.Descending,
                 sortFieldName: nameof(GameScore.Score));
 
-            return new QueryRecordsResponse<GameScore>().BuildSuccessResponse(
-                count: results is not null ? count : 0,
-                records: results is not null ? results.ToArray() : Array.Empty<GameScore>());
+            return (results, count);
+        }
+
+        private async Task<QueryRecordsResponse<GameHighScore>> GetGameHighScoresForAllTime(string gameId, int limit, string companyId)
+        {
+            var filter = Builders<GameProfile>.Filter.And(
+                Builders<GameProfile>.Filter.Eq(x => x.GameId, gameId),
+                Builders<GameProfile>.Filter.Eq(x => x.CompanyId, companyId),
+                Builders<GameProfile>.Filter.Gt(x => x.PersonalBestScore, 0),
+                Builders<GameProfile>.Filter.Lt(x => x.PersonalBestScore, double.MaxValue),
+                Builders<GameProfile>.Filter.Lt(x => x.PersonalBestScore, 99999));
+
+            var gameProfiles = await _mongoDBService.GetDocuments(
+              filter: filter,
+              skip: 0,
+              limit: limit,
+              sortOrder: SortOrder.Descending,
+              sortFieldName: nameof(GameProfile.PersonalBestScore));
+
+            if (gameProfiles is null || gameProfiles.Count == 0)
+                return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(0, Array.Empty<GameHighScore>());
+
+            var count = gameProfiles.Count;
+
+            var userIds = gameProfiles.Select(x => x.User.UserId).ToArray();
+
+            var users = await _userRepository.GetUsers(
+                userIds: userIds,
+                companyId: companyId);
+
+            List<GameHighScore> gameHighScores = new();
+
+            foreach (var gameProfile in gameProfiles)
+            {
+                var user = users.First(x => x.Id == gameProfile.User.UserId);
+                gameHighScores.Add(GameHighScore.Initialize(gameProfile, user));
+            }
+
+            return new QueryRecordsResponse<GameHighScore>().BuildSuccessResponse(
+                count: count,
+                records: gameHighScores.ToArray());
         }
 
         #endregion

@@ -1,0 +1,408 @@
+﻿{
+  "SeasonOptions": {
+    "Seasons": [
+      {
+        "id": "selise-christmas",
+        "name": "christmas",
+        "companyId": "selise",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2022-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Welcome to SELISE Games."
+          },
+          {
+            "culture": "de",
+            "value": "Willkommen bei SELISE Games."
+          },
+          {
+            "culture": "fr",
+            "value": "Bienvenue aux jeux SELISE."
+          },
+          {
+            "culture": "bn",
+            "value": "SELISE গেমসে স্বাগতম।"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#206fa3",
+          "bubbleType1BackgroundColor": "#ffffff",
+          "bubbleType2BackgroundColor": "#ffffff",
+          "bubbleType3BackgroundColor": "#ffffff",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#85878a",
+          "seasonDeadlineColor": "#206fa3",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#206fa3",
+          "offerColor": "#206fa3",
+          "playButtonBackgroundColor": "#206fa3",
+          "playButtonBorderColor": "#ffffff",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Play and compete with your friends and show off your score on the leaderboard."
+          },
+          {
+            "Culture": "de",
+            "Value": "Spiele und konkurriere mit deinen Freunden und zeige deinen Punktestand in der Bestenliste."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Jouez et rivalisez avec vos amis et montrez votre score au classement."
+          },
+          {
+            "Culture": "bn",
+            "Value": "খেলুন এবং আপনার বন্ধুদের সাথে প্রতিযোগিতা করুন এবং লিডারবোর্ডে আপনার স্কোর দেখান।"
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://selisegroup.com/"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://selisegroup.com/"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://selisegroup.com/"
+          },
+          {
+            "Culture": "bn",
+            "Value": "https://selisegroup.com/"
+          }
+        ]
+      },
+      {
+        "id": "horen-maare-christmas",
+        "name": "christmas",
+        "companyId": "horen-maare",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2023-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Welcome to Horen Maare Games."
+          },
+          {
+            "culture": "de",
+            "value": "Willkommen bei Horen Maare Games."
+          },
+          {
+            "culture": "bn",
+            "value": "হরেন মারে গেমসে স্বাগতম।"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#206fa3",
+          "bubbleType1BackgroundColor": "#ffffff",
+          "bubbleType2BackgroundColor": "#ffffff",
+          "bubbleType3BackgroundColor": "#ffffff",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#85878a",
+          "seasonDeadlineColor": "#206fa3",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#206fa3",
+          "offerColor": "#206fa3",
+          "playButtonBackgroundColor": "#206fa3",
+          "playButtonBorderColor": "#ffffff",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Play and compete with your friends and show off your score on the leaderboard."
+          },
+          {
+            "Culture": "de",
+            "Value": "Spiele und konkurriere mit deinen Freunden und zeige deinen Punktestand in der Bestenliste."
+          },
+          {
+            "Culture": "bn",
+            "Value": "খেলুন এবং আপনার বন্ধুদের সাথে প্রতিযোগিতা করুন এবং লিডারবোর্ডে আপনার স্কোর দেখান।"
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://selisegroup.com/"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://selisegroup.com/"
+          },         
+          {
+            "Culture": "bn",
+            "Value": "https://selisegroup.com/"
+          }
+        ]
+      },
+      {
+        "id": "spiga-christmas",
+        "name": "christmas",
+        "companyId": "spiga",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2022-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Oh no! Our Pizza delivery to the moon got lost in space! Help us collecting the pizza slices, so we can still deliver the order and in return we will suprise you with new goodies every day."
+          },
+          {
+            "culture": "de",
+            "value": "Oh nein! Unsere Lieferung zum Mond ging im All verloren! Hilf uns die Pizzastücke wieder einzusammeln, damit wir diese zustellen können und als Dankeschön überraschen wir dich jeden Tag mit tollen Preisen."
+          },
+          {
+            "culture": "fr",
+            "value": "Ah non ! Notre envoi vers la lune s'est perdu dans l'espace ! Aidez-nous à collecter les tranches de pizza, afin que nous puissions continuer à livrer la commande et en retour, nous vous surprendrons avec de nouvelles surprises chaque jour."
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#630311",
+          "bubbleType1BackgroundColor": "#eee4e5",
+          "bubbleType2BackgroundColor": "#caaaaf",
+          "bubbleType3BackgroundColor": "#863a46",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#432d20",
+          "seasonDeadlineColor": "#bfc835",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#bfc835",
+          "offerColor": "#b4bd00",
+          "playButtonBackgroundColor": "#b4bd00",
+          "playButtonBorderColor": "#432d20",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Keep playing, because, among all the top 100 high scorers, we will raffle off an overnight stay in a Moxy hotel after Advent."
+          },
+          {
+            "Culture": "de",
+            "Value": "Weiter spielen lohnt sich, denn unter allen Top 100 High Scorern, verlosen wir nach der Adventszeit eine Übernachtung in einem Moxy Hotel."
+          },
+          {
+            "Culture": "fr",
+            "Value": "Continuer à jouer vaut la peine, car parmi tous les 100 meilleurs high scorers, nous tirerons au sort une nuit dans un hôtel après la période de l'Avent."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga"
+          }
+        ]
+      },
+      {
+        "id": "emil-christmas",
+        "name": "christmas",
+        "companyId": "emil",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2022-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Help! Our EMIL order to the moon got lost in space! Collect as many bowls as possible and as a thank you we will give a great prize for the highest high score of the day! So it pays off to participate every day! We count on your help!"
+          },
+          {
+            "culture": "de",
+            "value": "Hilfe! Unsere EMIL Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!"
+          },
+          {
+            "culture": "fr",
+            "value": "Au secours ! Notre commande EMIL pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#343530",
+          "bubbleType1BackgroundColor": "#e9e9e9",
+          "bubbleType2BackgroundColor": "#babab8",
+          "bubbleType3BackgroundColor": "#71716f",
+          "cardBackgroundColor": "#fc9c9d",
+          "cardBorder": "#ffffff",
+          "seasonDeadlineColor": "#ffffff",
+          "offerDetailsColor": "#432d1f",
+          "winningCriteriaColor": "#432d1f",
+          "requiredPointsColor": "#ffffff",
+          "offerColor": "#ffffff",
+          "playButtonBackgroundColor": "#fc9c9d",
+          "playButtonBorderColor": "#ffffff",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! Among all the top 20 weekly high scorers, we will draw a lucky winner who gets the weekly prize."
+          },
+          {
+            "Culture": "de",
+            "Value": "Das Spiel läuft! Unter den 20 besten Highscorern der Woche ziehen wir einen glücklichen Gewinner, der den Wochenpreis erhält."
+          },
+          {
+            "Culture": "fr",
+            "Value": "C'est parti ! Parmi les 20 meilleurs scores de la semaine, nous tirerons au sort un heureux gagnant qui recevra le prix hebdomadaire."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/emil"
+          }
+        ]
+      },
+      {
+        "id": "andiamo-christmas",
+        "name": "christmas",
+        "companyId": "andiamo",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2022-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Help! Our Andiamo Delivery order to the moon got lost in space! Collect as many bowls as possible and as a thank you we will give a great prize for the highest high score of the day! So it pays off to participate every day! We count on your help!"
+          },
+          {
+            "culture": "de",
+            "value": "Hilfe! Unsere Andiamo Delivery Bestellung zum Mond ist im All verloren gegangen! Hilf uns so viele Bowls wie möglich wieder einzusammeln und als Dankeschön gibt es mega tolle Preise für den höchsten High Score des Tages! Täglich mitmachen lohnt sich also! Wir zählen auf deine Hilfe!"
+          },
+          {
+            "culture": "fr",
+            "value": "Au secours ! Notre commande Andiamo Delivery pour la lune s'est perdue dans l'espace ! Aidez-nous à récupérer autant de bols que possible et, en guise de remerciement, nous vous offrons des prix superbes pour le meilleur score du jour ! Participer chaque jour vaut donc la peine ! Nous comptons sur ton aide !"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#9b9c9e",
+          "bubbleType1BackgroundColor": "#f4f4f4",
+          "bubbleType2BackgroundColor": "#dddddf",
+          "bubbleType3BackgroundColor": "#b9babc",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#2b700c",
+          "seasonDeadlineColor": "#9bca40",
+          "offerDetailsColor": "#9ea2a4",
+          "winningCriteriaColor": "#9ea0a2",
+          "requiredPointsColor": "#8ec327",
+          "offerColor": "#8cc223",
+          "playButtonBackgroundColor": "#8cc222",
+          "playButtonBorderColor": "#2c700d",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! Among all the top 20 weekly high scorers, we will draw a lucky winner who gets the weekly prize."
+          },
+          {
+            "Culture": "de",
+            "Value": "Das Spiel läuft! Unter den 20 besten Highscorern der Woche ziehen wir einen glücklichen Gewinner, der den Wochenpreis erhält."
+          },
+          {
+            "Culture": "fr",
+            "Value": "C'est parti ! Parmi les 20 meilleurs scores de la semaine, nous tirerons au sort un heureux gagnant qui recevra le prix hebdomadaire."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/andiamo"
+          }
+        ]
+      },
+      {
+        "id": "sv-restaurant-christmas",
+        "name": "christmas",
+        "companyId": "sv-restaurant",
+        "startTime": "2022-01-01T00:00:00",
+        "endTime": "2022-12-31T23:59:59",
+        "seasonDescriptions": [
+          {
+            "culture": "en",
+            "value": "Let the games begin! Every week we unlock a new game and you have 1 week to win the weekly prize! Among the top 20 high scorers of the week, we will then draw the weekly prize! So stay tuned!"
+          },
+          {
+            "culture": "de",
+            "value": "Lasst die Spiele beginnen! Wöchentlich schalten wir ein neues Spiel frei und ihr habt 1 Woche Zeit, um den Wochenpreis zu gewinnen! Unter den Top 20 High Scorern der Woche, verlosen wir dann den Wochenpreis! Dran bleiben lohnt sich also!"
+          },
+          {
+            "culture": "fr",
+            "value": "Que les jeux commencent ! Chaque semaine, nous débloquons un nouveau jeu et vous avez une semaine pour gagner le prix de la semaine ! Nous tirerons au sort le prix de la semaine parmi les 20 meilleurs joueurs de la semaine ! Cela vaut donc la peine de s'accrocher !"
+          }
+        ],
+        "theme": {
+          "backgroundColor": "#9b9c9e",
+          "bubbleType1BackgroundColor": "#f4f4f4",
+          "bubbleType2BackgroundColor": "#dddddf",
+          "bubbleType3BackgroundColor": "#b9babc",
+          "cardBackgroundColor": "#ffffff",
+          "cardBorder": "#2b700c",
+          "seasonDeadlineColor": "#9bca40",
+          "offerDetailsColor": "#9ea2a4",
+          "winningCriteriaColor": "#9ea0a2",
+          "requiredPointsColor": "#8ec327",
+          "offerColor": "#8cc223",
+          "playButtonBackgroundColor": "#8cc222",
+          "playButtonBorderColor": "#2c700d",
+          "playButtonTextColor": "#ffffff"
+        },
+        "prizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Game on! Among all the top 20 weekly high scorers, we will draw a lucky winner who gets the weekly prize."
+          },
+          {
+            "Culture": "de",
+            "Value": "Das Spiel läuft! Unter den 20 besten Highscorern der Woche ziehen wir einen glücklichen Gewinner, der den Wochenpreis erhält."
+          },
+          {
+            "Culture": "fr",
+            "Value": "C'est parti ! Parmi les 20 meilleurs scores de la semaine, nous tirerons au sort un heureux gagnant qui recevra le prix hebdomadaire."
+          }
+        ],
+        "termsAndConditionsUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/de/adventgames/sv-restaurant"
+          }
+        ]
+      }
+    ]
+  }
+}

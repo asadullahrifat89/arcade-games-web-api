@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace AdventGamesCore
 {
-    public class GetGameHighScoresQueryHandler : IRequestHandler<GetGameHighScoresQuery, QueryRecordsResponse<GameScore>>
+    public class GetGameHighScoresQueryHandler : IRequestHandler<GetGameHighScoresQuery, QueryRecordsResponse<GameHighScore>>
     {
         #region Fields
 
@@ -26,7 +26,7 @@ namespace AdventGamesCore
 
         #region Methods
 
-        public async Task<QueryRecordsResponse<GameScore>> Handle(GetGameHighScoresQuery query, CancellationToken cancellationToken)
+        public async Task<QueryRecordsResponse<GameHighScore>> Handle(GetGameHighScoresQuery query, CancellationToken cancellationToken)
         {
             try
             {
@@ -38,7 +38,7 @@ namespace AdventGamesCore
             catch (Exception ex)
             {
                 _logger.LogError(ex, ex.Message);
-                return new QueryRecordsResponse<GameScore>().BuildErrorResponse(new ErrorResponse().BuildExternalError(ex.Message));
+                return new QueryRecordsResponse<GameHighScore>().BuildErrorResponse(new ErrorResponse().BuildExternalError(ex.Message));
             }
         }
 

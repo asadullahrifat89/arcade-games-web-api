@@ -1,8 +1,6 @@
 ﻿using AdventGamesCore.Extensions;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
-using System.Linq;
-using System.Text.RegularExpressions;
 
 namespace AdventGamesCore
 {
@@ -11,13 +9,13 @@ namespace AdventGamesCore
         #region Fields
 
         private readonly IMongoDbService _mongoDBService;
-        private readonly IOptions<GamePrizesOptions> _gamePrizesOptions;
+        private readonly IOptions<GamePrizeOptions> _gamePrizesOptions;
 
         #endregion
 
         #region Ctor
 
-        public GamePrizeRepository(IMongoDbService mongoDBService, IOptions<GamePrizesOptions> options)
+        public GamePrizeRepository(IMongoDbService mongoDBService, IOptions<GamePrizeOptions> options)
         {
             _mongoDBService = mongoDBService;
             _gamePrizesOptions = options;
@@ -31,13 +29,13 @@ namespace AdventGamesCore
 
         public async Task<QueryRecordsResponse<GamePrize>> GetGamePrizes(GetGamePrizesQuery query)
         {
-            var filter = Builders<GamePrize>.Filter.Eq(x => x.GameId, query.GameId);
+            var filter = Builders<GamePrize>.Filter.And(Builders<GamePrize>.Filter.Eq(x => x.GameId, query.GameId), Builders<GamePrize>.Filter.Eq(x => x.CompanyId, query.CompanyId));
 
             if (query.SearchTerm is not null && !query.SearchTerm.IsNullOrBlank())
                 filter &= Builders<GamePrize>.Filter.ElemMatch(x => x.PrizeDescriptions, c => c.Value.ToLowerInvariant().Contains(query.SearchTerm.ToLowerInvariant()));
 
             if (query.Day > 0)
-                filter &= Builders<GamePrize>.Filter.Eq(x => x.Day, query.Day);
+                filter &= Builders<GamePrize>.Filter.AnyIn(x => x.Days, new[] { query.Day.Value });
 
             if (query.Culture is not null && !query.Culture.IsNullOrBlank())
                 filter &= Builders<GamePrize>.Filter.ElemMatch(x => x.PrizeDescriptions, c => c.Culture == query.Culture);
@@ -49,23 +47,24 @@ namespace AdventGamesCore
                 skip: query.PageIndex * query.PageSize,
                 limit: query.PageSize,
                 sortOrder: SortOrder.Ascending,
-                sortFieldName: nameof(GamePrize.Day));
+                sortFieldName: nameof(GamePrize.Name));
 
             return new QueryRecordsResponse<GamePrize>().BuildSuccessResponse(
                count: results is not null ? count : 0,
                records: results is not null ? results.ToArray() : Array.Empty<GamePrize>());
         }
 
-        public async Task<QueryRecordResponse<GamePrize>> GetGamePrize(GetGamePrizeQuery query)
+        public async Task<QueryRecordResponse<GamePrizeOfTheDay>> GetGamePrizeOfTheDay(GetGamePrizeOfTheDayQuery query)
         {
             GamePrize? result = await GetGamePrize(
                 gameId: query.GameId,
                 day: query.Day,
+                companyId: query.CompanyId,
                 culture: query.Culture);
 
             return result is not null
-               ? new QueryRecordResponse<GamePrize>().BuildSuccessResponse(result)
-               : new QueryRecordResponse<GamePrize>().BuildErrorResponse(new ErrorResponse().BuildExternalError("Game prize not found."));
+               ? new QueryRecordResponse<GamePrizeOfTheDay>().BuildSuccessResponse(GamePrizeOfTheDay.Initialize(result))
+               : new QueryRecordResponse<GamePrizeOfTheDay>().BuildErrorResponse(new ErrorResponse().BuildExternalError("Game prize not found."));
         }
 
         public async Task<GamePlayResult> GetGamePlayResult(GameScore gameScore)
@@ -74,7 +73,7 @@ namespace AdventGamesCore
 
             _ = int.TryParse(gameScore.ScoreDay.Split('-')[0], out int day); // take the day part
 
-            if (await GetGamePrize(gameId: gameScore.GameId, day: day) is GamePrize gamePrize)
+            if (await GetGamePrize(gameId: gameScore.GameId, day: day, companyId: gameScore.CompanyId) is GamePrize gamePrize)
             {
                 switch (gamePrize.WinningCriteria.CriteriaType)
                 {
@@ -95,9 +94,14 @@ namespace AdventGamesCore
                             }
                             else
                             {
+                                // if the player didn't win then no need to show the prize url
+                                gamePrize.PrizeUrls = Array.Empty<CultureValue>();
+
                                 gamePlayResult = GamePlayResult.Initialize(
                                    gamePrize: gamePrize,
-                                   winningDescriptions: gamePrize.WinningCriteria.CriteriaDescriptions);
+                                   winningDescriptions: gamePrize.WinningCriteria.MotivationDescriptions is not null && gamePrize.WinningCriteria.MotivationDescriptions.Any()
+                                   ? gamePrize.WinningCriteria.MotivationDescriptions
+                                   : gamePrize.WinningCriteria.CriteriaDescriptions);
                             }
                         }
                         break;
@@ -107,11 +111,9 @@ namespace AdventGamesCore
             return gamePlayResult;
         }
 
-        public async Task LoadGamePrizesFromJson()
+        public async Task LoadJson()
         {
-            var filter = Builders<GamePrize>.Filter.Empty;
-
-            await _mongoDBService.DeleteDocuments(filter);
+            await _mongoDBService.DropCollection<GamePrize>();
 
             var prizes = _gamePrizesOptions.Value.GamePrizes;
 
@@ -123,10 +125,11 @@ namespace AdventGamesCore
 
         #region Private
 
-        private async Task<GamePrize> GetGamePrize(string gameId, int day, string culture = "")
+        private async Task<GamePrize> GetGamePrize(string gameId, int day, string companyId, string culture = "")
         {
-            var filter = Builders<GamePrize>.Filter.Eq(x => x.GameId, gameId);
-            filter &= Builders<GamePrize>.Filter.Eq(x => x.Day, day);
+            var filter = Builders<GamePrize>.Filter.And(Builders<GamePrize>.Filter.Eq(x => x.GameId, gameId),
+            Builders<GamePrize>.Filter.Eq(x => x.CompanyId, companyId),
+            Builders<GamePrize>.Filter.AnyIn(x => x.Days, new[] { day }));
 
             if (!culture.IsNullOrBlank())
                 filter &= Builders<GamePrize>.Filter.ElemMatch(x => x.PrizeDescriptions, c => c.Culture == culture);
@@ -139,10 +142,5 @@ namespace AdventGamesCore
         #endregion
 
         #endregion
-    }
-
-    public class GamePrizesOptions
-    {
-        public GamePrize[] GamePrizes { get; set; } = new GamePrize[] { };
     }
 }

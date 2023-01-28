@@ -1,0 +1,1876 @@
+﻿{
+  "GamePrizeOptions": {
+    "GamePrizes": [
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "Eistee gratis zur Pizza",
+        "Days": [ 1, 11, 19 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 free ice tea with your pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Eistee zu deiner Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 thé glacé gratuit avec ta pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "2 für 1 Pizza",
+        "Days": [ 2, 6, 9, 14, 17, 22 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A voucher of 2 for 1 pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "Einen 2 für 1 Pizza Gutschein"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un bon de réduction de 2 pizze pour le prix d'une"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "75",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "30% Pasta",
+        "Days": [ 3, 18 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "30% off your next portion of pasta"
+          },
+          {
+            "Culture": "de",
+            "Value": "30% auf deine nächste Portion Pasta"
+          },
+          {
+            "Culture": "fr",
+            "Value": "30% de réduction sur ta prochaine portion de pâtes"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "75",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "2 für 1 Pasta",
+        "Days": [ 4, 8, 12, 16, 20, 24 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A voucher of 2 for 1 pasta"
+          },
+          {
+            "Culture": "de",
+            "Value": "Einen Gutschein von 2 für 1 Pasta"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un bon de réduction de 2 de pâtes pour le prix d'une"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "Eistee gratis zur Pasta",
+        "Days": [ 5, 13, 21 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 free ice tea with your pasta"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Eistee zu deiner Portion Pasta"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 thé glacé gratuit avec ta portion de pâtes"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "30% Pizza",
+        "Days": [ 7 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "30% off your next pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "30% auf deine nächste Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "30% de réduction sur ta prochaine pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "20% Pasta",
+        "Days": [ 10 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "20% off your next portion of pasta"
+          },
+          {
+            "Culture": "de",
+            "Value": "20% auf deine nächste Portion Pasta"
+          },
+          {
+            "Culture": "fr",
+            "Value": "20% de réduction sur ta prochaine portion de pâtes"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "spiga",
+        "GameId": "space-shooter",
+        "Name": "20% Pizza",
+        "Days": [ 15, 23 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "20% off your next pizza"
+          },
+          {
+            "Culture": "de",
+            "Value": "20% auf deine nächste Pizza"
+          },
+          {
+            "Culture": "fr",
+            "Value": "20% de réduction sur ta prochaine pizza"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "ScoreThreshold",
+          "ScoreThreshold": "70",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "If you score more than 70 you will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Wenn du mehr als 70 Punkte erzielst, winkt dir dieser Preis"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Si tu obtiens plus de 70 points, tu recevras le prix suivant"
+            }
+          ],
+          "WinningDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Congratulations! You've won the daily prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Herzlichen Glückwunsch! Du hast den Tagespreis gewonnen!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Félicitations ! Vous avez gagné le prix du jour!"
+            }
+          ],
+          "MotivationDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Try again Ranger! Only a few more points and you will win today's special prize!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Try again Ranger! Nur noch ein paar Punkte mehr, und schon hast du dir den Tagespreis gesichert!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Try again Ranger! Encore quelques points de plus et tu auras le prix du jour!"
+            }
+          ]
+        },
+        "PrizeUrls": [
+          {
+            "Culture": "en",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-daily-prices"
+          },
+          {
+            "Culture": "de",
+            "Value": "https://www.sv-group.com/de/adventgames/spiga/spiga-tagespreise"
+          },
+          {
+            "Culture": "fr",
+            "Value": "https://www.sv-group.com/fr/adventgames/spiga/prix-du-jour-spiga"
+          }
+        ]
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x EMIL ear pods",
+        "Days": [ 1, 7, 14, 22 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 EMIL Wireless In-ear Headphones"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 EMIL Wireless In-ear Kopfhörer"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 EMIL Écouteurs Wireless In-ear"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x Team Lunch für 4 Personen",
+        "Days": [ 2, 8, 11, 20 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team lunch for 4 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Lunch für 4 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 lunch d'équipe pour 4 personnes"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x gratis Dessert",
+        "Days": [ 3, 13 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 dessert free of charge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Dessert"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 dessert gratuit"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x 10.- Gutschein EMIL",
+        "Days": [ 4 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 voucher worth Fr. 10.- for your EMIL Fridge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Gutschein im Wert von Fr. 10.-  für deine EMIL Fridge"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 bon d'une valeur de Fr. 10.- pour ton EMIL Fridge"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1 Samichlaus Säckli",
+        "Days": [ 5 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Santa Snack Bag"
+          },
+          {
+            "Culture": "de",
+            "Value": "1x Samichlaus Säckli"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 sac de Saint-Nicolas"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1 x gratis Hauptgericht",
+        "Days": [ 6 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Main Dish free of charge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Gratis Hauptgericht"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 plat principal gratuitement"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "5x Mehrweg besteck",
+        "Days": [ 9, 18 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A set of reusable cutlery"
+          },
+          {
+            "Culture": "de",
+            "Value": "Ein Set Mehrweg Besteck"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un set de couverts réutilisables"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The top 5 of the day will receive"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die Top 5 des Tages erhalten"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Les 5 meilleurs du jour reçoivent"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x 10.- Gutschein für EMIL",
+        "Days": [ 10 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 voucher worth Fr. 10.- for your EMIL Fridge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Gutschein im Wert von Fr. 10.-  für deine EMIL Fridge"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 bon d'une valeur de Fr. 10.- pour ton EMIL Fridge"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "5x Gratis Spiga 20.-",
+        "Days": [ 12, 21 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A voucher from SPIGA worth Fr. 20.- each."
+          },
+          {
+            "Culture": "de",
+            "Value": "Gutschein von SPIGA im Wert von Fr. 20.-"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un bon d'achat pour SPIGA d'une valeur de 20 francs."
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The top 5 winners will each receive"
+            },
+            {
+              "Culture": "de",
+              "Value": "Für die Top 5 gibt es je einen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Les 5 premiers recevront chacun"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x Gratis Packung Wraps",
+        "Days": [ 15 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 pack of wraps free of charge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Packung Wraps"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 paquet de wraps gratuit"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x Übernachtung für 2 im Moxy deiner Wahl",
+        "Days": [ 16 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 night for 2 people at the Moxy Hotel of your choice"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Übernachtung für 2 Personen im Moxy Hotel deiner Wahl"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 nuit pour 2 personnes dans l'hôtel Moxy de ton choix"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1x Gratis Packung Brownies",
+        "Days": [ 17, 23 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 pack of brownies free of charge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 gratis Packung Brownies"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 paquet de brownies gratuit"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "1 x gratis Gericht EMIL",
+        "Days": [ 19 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Delivery dish free of charge"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Gratis Delivery Gericht"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 plat livré gratuitement"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "emil",
+        "GameId": "space-shooter",
+        "Name": "Übernachtung Stay Kooook",
+        "Days": [ 24 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 night for 2 persons at Stay Kooook Hotel "
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Übernachtung für 2 Personen im Stay Kooook Hotel "
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 nuit pour 2 personnes à l'hôtel Stay Kooook"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1x Andiamo ear pods",
+        "Days": [ 1, 7, 14 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Andiamo Wireless In-ear Headphones"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Andiamo Wireless In-ear Kopfhörer"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 Andiamo Écouteurs Wireless In-ear"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1x Team Lunch für 4 Personen",
+        "Days": [ 2, 8, 15, 20 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team lunch for 4 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Lunch für 4 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 lunch d'équipe pour 4 personnes"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "We're closed today come again later.",
+        "Days": [ 3, 4, 10, 11, 17, 18 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Whoops, we sadly don't have prizes for the weekend, but you're free to play the game anyways!"
+          },
+          {
+            "Culture": "de",
+            "Value": "Upps, wir haben an den Wochenenden leider keine Preise für dich, aber üben kannst du trotzdem!"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Oups, nous n'avons malheureusement pas de prix pour toi le week-end, mais tu peux quand même t'entraîner!"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "We're closed today come again later."
+            },
+            {
+              "Culture": "de",
+              "Value": "Wir haben heute geschlossen, kommen Sie später wieder."
+            },
+            {
+              "Culture": "fr",
+              "Value": "Nous sommes fermés aujourd'hui, revenez plus tard."
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1 Samichlaus Säckli",
+        "Days": [ 5 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Santa Snack Bag"
+          },
+          {
+            "Culture": "de",
+            "Value": "1x Samichlaus Säckli"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 sac de Saint-Nicolas"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1 x gratis Gericht Delivery",
+        "Days": [ 6, 19 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 Free Delivery dish"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Gratis Delivery Gericht"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 plat livré gratuitement"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "5x Mehrweg besteck",
+        "Days": [ 9 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A set of reusable cutlery"
+          },
+          {
+            "Culture": "de",
+            "Value": "Ein Set Mehrweg Besteck"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un set de couverts réutilisables"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The top 5 winners will each receive"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die Top 5 des Tages erhalten"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Les 5 meilleurs du jour reçoivent"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "5x Gratis Spiga 20.-",
+        "Days": [ 12 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A voucher from SPIGA worth Fr. 20.- each."
+          },
+          {
+            "Culture": "de",
+            "Value": "Gutschein von SPIGA im Wert von Fr. 20.-"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un bon d'achat pour SPIGA d'une valeur de 20 francs."
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The top 5 winners will each receive"
+            },
+            {
+              "Culture": "de",
+              "Value": "Für die Top 5 gibt es je einen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Les 5 premiers recevront chacun"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1x zwei Tickets für ZSC Spiel",
+        "Days": [ 13, 22 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1x 2 tickets for a ZSC Lions game"
+          },
+          {
+            "Culture": "de",
+            "Value": "1x 2 Tickets für ein ZSC Lions Spiel"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1x 2 billets pour un match des ZSC Lions"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "1x Übernachtung für 2 im Moxy deiner Wahl",
+        "Days": [ 16 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 night for 2 people at the Moxy Hotel of your choice"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Übernachtung für 2 Personen im Moxy Hotel deiner Wahl"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 nuit pour 2 personnes dans l'hôtel Moxy de ton choix"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "5x SESH 20.- Gutschein",
+        "Days": [ 21 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "A voucher from SESH worth Fr. 20.- each"
+          },
+          {
+            "Culture": "de",
+            "Value": "Gutschein von SESH im Wert von Fr. 20.-"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Un bon d'achat pour SESH d'une valeur de 20 francs."
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The top 5 winners will each receive"
+            },
+            {
+              "Culture": "de",
+              "Value": "Für die Top 5 gibt es je einen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Les 5 premiers recevront chacun"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "Übernachtung Stay Kooook",
+        "Days": [ 23 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 night for 2 persons at Stay Kooook Hotel "
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Übernachtung für 2 Personen im Stay Kooook Hotel "
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 nuit pour 2 personnes à l'hôtel Stay Kooook"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "The highest scorer of the day will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Die höchste Punktzahl des Tages wird folgendes gewinnen"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le plus haut score de la journée remportera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "andiamo",
+        "GameId": "space-shooter",
+        "Name": "Thank you so much for playing with us and we wish you happy merry christmas!",
+        "Days": [ 24 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "Thank you so much for playing with us and we wish you happy merry christmas!"
+          },
+          {
+            "Culture": "de",
+            "Value": "Vielen lieben Dank, dass du bei uns so fleissig mitgemacht und mitgespielt hast! Wir wünschen dir jetzt schon eine wunderschöne Weihnachtszeit!"
+          },
+          {
+            "Culture": "fr",
+            "Value": "Merci beaucoup pour ton assiduité et ta participation à notre concours ! Nous te souhaitons d'ores et déjà de passer de merveilleuses fêtes de fin d'année !"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "Thank you so much!"
+            },
+            {
+              "Culture": "de",
+              "Value": "Ich danke Ihnen vielmals!"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Merci beaucoup!"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "hungry-worm",
+        "Name": "1 team lunch at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 1, 2, 3, 4, 5, 6 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team lunch at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Lunch bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 Team-Lunch bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This period's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der/Die SpielerIn mit der höchsten Punktzahl der Spielperiode gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le mielleur score de la période gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "sky-way",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 7, 8, 9, 10, 11, 12 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This period's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der/Die SpielerIn mit der höchsten Punktzahl der Spielperiode gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le mielleur score de la période gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "candy-craze",
+        "Name": "1 team lunch at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 13, 14, 15, 16, 17, 18 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team lunch at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Lunch bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 Team-Lunch bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This period's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der/Die SpielerIn mit der höchsten Punktzahl der Spielperiode gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le mielleur score de la période gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      },
+      {
+        "CompanyId": "sv-restaurant",
+        "GameId": "memory-match",
+        "Name": "1 team aperitif at an SV restaurant near you for a maximum of 10 people",
+        "Days": [ 19, 20, 21, 22, 23, 24 ],
+        "PrizeDescriptions": [
+          {
+            "Culture": "en",
+            "Value": "1 team aperitif at an SV restaurant near you for a maximum of 10 people"
+          },
+          {
+            "Culture": "de",
+            "Value": "1 Team-Apéro bei einem SV Restaurant in deiner Nähe für maximal 10 Personen"
+          },
+          {
+            "Culture": "fr",
+            "Value": "1 apéro d'équipe dans un restaurant SV près de chez toi pour 10 personnes maximum"
+          }
+        ],
+        "WinningCriteria": {
+          "CriteriaType": "DailyHighScore",
+          "ScoreThreshold": "0",
+          "CriteriaDescriptions": [
+            {
+              "Culture": "en",
+              "Value": "This period's highest scorer will win"
+            },
+            {
+              "Culture": "de",
+              "Value": "Der/Die SpielerIn mit der höchsten Punktzahl der Spielperiode gewinnt"
+            },
+            {
+              "Culture": "fr",
+              "Value": "Le mielleur score de la période gagnera"
+            }
+          ],
+          "WinningDescriptions": [],
+          "MotivationDescriptions": []
+        },
+        "PrizeUrls": []
+      }
+    ]
+  }
+}

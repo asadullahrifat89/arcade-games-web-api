@@ -17,5 +17,20 @@
         public string PrizeName { get; set; } = string.Empty;
 
         public CultureValue[] PrizeDescriptions { get; set; } = Array.Empty<CultureValue>();
+
+        public static GameWinner Initialize(GameHighScore gameHighScore, GamePlayResult gamePlayResult)
+        {
+            return new GameWinner()
+            {
+                City = gameHighScore.City,
+                FullName = gameHighScore.FullName,
+                UserEmail = gameHighScore.UserEmail,
+                UserName = gameHighScore.UserName,
+                Score = gameHighScore.Score,
+                ScoreDay = gameHighScore.ScoreDay,
+                PrizeName = gamePlayResult.PrizeName,
+                PrizeDescriptions = gamePlayResult.PrizeDescriptions,
+            };
+        }
     }
 }
