@@ -1,4 +1,4 @@
-# Astro-Odyssey-Web-API
+# arcade-games-web-api
 A .NET 7 minimal API for the games built on Uno Platform. Serves as the backend service.
 
 Features:
