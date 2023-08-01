@@ -7,7 +7,7 @@ namespace AdventGamesCore
     {
         #region Fields
 
-        private readonly IMongoDbService _mongoDBService;
+        private readonly IMongoDbService _mongoDbService;
 
         #endregion
 
@@ -15,7 +15,7 @@ namespace AdventGamesCore
 
         public UserRepository(IMongoDbService mongoDBService)
         {
-            _mongoDBService = mongoDBService;
+            _mongoDbService = mongoDBService;
         }
 
         #endregion
@@ -25,7 +25,7 @@ namespace AdventGamesCore
         public async Task<bool> BeAnExistingUser(string id)
         {
             var filter = Builders<User>.Filter.Eq(x => x.Id, id);
-            return await _mongoDBService.Exists(filter);
+            return await _mongoDbService.Exists(filter);
         }
 
         public async Task<bool> BeAnExistingUserEmail(string userEmail, string companyId)
@@ -34,7 +34,7 @@ namespace AdventGamesCore
                 Builders<User>.Filter.Eq(x => x.Email, userEmail),
                 Builders<User>.Filter.Eq(x => x.CompanyId, companyId));
 
-            return await _mongoDBService.Exists(filter);
+            return await _mongoDbService.Exists(filter);
         }
 
         public async Task<bool> BeAnExistingUserName(string userName, string companyId)
@@ -43,7 +43,7 @@ namespace AdventGamesCore
                 Builders<User>.Filter.Eq(x => x.UserName, userName),
                 Builders<User>.Filter.Eq(x => x.CompanyId, companyId));
 
-            return await _mongoDBService.Exists(filter);
+            return await _mongoDbService.Exists(filter);
         }
 
         public async Task<bool> BeAnExistingUserNameOrEmail(string userNameOrEmail, string companyId = "")
@@ -56,7 +56,7 @@ namespace AdventGamesCore
             if (!companyId.IsNullOrBlank())
                 filter &= Builders<User>.Filter.Eq(x => x.CompanyId, companyId);
 
-            return await _mongoDBService.Exists(filter);
+            return await _mongoDbService.Exists(filter);
         }
 
         public async Task<bool> BeValidUser(string userNameOrEmail, string password)
@@ -67,7 +67,7 @@ namespace AdventGamesCore
                    Builders<User>.Filter.Or(Builders<User>.Filter.Eq(x => x.Email, userNameOrEmail), Builders<User>.Filter.Eq(x => x.UserName, userNameOrEmail)),
                    Builders<User>.Filter.Eq(x => x.Password, encryptedPassword));
 
-            return await _mongoDBService.Exists(filter);
+            return await _mongoDbService.Exists(filter);
         }
 
         public async Task<User> GetUser(string userNameOrEmail, string password, string companyId)
@@ -79,12 +79,12 @@ namespace AdventGamesCore
                    Builders<User>.Filter.Eq(x => x.Password, encryptedPassword),
                    Builders<User>.Filter.Eq(x => x.CompanyId, companyId));
 
-            return await _mongoDBService.FindOne(filter);
+            return await _mongoDbService.FindOne(filter);
         }
 
         public async Task<QueryRecordResponse<UserProfile>> GetUserProfile(GetUserProfileQuery query)
         {
-            var user = await _mongoDBService.FindOne<User>(x => x.Id == query.UserId && x.CompanyId == query.CompanyId);
+            var user = await _mongoDbService.FindOne<User>(x => x.Id == query.UserId && x.CompanyId == query.CompanyId);
 
             return user is null
                 ? new QueryRecordResponse<UserProfile>().BuildErrorResponse(new ErrorResponse().BuildExternalError("User doesn't exist."))
@@ -95,9 +95,9 @@ namespace AdventGamesCore
         {
             var filter = Builders<User>.Filter.Eq(x => x.CompanyId, query.CompanyId);
 
-            var count = await _mongoDBService.CountDocuments(filter);
+            var count = await _mongoDbService.CountDocuments(filter);
 
-            var results = await _mongoDBService.GetDocuments(
+            var results = await _mongoDbService.GetDocuments(
               filter: filter,
               skip: query.PageIndex * query.PageSize,
               limit: query.PageSize,
@@ -113,7 +113,7 @@ namespace AdventGamesCore
         {
             var filter = Builders<User>.Filter.And(Builders<User>.Filter.Eq(x => x.CompanyId, companyId), Builders<User>.Filter.In(x => x.Id, userIds));
 
-            var results = await _mongoDBService.GetDocuments(filter: filter);
+            var results = await _mongoDbService.GetDocuments(filter: filter);
 
             return results is null ? Array.Empty<User>() : results.ToArray();
         }
@@ -122,14 +122,14 @@ namespace AdventGamesCore
         {
             var filter = Builders<User>.Filter.And(Builders<User>.Filter.Eq(x => x.CompanyId, companyId), Builders<User>.Filter.Eq(x => x.Id, userId));
 
-            return await _mongoDBService.FindOne(filter);
+            return await _mongoDbService.FindOne(filter);
         }
 
         public async Task<ServiceResponse> Signup(SignupCommand command)
         {
             var user = User.Initialize(command);
 
-            await _mongoDBService.InsertDocument(user);
+            await _mongoDbService.InsertDocument(user);
 
             // create game profiles based on game ids
             GameProfile[] gameProfiles = Constants.GAME_IDS.Select(gameId => GameProfile.Initialize(
@@ -137,7 +137,7 @@ namespace AdventGamesCore
                 userId: user.Id,
                 gameId: gameId)).ToArray();
 
-            await _mongoDBService.InsertDocuments(gameProfiles);
+            await _mongoDbService.InsertDocuments(gameProfiles);
 
             return Response.Build().BuildSuccessResponse(gameProfiles.First(x => x.GameId == command.GameId));
         }
